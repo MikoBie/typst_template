@@ -1,0 +1,5 @@
+## PDF
+**/*.pdf
+
+## MACOS system files
+**/*.DS_Store

@@ -119,10 +119,10 @@
 
       #v(1em)
       #date
-      #v(2em)
+      #v(1.5em)
       #grid(columns: (5%, 1fr,5%),
       [],
-      [#text(size: 14pt)[
+      [#text(size: 12pt)[
         #funding
         ]
       ],

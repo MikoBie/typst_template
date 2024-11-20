@@ -6,8 +6,8 @@
 
 // Define main colors of the theme.
 #let mainColor = rgb(42,60,102)
-#let enumColor = rgb(42,102,45)
-#let alertColor = rgb(102,42,66)
+#let alertColor = rgb(42,102,45)
+#let enumColor = rgb(102,42,66)
 #let otherColor = rgb(102,84,42)
 
 // Option of the theme.
@@ -28,7 +28,7 @@
   #it
 ]
 
-#let shadowed = shadowed.with(radius: 8pt, inset: 8pt, fill: mainColor.lighten(60%), blur: 10pt, color: gray)
+#let shadowed = shadowed.with(radius: 8pt, inset: 8pt, fill: mainColor.lighten(60%), blur: 30pt, color: gray)
 
 #let underline = underline.with(stroke: alertColor, offset: 3pt)
 

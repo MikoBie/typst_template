@@ -43,3 +43,7 @@
   + #lorem(10)
   + #highlight[#lorem(10)]
 ]
+
+#focus-slide(background: mainColor)[
+  #lorem(10)
+]

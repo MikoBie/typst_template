@@ -1,7 +1,7 @@
 // This theme contains ideas from the former "bristol" theme, contributed by
 // https://github.com/MarkBlyth
-#import "@preview/polylux:0.3.1": *
-#import "@preview/cetz:0.2.2"
+#import "@preview/polylux:0.4.0": *
+#import "@preview/cetz:0.4.0"
 
 #let iss-left-footer = state("iss-left-footer", [])
 #let iss-short-title = state("iss-short-title", none)
@@ -50,9 +50,9 @@
   secondlogo: none,
   funding: none,
 ) = {
-  let content = locate( loc => {
-    let color = iss-color.at(loc)
-    let logo = iss-logo.at(loc)
+  let content = context{
+    let color = iss-color.get()
+    let logo = iss-logo.get()
     let authors = if type(authors) in ("string", "content") {
       ( authors, )
     } else {
@@ -129,13 +129,13 @@
       []
       )
     ]
-  })
-  logic.polylux-slide(content)
+  }
+  content
 }
 
 #let slide(title: none, body) = {
-  let header = locate( loc => {
-    let color = iss-color.at(loc)
+  let header = context {
+    let color = iss-color.get()
     set align(top)
     if title != none {
       show: m-cell.with(fill: color, inset: 2em)
@@ -143,12 +143,12 @@
       set text(fill: white, size: 1.2em)
       strong(title)
     } else { [] }
-  })
+  }
 
-  let footer = locate( loc => {
-    let color = iss-color.at(loc)
-    let short-title = iss-short-title.at(loc)
-    let left-footer = iss-left-footer.at(loc)
+  let footer = context {
+    let color = iss-color.get()
+    let short-title = iss-short-title.get()
+    let left-footer = iss-left-footer.get()
     set align(bottom)
     {
       set align(horizon + center)
@@ -164,11 +164,11 @@
       },
       {
         show: m-cell.with(fill: color.darken(20%), inset: .5em)
-        logic.logical-slide.display()
+        //logic.logical-slide.display()
       }
       )
     }
-  })
+  }
 
   set page(
     margin: ( top: 4em, bottom: 2em, x: 0em ),
@@ -187,26 +187,25 @@
     body,
     [])
   }
-  logic.polylux-slide(content)
+  content
 }
 
 #let focus-slide(background: teal, foreground: white, body) = {
   set page(fill: background, margin: 2em)
   set text(fill: foreground, size: 1.5em)
   let content = { v(.1fr); body; v(.1fr) }
-  // logic.polylux-slide(align(horizon, body))
-  logic.polylux-slide(content)
+  content
 }
 
 #let new-section-slide(name) = {
   set page(margin: 2em)
-  let content = locate( loc => {
-    let color = iss-color.at(loc)
+  let content = context {
+    let color = iss-color.get()
     set align(center + horizon)
     show: block.with(stroke: ( bottom: 1mm + color ), inset: 1em,)
     set text(size: 1.5em)
     strong(name)
     utils.register-section(name)
-  })
-  logic.polylux-slide(content)
+  }
+  content
 }

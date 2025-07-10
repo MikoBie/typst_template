@@ -4,6 +4,7 @@
 #import "@preview/cetz:0.4.0"
 
 #let iss-left-footer = state("iss-left-footer", [])
+#let iss-right-footer = state("iss-right-footer", toolbox.slide-number)
 #let iss-short-title = state("iss-short-title", none)
 #let iss-color = state("iss-color", blue)
 #let iss-logo = state("iss-logo", image("png/uw.png"))
@@ -53,7 +54,7 @@
   let content = context{
     let color = iss-color.get()
     let logo = iss-logo.get()
-    let authors = if type(authors) in ("string", "content") {
+    let authors = if type(authors) in (str, content) {
       ( authors, )
     } else {
       authors
@@ -131,6 +132,7 @@
     ]
   }
   content
+  counter("logical-slide").update(n=>n+1)
 }
 
 #let slide(title: none, body) = {
@@ -153,7 +155,7 @@
     {
       set align(horizon + center)
       set text(fill: white, size: .5em)
-      grid(columns: (15%, 1fr, 5%),
+      grid(columns: (1fr, 1fr, 7%),
       {
         show: m-cell.with(fill: color.lighten(20%), inset: .5em)
         left-footer
@@ -164,7 +166,7 @@
       },
       {
         show: m-cell.with(fill: color.darken(20%), inset: .5em)
-        //logic.logical-slide.display()
+        [#toolbox.slide-number / #toolbox.last-slide-number]
       }
       )
     }
@@ -188,6 +190,7 @@
     [])
   }
   content
+  counter("logical-slide").update(n=>n+1)
 }
 
 #let focus-slide(background: teal, foreground: white, body) = {
@@ -195,6 +198,7 @@
   set text(fill: foreground, size: 1.5em)
   let content = { v(.1fr); body; v(.1fr) }
   content
+  counter("logical-slide").update(n=>n+1)
 }
 
 #let new-section-slide(name) = {
@@ -208,4 +212,5 @@
     utils.register-section(name)
   }
   content
+  counter("logical-slide").update(n=>n+1)
 }

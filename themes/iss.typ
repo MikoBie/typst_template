@@ -6,6 +6,7 @@
 #let iss-left-footer = state("iss-left-footer", [])
 #let iss-right-footer = state("iss-right-footer", toolbox.slide-number)
 #let iss-short-title = state("iss-short-title", none)
+#let iss-logo-header = state("iss-logo-header", none)
 #let iss-color = state("iss-color", blue)
 #let iss-logo = state("iss-logo", image("png/uw.png"))
 #let m-cell = block.with(
@@ -22,6 +23,7 @@
   short-title: none,
   left-footer: [],
   logo: image("png/uw.png"),
+  logo-header: none,
   color: blue,
   body
 ) = {
@@ -38,6 +40,7 @@
   iss-color.update(color)
   iss-short-title.update(short-title)
   iss-logo.update(logo)
+  iss-logo-header.update(logo-header)
 
   body
 }
@@ -138,13 +141,27 @@
 #let slide(title: none, body) = {
   let header = context {
     let color = iss-color.get()
+    let logo-header = iss-logo-header.get()
     set align(top)
-    if title != none {
-      show: m-cell.with(fill: color, inset: 2em)
-      set align(horizon)
-      set text(fill: white, size: 1.2em)
-      strong(title)
-    } else { [] }
+    if title != none and logo-header != none {
+      grid(columns: (1fr, 7%),
+      {
+        show: m-cell.with(fill: color, inset: 2em, width: 100%)
+        set align(horizon)
+        set text(fill: white, size: 1.2em)
+        strong(title)
+
+      },
+      {
+        set align(horizon + center)
+        logo-header
+      })
+    } else if title != none { 
+        show: m-cell.with(fill: color, inset: 2em, width: 100%)
+        set align(horizon)
+        set text(fill: white, size: 1.2em)
+        strong(title)
+    } else {[]}
   }
 
   let footer = context {
@@ -184,18 +201,10 @@
 
 
   let content = {
-    grid(columns: (4%, 1fr, 10%),
+    grid(columns: (4%, 1fr, 4%),
     [],
     body,
-    [
-      #grid(rows: (94%, 6%),
-      [
-      ],
-      [
-        #image("../png/efsta.svg")
-      ]
-      )
-    ])
+    [])
   }
   content
   counter("logical-slide").update(n=>n+1)

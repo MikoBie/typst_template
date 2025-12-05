@@ -3,11 +3,11 @@
 
 // Define main colors of the theme.
 #let mainColor = rgb(10,20,86)
-#let otherColor = rgb(251,241,210)
-#let alertColor = rgb(124,36,43)
+#let alertColor = rgb(230,135,67)
 #let enumColor = rgb(124,36,43)
+#let otherColor = rgb(194,213,238)
 
-#let logo = image("png/efsta2.svg", width: 2cm)
+#let logo = image("png/efsta2.svg")
 #let logo2 = image("png/efsta.svg", width: 4cm)
 #let corruption1 = image("png/corruption_bmi.jpg", width: 100%, fit: "contain")
 #let corruption = image("png/corruption_bmi.png", width: 100%, fit: "contain")
@@ -17,6 +17,7 @@
   left-footer: [Mikołaj Biesaga],
   short-title: [What every psychologist should know about Computational Social Science?],
   color: mainColor,
+  logo-header: logo,
 )
 
 
@@ -41,7 +42,7 @@
   subtitle: [],
   date: datetime.today().display("[day] [month repr:long] [year]"),
   funding: [],
-  secondlogo: logo
+  secondlogo: logo2
 
 )
 

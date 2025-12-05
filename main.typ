@@ -1,16 +1,19 @@
 // Import theme from the file.
 #import "themes/iss.typ": *
+#import "@preview/showybox:2.0.4": showybox
 
 // Define main colors of the theme.
 #let mainColor = rgb(10,20,86)
 #let alertColor = rgb(230,135,67)
 #let enumColor = rgb(124,36,43)
 #let otherColor = rgb(194,213,238)
+#let otherColor2 = rgb(253,242,212)
 
 #let logo = image("png/efsta2.svg")
 #let logo2 = image("png/efsta.svg", width: 4cm)
 #let corruption1 = image("png/corruption_bmi.jpg", width: 100%, fit: "contain")
 #let corruption = image("png/corruption_bmi.png", width: 100%, fit: "contain")
+#let qr = image("png/qr.png")
 
 // Option of the theme.
 #show: iss-theme.with(
@@ -51,17 +54,17 @@
   #v(25%)
   + Does BMI predict political corruption?
 
-  + Does target know whether we are pregnant?
+  + Does Target know whether we are pregnant or not?
 
-  + What does Facebook know about us and how it can use it?
+  + How to talk to parents efficiently?
 
   + Why do we need models?
 
-  + 
+  + Motivational examples 
 ]
 
 #slide(title: [Before we start])[
-
+  #figure(qr)
 ]
 
 #new-section-slide("Does BMI predict political corruption?")
@@ -83,4 +86,58 @@
     ],
     kind: table
     )
+]
+
+#slide(title: [What is Computational Social Science?])[
+  #v(15%)
+  #grid(columns: (1fr, 1fr),
+        column-gutter: 1em,
+  {
+    showybox(
+    frame: (
+      border-color: yellow.darken(50%),
+      title-color: yellow.lighten(60%),
+      body-color: otherColor2.lighten(80%)
+    ),
+    title-style: (
+      color: black,
+      weight: "bold",
+      align: center
+    ),
+    shadow: (
+      offset: 3pt,
+    ),
+    title: "Data Science",
+    [
+      It describes the theory and practice of extracting knowledge and
+      insight from data.
+    ]
+    )
+  },
+  {
+    showybox(
+    frame: (
+      border-color: blue.darken(50%),
+      title-color: blue.lighten(60%),
+      body-color: otherColor.lighten(80%)
+    ),
+    title-style: (
+      color: black,
+      weight: "bold",
+      align: center
+    ),
+    shadow: (
+      offset: 3pt,
+    ),
+    title: "Computational Social Science",
+    [
+      It is a data-driven approach that uses computational methods in studying
+      social phenomena.
+    ]
+    )
+  }
+  )
+]
+
+#slide(title: [What is Computational Social Science?])[
 ]

@@ -155,7 +155,7 @@
     {
       set align(horizon + center)
       set text(fill: white, size: .5em)
-      grid(columns: (1fr, 1fr, 7%),
+      grid(columns: (1fr, 3fr, 7%),
       {
         show: m-cell.with(fill: color.lighten(20%), inset: .5em)
         left-footer
@@ -184,10 +184,18 @@
 
 
   let content = {
-    grid(columns: (4%, 1fr, 4%),
+    grid(columns: (4%, 1fr, 10%),
     [],
     body,
-    [])
+    [
+      #grid(rows: (94%, 6%),
+      [
+      ],
+      [
+        #image("../png/efsta.svg")
+      ]
+      )
+    ])
   }
   content
   counter("logical-slide").update(n=>n+1)
@@ -209,7 +217,7 @@
     show: block.with(stroke: ( bottom: 1mm + color ), inset: 1em,)
     set text(size: 1.5em)
     strong(name)
-    utils.register-section(name)
+    //utils.register-section(name)
   }
   content
   counter("logical-slide").update(n=>n+1)

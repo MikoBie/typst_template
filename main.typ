@@ -64,6 +64,7 @@
   underline(it)
 }
 #show footnote: it =>{}
+#set footnote(numbering: it => {})
 
 // Title slide.
 #title-slide(
@@ -555,11 +556,11 @@ future.])
 
 #slide(title: [Why do we need models?])[
   #v(15%)
-  + Formalizing a theory into a model allows the researcher to describe their ideas in a precise, unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
+  + Formalizing a theory into a model allows the researcher to #highlight[describe their ideas in a precise], unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
 
-  + Models are conceptually precise, their assumptions are clear; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber, 1996).
+  + Models are conceptually precise, their #highlight[assumptions are clear]; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber, 1996).
 
-  + Last but not least, they provide an unambiguous way to communicate within the scientific community (Nowak, Rychwalska, & Borkowski, 2015).
+  + Last but not least, they provide an #highlight[unambiguous way to communicate] within the scientific community (Nowak, Rychwalska, & Borkowski, 2015).
 ]
 
 #slide(title: [Computer Simulations])[
@@ -596,7 +597,7 @@ future.])
 
   - [x] In 1965, the last of #link("https://en.wikipedia.org/wiki/Jim_Crow_laws")[Jim Crow’s] racial segregation laws were overturned.
   
-  - [/] Despite much effort and investment, segregation still remains a major issue in the U.S. and elsewhere to this date (Massey, 2020).
+  - [/] Despite much effort and investment, #highlight[segregation still remains a major issue] in the U.S. and elsewhere to this date (Massey, 2020).
   
   - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971)
 ]
@@ -750,29 +751,29 @@ future.])
 #slide(title: [Bibliography])[
   #set text(size: 11pt)
   #set par(hanging-indent: 2em, justify: true, spacing: 1em)
-  Blavatskyy, P. (2021). Obesity of politicians and corruption in post‐Soviet countries. Economics of Transition and Institutional Change, 29(2), 343–356. 
+  Blavatskyy, P. (2021). Obesity of politicians and corruption in post‐Soviet countries. Economics of Transition and Institutional Change, #emph[29]\(2), 343–356. 
 
-  Eckles, D., Gordon, B. R., & Johnson, G. A. (2018). Field studies of psychologically targeted ads face threats to internal validity. #emph[Proceedings of the National Academy of Sciences], 115(23), E5254–E5255. 
+  Eckles, D., Gordon, B. R., & Johnson, G. A. (2018). Field studies of psychologically targeted ads face threats to internal validity. #emph[Proceedings of the National Academy of Sciences], #emph[115]\(23), E5254–E5255. 
 
-  Epstein, J. M. (2008) ”Why Model?” #emph[Journal of Artificial Societies and Social Simulation], 11(4), 12.
+  Epstein, J. M. (2008) ”Why Model?” #emph[Journal of Artificial Societies and Social Simulation], #emph[11]\(4), 12.
 
-  Goldstone, R. L., & Janssen, M. A. (2005). Computational models of collective behavior. #emph[Trends in Cognitive Sciences], 9(9), 424-430.
+  Goldstone, R. L., & Janssen, M. A. (2005). Computational models of collective behavior. #emph[Trends in Cognitive Sciences], #emph[9]\(9), 424-430.
 
   #link("https://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/?sh=1333c4646668")[How Target Figured Out A Teen Girl Was Pregnant Before Her Father Did.]
 
-  Kosinski, M., Stillwell, D., & Graepel, T. (2013). Private traits and attributes are predictable from digital records of human behavior. #emph[Proceedings of the National Academy of Sciences], 110(15), 5802–5805. 
+  Kosinski, M., Stillwell, D., & Graepel, T. (2013). Private traits and attributes are predictable from digital records of human behavior. #emph[Proceedings of the National Academy of Sciences], #emph[110]\(15), 5802–5805. 
 
-  Matz, S. C., Kosinski, M., Nave, G., & Stillwell, D. J. (2017). Psychological targeting as an effective approach to digital mass persuasion. #emph[Proceedings of the National Academy of Sciences], 114(48), 12714–12719. 
+  Matz, S. C., Kosinski, M., Nave, G., & Stillwell, D. J. (2017). Psychological targeting as an effective approach to digital mass persuasion. #emph[Proceedings of the National Academy of Sciences], #emph[114]\(48), 12714–12719. 
 
-  Massey, D.S. (2020). Still the Linchpin: Segregation and Stratification in the USA. #emph[Race and Social Problems], 12, 1–12. 
+  Massey, D.S. (2020). Still the Linchpin: Segregation and Stratification in the USA. #emph[Race and Social Problems], #emph[12], 1–12. 
 
-  Nowak, A., Rychwalska, A., & Borkowski, W. (2013). Why Simulate? To Develop a Mental Model. #emph[Journal of Artificial Societies and Social Simulation], 16(3), 12.
+  Nowak, A., Rychwalska, A., & Borkowski, W. (2013). Why Simulate? To Develop a Mental Model. #emph[Journal of Artificial Societies and Social Simulation], #emph[16]\(3), 12.
 
   Roszczyńska-Kurasińska, M., Biesaga, M., & de Oliveira, C. A. (2025). A Comparative Analysis of Reddit Discussions on Meat Reduction in Portugal, Poland, and the United Kingdom. #emph[Proceedings of the 58th Hawaii International Conference on System Sciences], 2532-2541.
 
-  Sharp, B., Danenberg, N., & Bellman, S. (2018). Psychological targeting. #emph[Proceedings of the National Academy of Sciences of the United States of America], 115(34), E7890. 
+  Sharp, B., Danenberg, N., & Bellman, S. (2018). Psychological targeting. #emph[Proceedings of the National Academy of Sciences of the United States of America], #emph[115]\(34), E7890. 
 
-  Schelling, T. C. (1971). DYNAMIC MODELS OF SEGREGATION. #emph[Journal of Mathematical Psychology], 1, 143–186.
+  Schelling, T. C. (1971). DYNAMIC MODELS OF SEGREGATION. #emph[Journal of Mathematical Psychology], #emph[1], 143–186.
 
   Timpone, R. J., & Taber, C. S. (1996). #emph[Computational Modeling]. London: SAGE.
 ]

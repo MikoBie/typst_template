@@ -63,13 +63,14 @@
   set text(blue.darken(20%))
   underline(it)
 }
+#show footnote: it =>{}
 
 // Title slide.
 #title-slide(
   authors: [Mikołaj Biesaga],
   title: [What every psychologist should know about Computational Social Science?],
   subtitle: [],
-  date: datetime.today().display("[day] [month repr:long] [year]"),
+  date: [8 December 2025],// datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
   secondlogo: logo2
 
@@ -180,6 +181,7 @@
       circle((9.75,1.5), radius: 3)
     })
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [What is Computational Social Science?])[
@@ -197,16 +199,21 @@
       circle((9.75,1.5), radius: 3)
     })
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Computational methods])[
-  #show: el.default-enum-list.with(checklist: true, label-style: (fill: enumColor))
+  #show: el.config.checklist.with(
+    baseline: "center",
+    fill: enumColor,
+  )
+  #show: el.default-enum-list
   #v(15%)
   - [x] Extraction of unstructured data from external digital (i.e., web-based) sources
 
-  - [-] Working with big datasets
+  - [/] Working with big datasets
 
-  - [-] Computer simulations
+  - [/] Computer simulations
 
   - [x] Analysis of textual data (Natural Language Processing -- NLP)
   
@@ -219,7 +226,7 @@
 
 #new-section-slide("Does Target know whether we are pregnant?")
 
-#slide(title: [Doee Target know whether we are pregnant?])[
+#slide(title: [Does Target know whether we are pregnant?])[
   #set align(center+horizon)
   #let target = image("png/targetlogo.jpeg")
   #figure(
@@ -244,6 +251,7 @@
     content((18,0), box(width: 4cm), anchor: "center", name: "test")
     content((0,-4), [#smallcaps[Congrats Email]], anchor: "center")
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -262,6 +270,7 @@
     content((0,-4), [#smallcaps[Congrats Email]], anchor: "center")
     content((6,-4), [#smallcaps[Angry Call]], anchor: "center")
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -281,6 +290,7 @@
     content((6,-4), [#smallcaps[Angry Call]], anchor: "center")
     content((12,-4), [#smallcaps[Loyalty Card]], anchor: "center")
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -301,6 +311,7 @@
     content((12,-4), [#smallcaps[Loyalty Card]], anchor: "center")
     content((18,-4), [#smallcaps[Test]], anchor: "center")
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Digital footprints])[
@@ -320,7 +331,7 @@
     ),
     title: "Digital footprints (or digital shadow)",
     [
-      It is a unique traceable set of actions, contributions or communications
+      It is a unique traceable set of actions, contributions, or communications
       manifested on the Internet or digital devices.
     ],
     columns(2)[
@@ -373,11 +384,15 @@
 ]
 
 #slide(title: [Data Sources])[
-  #show: el.default-enum-list.with(checklist: true, label-style: (fill: enumColor))
+  #show: el.config.checklist.with(
+    baseline: "center",
+    fill: enumColor,
+  )
+  #show: el.default-enum-list
   #v(15%)
   - [ ] webpages
   
-  - [ ] social media
+  - [x] social media
   
   - [ ] smart devices
 
@@ -385,7 +400,7 @@
 
   - [ ] mobile phone networks
 
-  - [ ] goverment data
+  - [ ] government data
 
   - [ ] ...
 ]
@@ -395,13 +410,17 @@
 #new-section-slide("How to talk to parents efficiently?")
 
 #slide(title: [Kosinski, Stillwell, & Graepel, 2013])[
-  #show: el.default-enum-list.with(checklist: true, label-style: (fill: enumColor))
+  #show: el.config.checklist.with(
+    baseline: "center",
+    fill: enumColor,
+  )
+  #show: el.default-enum-list
   #v(15%)
   - [ ] 2007 David Stillwell creates #highlight[myPersonality] Facebook App to share a personality questionnaire
 
-  - [ ] by 2012 6 million people completed personality questionnaire
+  - [ ] by 2012, 6 million people completed the personality questionnaire
 
-  - [ ] 40% of participants gave the informed consent to share their Facebook data
+  - [ ] 40% of participants gave informed consent to share their Facebook data
 
   - [ ] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013)
 ]
@@ -424,7 +443,7 @@
       figure(
         s2,
         caption: [
-          Prediction accuracy of regression for numeric attributes and traits expressed by the Pearson correlation coefficient between predicted and actual attribute values. 
+          The prediction accuracy of regression for numeric attributes and traits is expressed by the Pearson correlation coefficient between predicted and actual attribute values. 
         ]
       )
     }
@@ -445,18 +464,21 @@
 #focus-slide(background: mainColor, [Micro-targeting is sending a message to a highly specific portion of an audience based on particular information.])
 
 #slide(title: [Matz et al., 2017])[
-  #show: el.default-enum-list.with(checklist: true, label-style: (fill: enumColor))
+  #show: el.config.checklist.with(
+    baseline: "center",
+    fill: enumColor,
+  )
+  #show: el.default-enum-list.with(fill: (enumColor))
   #v(15%)
   - [x] 2007 David Stillwell creates #highlight[myPersonality] Facebook App to share a personality questionnaire
 
-  - [x] by 2012 6 million people completed personality questionnaire
+  - [x] by 2012, 6 million people completed the personality questionnaire
 
-  - [x] 40% of participants gave the informed consent to share their Facebook data
+  - [x] 40% of participants gave informed consent to share their Facebook data
 
   - [x] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013)
 
-  - [ ] Psychological targeting as an effective approach to digital mass persuasion
-(Matz et al., 2017)
+  - [ ] Psychological targeting as an effective approach to digital mass persuasion (Matz et al., 2017)
 ]
 
 #slide(title: [Matz et al., 2017])[
@@ -510,7 +532,7 @@
   #figure(
     s,
     caption: [
-      Distribution of all reported user characteristics: age in study 1 (A), and age (B) and gender (C) in study 2. 
+      Distribution of all reported user characteristics: age in study 1 (A), age (B), and gender (C) in study 2. 
     ]
   )
 ]
@@ -533,11 +555,11 @@ future.])
 
 #slide(title: [Why do we need models?])[
   #v(15%)
-  + Formalizing a theory into a model allows the researcher to describe their ideas in a precise, unambiguous way (Goldstone & Janssen 2005; Epstein 2008).
+  + Formalizing a theory into a model allows the researcher to describe their ideas in a precise, unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
 
-  + Models are conceptually precise, their assumptions are clear; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber 1996).
+  + Models are conceptually precise, their assumptions are clear; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber, 1996).
 
-  + Last but not least they provide an unambiguous way to communicate within the scientific community (Nowak, Rychwalska, & Borkowski, 2015).
+  + Last but not least, they provide an unambiguous way to communicate within the scientific community (Nowak, Rychwalska, & Borkowski, 2015).
 ]
 
 #slide(title: [Computer Simulations])[
@@ -547,7 +569,7 @@ future.])
     box(it,width: 6cm)
   }
   #let simulation = image("png/simulation.png")
-  #v(15%)
+  #v(10%)
   #cetz.canvas({
     import cetz.draw: *
     set-style(stroke: (dash: "dashed", paint: alertColor, thickness : 2pt))
@@ -561,17 +583,22 @@ future.])
     content((19.5,-5), [#smallcaps[Computer Simulation]], anchor: "center")
     circle("simulation", radius: 3cm)
   })
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
 ]
 
 #slide(title: [Dynamic models of segregation])[
-  #show: el.default-enum-list.with(checklist: true, label-style: (fill: enumColor))
+  #show: el.config.checklist.with(
+    baseline: "center",
+    fill: enumColor,
+  )
+  #show: el.default-enum-list.with(fill: (enumColor))
   #v(15%)
 
   - [x] In 1965, the last of #link("https://en.wikipedia.org/wiki/Jim_Crow_laws")[Jim Crow’s] racial segregation laws were overturned.
   
-  - [-] Despite much effort and investment, segregation still remains a major issue in the U.S. and elsewhere to this date (Cassidy, 2016).
+  - [/] Despite much effort and investment, segregation still remains a major issue in the U.S. and elsewhere to this date (Massey, 2020).
   
-  - [ ] "If an individual is surrounded by more individuals of different type than the number of individuals of own type, then the individual moves from the current location to a random empty location." (Schelling, 1971)
+  - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971)
 ]
 
 #slide(title: [Schelling, 1971])[
@@ -600,7 +627,7 @@ future.])
 
   + To build intuition.
 
-  + Test untestable experimentally scenarios (\#thereIsNoPlanetB).
+  + To test untestable otherwise scenarios (\#thereIsNoPlanetB).
 
   + To make predictions & what ifs.
 ]
@@ -696,7 +723,8 @@ future.])
   ),
 
   label-format: ([], auto),
-)
+  fill: enumColor
+  )
 
   #grid(columns: (1fr, .5fr),
   [
@@ -706,10 +734,12 @@ future.])
     - Sofia Przyłuska (MISMaP, University of Warsaw) 
   - What?
     - Employing Neo-Psychometric Natural Language Processing in Classification of Anti-Trans Social Media Posts
-  - Where?
-    -
+
   - When?
-    - 14.30, Tuesday (9th of December)
+    - 14.20, Tuesday (9th of December)
+
+  - Where?
+    - FGH Room
   ]],
   []
   )
@@ -718,5 +748,31 @@ future.])
 #new-section-slide("Thank You!")
 
 #slide(title: [Bibliography])[
+  #set text(size: 11pt)
+  #set par(hanging-indent: 2em, justify: true, spacing: 1em)
+  Blavatskyy, P. (2021). Obesity of politicians and corruption in post‐Soviet countries. Economics of Transition and Institutional Change, 29(2), 343–356. 
 
+  Eckles, D., Gordon, B. R., & Johnson, G. A. (2018). Field studies of psychologically targeted ads face threats to internal validity. #emph[Proceedings of the National Academy of Sciences], 115(23), E5254–E5255. 
+
+  Epstein, J. M. (2008) ”Why Model?” #emph[Journal of Artificial Societies and Social Simulation], 11(4), 12.
+
+  Goldstone, R. L., & Janssen, M. A. (2005). Computational models of collective behavior. #emph[Trends in Cognitive Sciences], 9(9), 424-430.
+
+  #link("https://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/?sh=1333c4646668")[How Target Figured Out A Teen Girl Was Pregnant Before Her Father Did.]
+
+  Kosinski, M., Stillwell, D., & Graepel, T. (2013). Private traits and attributes are predictable from digital records of human behavior. #emph[Proceedings of the National Academy of Sciences], 110(15), 5802–5805. 
+
+  Matz, S. C., Kosinski, M., Nave, G., & Stillwell, D. J. (2017). Psychological targeting as an effective approach to digital mass persuasion. #emph[Proceedings of the National Academy of Sciences], 114(48), 12714–12719. 
+
+  Massey, D.S. (2020). Still the Linchpin: Segregation and Stratification in the USA. #emph[Race and Social Problems], 12, 1–12. 
+
+  Nowak, A., Rychwalska, A., & Borkowski, W. (2013). Why Simulate? To Develop a Mental Model. #emph[Journal of Artificial Societies and Social Simulation], 16(3), 12.
+
+  Roszczyńska-Kurasińska, M., Biesaga, M., & de Oliveira, C. A. (2025). A Comparative Analysis of Reddit Discussions on Meat Reduction in Portugal, Poland, and the United Kingdom. #emph[Proceedings of the 58th Hawaii International Conference on System Sciences], 2532-2541.
+
+  Sharp, B., Danenberg, N., & Bellman, S. (2018). Psychological targeting. #emph[Proceedings of the National Academy of Sciences of the United States of America], 115(34), E7890. 
+
+  Schelling, T. C. (1971). DYNAMIC MODELS OF SEGREGATION. #emph[Journal of Mathematical Psychology], 1, 143–186.
+
+  Timpone, R. J., & Taber, C. S. (1996). #emph[Computational Modeling]. London: SAGE.
 ]

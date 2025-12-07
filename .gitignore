@@ -3,3 +3,6 @@
 
 ## MACOS system files
 **/*.DS_Store
+
+## Sofia's photo
+**/sofia.jpg

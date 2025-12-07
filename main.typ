@@ -36,6 +36,15 @@
 #let test = image("png/pregnancy-test.png")
 #let phone = image("png/telephone.png")
 
+#let maybe-image(path, ..args) = context {
+  let path-label = label(path)
+   let first-time = query((context {}).func()).len() == 0
+   if first-time or query(path-label).len() > 0 {
+    [#image(path, ..args)#path-label]
+  } else {
+  }
+}
+
 // Option of the theme.
 #show: iss-theme.with(
   left-footer: [Mikołaj Biesaga],
@@ -695,6 +704,7 @@ future.])
 ]
 
 #slide(title: [Przyłuska & Biesaga, 2025])[
+  #let sofia = maybe-image("png/sofia.jpg", height: 90%)
   #let grid-list = el.default-list.with(
   body-indent: (0pt, auto),
   enum-spacing: (auto, 15pt),
@@ -742,7 +752,9 @@ future.])
   - Where?
     - FGH Room
   ]],
-  []
+  [
+    #figure(sofia)
+  ]
   )
 ]
 

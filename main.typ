@@ -6,8 +6,9 @@
 
 // Define main colors of the theme.
 #let mainColor = rgb(10,20,86)
-#let alertColor = rgb(230,135,67)
 #let enumColor = rgb(124,36,43)
+#let alertColor = rgb(124,36,43)
+#let enumColor = rgb(230,135,67)
 #let otherColor = rgb(194,213,238)
 #let otherColor2 = rgb(253,242,212)
 
@@ -97,7 +98,7 @@
 
   + Why do we need models?
 
-  + Motivational examples 
+  + Motivational examples
 ]
 
 #slide(title: [Before we start])[
@@ -110,7 +111,7 @@
   #figure(
     block(height: 95%)[#corruption1],
     caption: [
-      Scatterplot of median estimated ministers’ body-mass index against Transparency International Corruption Perceptions Index 2017 (with a linear trend), where lower values of CPI indicate greater corruption],
+      Scatterplot of median estimated ministers’ body-mass index against Transparency International Corruption Perceptions Index 2017 (with a linear trend), where lower values of CPI indicate greater corruption.],
     )
 ]
 
@@ -119,7 +120,7 @@
     block(height: 100%)[#corruption],
     caption: [
       Median estimated ministers’ body-mass index and five conventional measures
-      of corruption for 15 post-Soviet states
+      of corruption for 15 post-Soviet states.
     ],
     kind: table
     )
@@ -185,13 +186,13 @@
   #v(15%)
   #cetz.canvas({
     import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: alertColor, thickness : 0pt))
+    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 0pt))
     content((0, 0), research, name: "research", anchor: "center")
     on-layer(1, {
       circle((9.75,1.5), radius: 3)
     })
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [What is Computational Social Science?])[
@@ -203,13 +204,13 @@
   #v(15%)
   #cetz.canvas({
     import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: alertColor, thickness : 2pt))
+    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 2pt))
     content((0, 0), research, name: "research", anchor: "center")
     on-layer(1, {
       circle((9.75,1.5), radius: 3)
     })
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Computational methods])[
@@ -219,17 +220,17 @@
   )
   #show: el.default-enum-list
   #v(15%)
-  - [x] Extraction of unstructured data from external digital (i.e., web-based) sources
+  - [x] Extraction of unstructured data from external digital (i.e., web-based) sources;
 
-  - [/] Working with big datasets
+  - [/] Working with big datasets;
 
-  - [/] Computer simulations
+  - [/] Computer simulations;
 
-  - [x] Analysis of textual data (Natural Language Processing -- NLP)
+  - [x] Analysis of textual data (Natural Language Processing -- NLP);
   
-  - [ ] Designing experiments
+  - [ ] Designing experiments;
 
-  - [ ] Networks and relational data analysis
+  - [ ] Networks and relational data analysis;
 
   - [ ]...
 ]
@@ -242,7 +243,7 @@
   #figure(
     target,
     caption: [
-      from #link("https://corporate.target.com/media/collection/b-roll-and-press-materials/target-logos")[www.corporate.target.com]
+      From #link("https://corporate.target.com/media/collection/b-roll-and-press-materials/target-logos")[www.corporate.target.com].
     ])
 ]
 
@@ -261,7 +262,7 @@
     content((18,0), box(width: 4cm), anchor: "center", name: "test")
     content((0,-4), [#smallcaps[Congrats Email]], anchor: "center")
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -280,7 +281,7 @@
     content((0,-4), [#smallcaps[Congrats Email]], anchor: "center")
     content((6,-4), [#smallcaps[Angry Call]], anchor: "center")
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -300,7 +301,7 @@
     content((6,-4), [#smallcaps[Angry Call]], anchor: "center")
     content((12,-4), [#smallcaps[Loyalty Card]], anchor: "center")
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Does Target know whether we are pregnant?])[
@@ -321,7 +322,7 @@
     content((12,-4), [#smallcaps[Loyalty Card]], anchor: "center")
     content((18,-4), [#smallcaps[Test]], anchor: "center")
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Digital footprints])[
@@ -389,7 +390,7 @@
   #figure(
     target,
     caption: [
-      from #link("imgflip.com")[imgflip.com]
+      From #link("imgflip.com")[imgflip.com].
     ])
 ]
 
@@ -400,17 +401,17 @@
   )
   #show: el.default-enum-list
   #v(15%)
-  - [ ] webpages
+  - [ ] webpages;
   
-  - [x] social media
+  - [x] social media;
   
-  - [ ] smart devices
+  - [ ] smart devices;
 
-  - [ ] digital behavioral data
+  - [ ] digital behavioral data;
 
-  - [ ] mobile phone networks
+  - [ ] mobile phone networks;
 
-  - [ ] government data
+  - [ ] government data;
 
   - [ ] ...
 ]
@@ -426,13 +427,13 @@
   )
   #show: el.default-enum-list
   #v(15%)
-  - [ ] 2007 David Stillwell creates #highlight[myPersonality] Facebook App to share a personality questionnaire
+  - [ ] 2007 David Stillwell creates #highlight[myPersonality] Facebook App to share a personality questionnaire.
 
-  - [ ] by 2012, 6 million people completed the personality questionnaire
+  - [ ] By 2012, #highlight[6 million] people completed the personality questionnaire.
 
-  - [ ] 40% of participants gave informed consent to share their Facebook data
+  - [ ] #highlight[40%] of participants gave informed consent to #highlight[share their Facebook data.]
 
-  - [ ] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013)
+  - [ ] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013).
 ]
 
 #slide(title: [Kosinski, Stillwell, & Graepel, 2013])[
@@ -480,15 +481,15 @@
   )
   #show: el.default-enum-list.with(fill: (enumColor))
   #v(15%)
-  - [x] 2007 David Stillwell creates #highlight[myPersonality] Facebook App to share a personality questionnaire
+  - [x] 2007 David Stillwell creates myPersonality Facebook App to share a personality questionnaire.
 
-  - [x] by 2012, 6 million people completed the personality questionnaire
+  - [x] by 2012, 6 million people completed the personality questionnaire.
 
-  - [x] 40% of participants gave informed consent to share their Facebook data
+  - [x] 40% of participants gave informed consent to share their Facebook data.
 
-  - [x] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013)
+  - [x] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013).
 
-  - [ ] Psychological targeting as an effective approach to digital mass persuasion (Matz et al., 2017)
+  - [ ] Psychological targeting as an effective approach to digital mass persuasion (Matz et al., 2017).
 ]
 
 #slide(title: [Matz et al., 2017])[
@@ -511,13 +512,13 @@
   )
 ]
 
-#slide(title: [Microtargeting])[
+#slide(title: [Micro-targeting])[
   #set align(center+horizon)
   #let target = image("png/zuck.jpg")
   #figure(
     target,
     caption: [
-      from #link("imgflip.com")[imgflip.com]
+      From #link("imgflip.com")[imgflip.com].
     ])
 
 ]
@@ -554,7 +555,7 @@
   #figure(
     vogue,
     caption: [
-      from #link("https://archive.vogue.com/issue/18921224")[Vogue] (December 24, 1982)
+      From #link("https://archive.vogue.com/issue/18921224")[Vogue] (December 24, 1982).
     ]
   )
 ]
@@ -565,7 +566,7 @@ future.])
 
 #slide(title: [Why do we need models?])[
   #v(15%)
-  + Formalizing a theory into a model allows the researcher to #highlight[describe their ideas in a precise], unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
+  + Formalizing a theory into a model allows the researcher to #highlight[describe their ideas in a precise,] unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
 
   + Models are conceptually precise, their #highlight[assumptions are clear]; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber, 1996).
 
@@ -582,7 +583,7 @@ future.])
   #v(10%)
   #cetz.canvas({
     import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: alertColor, thickness : 2pt))
+    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 2pt))
     content((0,0), box(observation, width: 4cm), anchor: "center", name: "observation")
     content((6.5,0), box(theory, width: 4cm), anchor: "center", name: "theory")
     content((13,0), box(model, width: 4cm), anchor: "center", name: "model")
@@ -593,7 +594,7 @@ future.])
     content((19.5,-5), [#smallcaps[Computer Simulation]], anchor: "center")
     circle("simulation", radius: 3cm)
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com]]
+  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Dynamic models of segregation])[
@@ -608,7 +609,7 @@ future.])
   
   - [/] Despite much effort and investment, #highlight[segregation still remains a major issue] in the U.S. and elsewhere to this date (Massey, 2020).
   
-  - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971)
+  - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971).
 ]
 
 #slide(title: [Schelling, 1971])[
@@ -628,7 +629,7 @@ future.])
   #figure(
     case,
     caption: [
-      by Nicky Case from #link("https://ncase.me/polygons/")[https://ncase.me/polygons/].
+      By Nicky Case from #link("https://ncase.me/polygons/")[https://ncase.me/polygons/].
     ])
 ]
 
@@ -651,7 +652,7 @@ future.])
   #figure(
     nlp,
     caption: [
-      Design by Agata Biesaga
+      Design by Agata Biesaga.
     ])
 ]
 
@@ -668,7 +669,7 @@ future.])
   #figure(
     poster,
     caption: [
-      Design by Katarzyna Bajkowska #link("https://psych.pan.pl/pracownik/mgr-katarzyna-bajkowska/")[(Institute of Psychology Polish Academy of Sciences)]
+      Design by Katarzyna Bajkowska #link("https://psych.pan.pl/pracownik/mgr-katarzyna-bajkowska/")[(Institute of Psychology Polish Academy of Sciences)].
     ])
 
 ]
@@ -687,7 +688,7 @@ future.])
   #figure(
     model,
     caption: [
-      Behavioral Change Model -- COM-B (Michie, Atkins, & West, 2014)
+      Behavioral Change Model -- COM-B (Michie, Atkins, & West, 2014).
     ]
   )
 ]
@@ -698,12 +699,12 @@ future.])
   #figure(
     s,
     caption: [
-      Distribution of the components of the COM-B Model by country
+      Distribution of the components of the COM-B Model by country.
     ]
     )
 ]
 
-#slide(title: [Przyłuska & Biesaga, 2025])[
+#slide(title: [Remember the name!])[
   #let sofia = maybe-image("png/sofia.jpg", height: 90%)
   #let grid-list = el.default-list.with(
   body-indent: (0pt, auto),
@@ -713,7 +714,7 @@ future.])
       stroke: (1pt, auto),
       radius: (10pt, auto),
       fill: (otherColor, auto),
-      inset: ((bottom: 5pt), auto),
+      inset: ((bottom: 5pt, top: 5pt), auto),
     ),
     outer: (
       stroke: it => {
@@ -725,10 +726,10 @@ future.])
           auto
         }
       },
-      inset: ((bottom: 10pt, top: 10pt, rest: 10pt), auto),
+      inset: ((bottom: 5pt, top: 5pt, rest: 15pt), auto),
     ),
     style: (
-      size: (15pt, 12pt),
+      size: (22pt, 19pt),
       weight: ("black", "bold")
     ),
   ),
@@ -745,10 +746,8 @@ future.])
     - Sofia Przyłuska (MISMaP, University of Warsaw) 
   - What?
     - Employing Neo-Psychometric Natural Language Processing in Classification of Anti-Trans Social Media Posts
-
   - When?
     - 14.20, Tuesday (9th of December)
-
   - Where?
     - FGH Room
   ]],

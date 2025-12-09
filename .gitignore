@@ -3,6 +3,9 @@
 
 ## MACOS system files
 **/*.DS_Store
+**/*.swp
 
 ## Sofia's photo
 **/sofia.jpg
+
+

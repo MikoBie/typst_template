@@ -15,14 +15,14 @@
 
 // Option of the theme.
 #show: iss-theme.with(
-  left-footer: [Biesaga & Roszczyńska-Kurasińska],
-  short-title: [Believing in fake news],
+  left-footer: [Biesaga],
+  short-title: [Tworzenie ciągów pseudolosowych: zdolność czy kombinacja funkcji poznawczych?],
   color: mainColor,
 )
 
 
 // Global settings.
-#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false)
+#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "pl")
 #set strong(delta: 100)
 #set par(justify: true)
 #set enum(numbering: n => block(fill: enumColor, radius: 2pt, inset: .1em)[#text(fill: white, [#n.])])
@@ -42,52 +42,133 @@
 #show footnote: it =>{}
 #set footnote(numbering: it => {})
 
-//// Title slide.
-//#title-slide(
-//  authors: [Mikołaj Biesaga],
-//  title: [What every psychologist should know about Computational Social Science?],
-//  subtitle: [],
-//  date: [8 December 2025],// datetime.today().display("[day] [month repr:long] [year]"),
-//  funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
-//  secondlogo: logo2
-//
-//)
+// Images
+#let coin_toss = image("png/coin-toss.png")
+#let heart6 = image("png/heart-6.png")
+#let heart7 = image("png/heart-7.png")
+#let spades6 = image("png/spades-6.png")
+#let spades7 = image("png/spades-7.png")
+#let notes = image("png/musical-notes.png")
 
-#slide(title: [Dual process vs unimodel])[
+// Title slide.
+#title-slide(
+  authors: [Mikołaj Biesaga],
+  title: [Tworzenie ciągów pseudolosowych:],
+  subtitle: [zdolność czy kombinacja funkcji poznawczych?],
+  date: [17 marca 2025],// datetime.today().display("[day] [month repr:long] [year]"),
+  funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
 
-Dual process theories of reasoning point to the existence of #highlight[two distinct cognitive systems that differ in their processing style, speed, and level of consciousness] (Evans & Stanovich, 2013):
-  - central and the peripheral routee (_Elaboration Likelihood Model_, e.g., Petty & Cacioppo, 1986);
-  - systematic and heuristic modes (_Heuristic-Systematic Model_, e.g., Eagly & Chaiken, 1993).
-On the other hand, unimodel theories of reasoning suggest:
-  - the existence of a single cognitive system that can operate in #highlight[different modes depending on the context and task demands] (Kruglanski & Thompson, 1999).
+)
+
+#slide(title: [Zanim zaczniemy...])[
+  #grid(columns: (.5fr, .4fr),
+  column-gutter: .1fr,
+  align: (auto, center),
+  [
+    #v(25%)
+    #highlight[Zadanie 1.] Dla każdego przygotowałem małą kartkę i długopis. Proszę, żeby każdy zapisał na niej #highlight[wyniki 10 wyobrażonych rzutów monetą,] w której jest 50% szans na wypadnięcie orła i 50% szans na wypadnięcie reszki.
+  ],
+  [
+    #box(width: 8cm)[#coin_toss]
+  ])
 ]
-#slide(title: [Role of reflection in fake news])[
-  #v(15%)
-  #grid(columns: (1fr, 1fr),
-        column-gutter: 1em,
-  {
-    showybox(
-    frame: (
-      border-color: yellow.darken(50%),
-      title-color: yellow.lighten(60%),
-      body-color: otherColor2.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-      align: center
-    ),
-    shadow: (
-      offset: 3pt,
-    ),
-    title: "Motivational Reasoning",
+
+#slide(title: [Zanim zaczniemy...])[
+  #grid(rows: (1fr,2fr),
+  column-gutter: .1fr,
+  align: (auto, center),
+  [
+    #v(20%)
+    #highlight[Zadanie 2.] Teraz w~parach prosiłbym, żebyście zagrali w~następującą grę. Każda osoba dostanie 2 karty: jednego pika i jedno karo. Na mój znak będziecie wykładać jedną z tych kart.
+  ],
+  [
+    #v(15%)
+    #grid(columns: (1fr, 1fr),
+    align: (center, center),
     [
-      An individual’s motivations or goals shape their reasoning and judgment processes (Kunda, 1990).
+    #smallcaps[Starsi wygrywają]
+      #cetz.canvas({
+        import cetz.draw: *
+        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
+        content((2, 0), [#box(width: 2cm)[#heart7]], anchor: "center")
+        content((6, 0), [#box(width: 2cm)[#spades6]], anchor: "center")
+        content((8, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
+      })
+    ],
+    [
+      #smallcaps[Młodsi wygrywają]
+      #cetz.canvas({
+        import cetz.draw: *
+        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
+        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
+        content((6, 0), [#box(width: 2cm)[#spades6]], anchor: "center")
+        content((8, 0), [#box(width: 2cm)[#heart7]], anchor: "center")
+      })
+    ])
+
+  ],
+  )
+]
+#slide(title: [Plan prezentacji])[
+  #v(15%)
+
+  + Cel naukowy projektu;
+
+  + Znaczenie projektu;
+
+  + Koncepcja i plan badań;
+
+  + Metodyka badań.
+
+]
+
+#focus-slide(background: mainColor)[
+  Mówię o zdolności do #highlight[tworzenia ciągów pseudolosowych] bo nie ma przesłanek do tego by wierzyć, że jest jakiś proces prawdziwie losowy, który stoi za produkcją przez ludzi ciągów.
+]
+
+#slide(title: [Po co?])[
+  #show quote: it => {
+    set par(spacing: 0.65em,justify: false)
+    [
+      #set text(size: 16pt, style: "italic")
+      #it.body
     ]
-    )
-  },
-  {
-    showybox(
+    v(1pt)
+    [
+      #set text(size: 16pt)
+      #h(14cm)
+      -- #it.attribution
+    ]
+  }
+  #grid(
+    columns: (8cm, auto),
+    [],
+    [
+      #quote(block: true, attribution: [Włodi (1997)], quotes: false)[
+        "Po pierwsze nie dla sławy, po drugie nie dla pieniędzy\
+        Dobrze rapować można żyjąc nawet w nędzy"
+        ]
+    ])
+
+  Tworzenie ciągów losowych jest powszechnie wykorzystywane:
+    - jako drugie zadanie mające obciążyć funkcje poznawcze (e.g., Cooper et al., 2012);
+    - jako narzędzie diagnostyczne rozwoju funkcji poznawczych (e.g., Gauvrit et al., 2017);
+    - w badaniach nad modelowaniem mechanizmów podejmowania decyzji (e.g., Spicer et al., 2026);
+    - ... i~wielu innych miejscach, których potrzebne jest zadanie, które jest trudne do wykonania, ale "łatwe" do zrozumienia (por. Ayton et al., 1991).
+]
+
+#slide(title: [Luki metodologiczne (1/2)])[
+
+  1. Istnieje wiele różnych paradygmatów badawczych, które są wykorzystywane do badania tworzenia ciągów losowych, ale nie jest jasne, czy mierzą one tę samą zmienną:
+    - różna liczba elementów, które trzeba wygenerować (por. Brugger, 1997);
+    - różne instrukcje, które nawiązują do znanych (np., rzut monetą) lub abstrakcyjnych (np., "wygeneruj ciąg losowy") procesów (Biesaga et al., 2021);
+    - informacja zwrotna na temat generowane ciągu, np., gry o sumie zerowej (Rapoport & Budescu, 1992);
+    - różne modalności, np., generowanie ciągów vs generowanie losowych interwałów czasowych między naciśnięciami klawiszy (Vandierendonck, 2000).
+]
+
+#slide(title: [Cele naukowe projektu])[
+  #v(5%)
+  #showybox(
     frame: (
       border-color: blue.darken(50%),
       title-color: blue.lighten(60%),
@@ -96,82 +177,217 @@ On the other hand, unimodel theories of reasoning suggest:
     title-style: (
       color: black,
       weight: "bold",
-      align: center
     ),
     shadow: (
-      offset: 3pt,
+      offset: 2pt,
     ),
-    title: "Reflective Reasoning",
     [
-      Reflective thinking inhibits automatic heuristic responses and facilitates questioning endorsed beliefs by prompting deliberation (Evans & Stanovich, 2013; Pennycook & Rand, 2021).
+      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
     ]
     )
-  }
+
+]
+
+#slide(title: [Luki metodologiczne (2/2)])[
+  2. Problem z ugruntowaną i łatwo operacjonalizowalną miarą losowości ciągów tworzony przez ludzi. Używane miary w większości opierają się na pojedynczych aspektach losowości (Angelike & Munsch, 2025):
+
+    - miary oparte na częstości występowania elementów (np., liczba wystąpień pojednyczych, elementów, par, trójek, itp.);
+
+    - miary oparte na autokorelacji;
+
+    - miary oparte na entropii;
+
+    - miary oparte o Ukryte Ciągi Markova.
+]
+
+#focus-slide(background: mainColor)[
+  Większość używanych miar pozwala na pokazanie odstępstw od wyników procesu losowego. Jednak nie pozwalają na ocenę losowości tworzonego ciągu.
+
+]
+
+#slide(title: [Złożoność algorytmiczna])[
+  - Algorytmiczna Teoria Informacji utożsamia losowość ze złożonością algorytmiczną (Li & Vitányi, 2008).
+  
+  - W ostatnich latach udało się eksperymentalnie wyznaczyć taką miarę, która będzie się nadawała dla krótkich ciągów (Soler-Toscano et al., 2014; Gauvrit et al., 2017)
+
+  - Miara złożoności algorytmicznej:
+    - pozwala na wykrycie każdej nieregularności;
+    - jest wystarczająca czuła by wykrywać różnice indywidualne (Biesaga et al., 2021);
+    - znormalizowana przyjmuje wartości od 0 do 1 dzięki czemu pozwala na porównywanie ciągów o różnej długości.
+
+]
+
+#focus-slide(background: mainColor)[
+  Algorytmiczna Teoria Informacji definiuje #highlight[ciąg losowy] jako taki ciąg, który #highlight[nie może być stworzony przy pomocy prostej reguły.] Oznacza to, że ciągu losowego nie da się w wydajny sposób skompresować.
+]
+
+#slide(title: [Cele naukowe projektu])[
+  #v(5%)
+  #showybox(
+    frame: (
+      border-color: blue.darken(50%),
+      title-color: blue.lighten(60%),
+      body-color: otherColor.lighten(80%)
+    ),
+    title-style: (
+      color: black,
+      weight: "bold",
+    ),
+    shadow: (
+      offset: 2pt,
+    ),
+    [
+      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
+    ],
+    [
+      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
+    ]
+    )
+
+]
+
+#slide(title: [Luki empiryczne (1/2)])[
+
+  Badanie empiryczne oraz symulacje komputerowe pokazują, że wyższe funkcje poznawcze biorą udział w tworzeniu ciągów pseudolosowych.
+
+  - 
+
+]
+
+#slide(title: [Cele naukowe projektu])[
+  #v(5%)
+  #showybox(
+    frame: (
+      border-color: blue.darken(50%),
+      title-color: blue.lighten(60%),
+      body-color: otherColor.lighten(80%)
+    ),
+    title-style: (
+      color: black,
+      weight: "bold",
+    ),
+    shadow: (
+      offset: 2pt,
+    ),
+    [
+      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
+    ],
+    [
+      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
+    ],
+    [
+      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
+    ],
+    [
+      #show: text.with(fill: otherColor.lighten(80%))
+      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
+    ]
+    )
+]
+
+#slide(title: [Luki empiryczne (2/2)])[
+
+  Badanie empiryczne oraz symulacje komputerowe pokazują, że wyższe funkcje poznawcze biorą udział w tworzeniu ciągów pseudolosowych.
+
+  - 
+
+]
+
+#slide(title: [Cele naukowe projektu])[
+  #v(5%)
+  #showybox(
+    frame: (
+      border-color: blue.darken(50%),
+      title-color: blue.lighten(60%),
+      body-color: otherColor.lighten(80%)
+    ),
+    title-style: (
+      color: black,
+      weight: "bold",
+    ),
+    shadow: (
+      offset: 2pt,
+    ),
+    [
+      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
+    ],
+    [
+      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
+    ],
+    [
+      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
+    ],
+    [
+      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
+    ]
+    )
+]
+
+#slide(title: [Znaczenie projektu])[
+  #v(10%)
+  + Próba usystematyzowania różnych paradygmatów badawczych oraz metod badawczych w ramach algorytmicznej teorii informacji.
+
+  + Dotychczasowe badania (np. Miyake, 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały miar, które nie mieżyły losowości.
+
+  + Stabilność w czasie do tej pory była mierzona jako stabilność w czasie odchyleń od typowych dla rozkładu losowego wskaźników (Boger et al., 2025), a nie losowości produkowanych ciągów.
+]
+
+#slide(title: [Koncepcja i plan badań])[
+  #show: align.with(center)
+
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    [
+      #smallcaps[Badanie 1]
+      #cetz.canvas({
+        import cetz.draw: *
+        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
+        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
+        content((1,-3), [#box(width: 2cm)[#coin_toss]], anchor: "center")
+        content((1,-6), [#box(width: 2cm)[#notes]], anchor: "center")
+      })
+
+    ],
+    [
+      #smallcaps[Badanie 2]\
+      set-shifting, updating and monitoring, inhibition
+      
+    ],
+    [
+      #smallcaps[Badanie 3]
+
+    ],
   )
+
+
 ]
 
-#slide(title: [Motivated reasoning and fake news])[
-  - information processing is influenced by the motivation to confirm or support pre-existing beliefs (Faragó et al., 2020; Kahan, 2015).
-  - individuals tend to protect their identity and are inclined to readily believe content that aligns with their perspectives while approaching content contradicting their views with a high degree of skepticism (Kahan, 2013).
-  - selectively accepting evidence that confirms pre-existing beliefs while disregarding contradictory information (Kahan et al., 2007).
+#slide(title: [Metodyka badań])[
+  - Badanie 1 i Badanie 2 -- schemat korelacyjny.
+  - Badanie 2
 
-The MRA predicts that individuals who #highlight[identify with a particular political affiliation] will, through reflecting thinking, #highlight[become more attached to their beliefs, increase their tendency to believe fake news that supports their political identity,] and exhibit a strengthened tendency under conditions where political identity becomes more salient.
 ]
 
-#slide(title: [Reflective reasoning and fake news])[
-  - cognitive skills provided by reflection prompt individuals to adopt a critical perspective (Evans, 2008), even in their worldviews (Bago et al., 2020).
-  - reflection enables individuals to scrutinize the available information, it facilitates a more accurate discernment of the truth (Pennycook & Rand, 2021; Pennycook, 2023).
-
-The RRA predicts that #highlight[reflection induces cognitive decoupling, leading to enhanced discernment of truth and decreased belief in fake news, including content aligning with individuals’ political identities.]
-]
-
-#focus-slide(background: mainColor, [This is all good, but how can we make sure that people use reflection reasoning when they are exposed to fake news?])
-
-#slide(title: [Solutions?])[
-  #v(15%)
-  - #highlight[Debiasing training] includes training to increase awareness of three commonly observed cognitive biases: the semantic illusion, the base rate fallacy, and the availability bias (Isler et al., 2020).
-  - #highlight[Digital literacy interventions] includes enhancing the ability to distinguish between fake and true news by providing individuals with targeted applications specific to the context of fake news. These interventions can be divided into three categories: nudges, boosts, and refutation (Alon et al., 2024).
-]
-
-#slide(title: [Not really...])[
-  #v(15%)
-  - #highlight[Reflection reduced Democrats’ willingness to spread fake news, yet it did not affect Republicans.] These outcomes underscore the significant role of identity in the assessment of fake news and reveal that the mitigating effect of reflection is contingent upon an individual’s identity group (Bayrak, Boyacioglu, & Yilmaz, 2025).
-  - While debunking is slightly more effective than prebunking, both approaches require constant updating to keep pace with the evolving nature of misinformation. #highlight[This might lead to people's cognitive overload and consequently backing off from the topic] (Sadura et al., 2026).
-]
-
-#slide(title: [Bibliography])[
-  #set text(size: 11pt)
-  #set par(hanging-indent: 2em, justify: true, spacing: 1em)
-  Alon, A. T., Rahimi, I. D., & Tahar, H. (2024). Fighting fake news on social media: A comparative evaluation of digital literacy interventions. Current Psychology, 43(19), 17343–17361. https://doi.org/10.1007/s12144-024-05668-4
-  
-  Bago, B., Rand, D. G., & Pennycook, G. (2020). Fake news, fast and slow: Deliberation reduces belief in false (but not true) news headlines. Journal of Experimental Psychology: General, 149(8), 1608–1613. https://doi.org/10.1037/xge0000729
-  
-  Bayrak, F., Boyacioglu, I., & Yilmaz, O. (2025). Does reflection increase accuracy rather than bias in the assessments of political fake news? Current Psychology, 44(7), 5778–5795. https://doi.org/10.1007/s12144-025-07578-5
-  
-  Eagly, A. H., & Chaiken, S. (1993). The psychology of attitudes. The Psychology of Attitudes., xxii, 794–xxii, 794.
-  
-  Evans, J. St. B. T. (2008). Dual-Processing Accounts of Reasoning, Judgment, and Social Cognition. Annual Review of Psychology, 59(1), 255–278. https://doi.org/10.1146/annurev.psych.59.103006.093629
-  
-  Evans, J. St. B. T., & Stanovich, K. E. (2013). Dual-Process Theories of Higher Cognition: Advancing the Debate. Perspectives on Psychological Science, 8(3), 223–241. https://doi.org/10.1177/1745691612460685
-  
-  Faragó, L., Kende, A., & Krekó, P. (2020). We Only Believe in News That We Doctored Ourselves: The Connection Between Partisanship and Political Fake News. Social Psychology, 51(2), 77–90. https://doi.org/10.1027/1864-9335/a000391
-  
-  Isler, O., Yilmaz, O., & Dogruyol, B. (2020). Activating reflective thinking with decision justification and debiasing training. Judgment and Decision Making, 15(6), 926–938. https://doi.org/10.1017/S1930297500008147
-  
-  Kahan, D. M. (n.d.). The Politically Motivated Reasoning Paradigm.
-  
-  Kahan, D. M., Braman, D., Gastil, J., Slovic, P., & Mertz, C. K. (2007). Culture and Identity‐Protective Cognition: Explaining the White‐Male Effect in Risk Perception. Journal of Empirical Legal Studies, 4(3), 465–505. https://doi.org/10.1111/j.1740-1461.2007.00097.x
-  
-  Kruglanski, A. W., & Thompson, E. P. (1999). Persuasion by a Single Route: A View From the Unimodel. Psychological Inquiry, 10(2), 83–109. https://doi.org/10.1207/S15327965PL100201
-  
-  Kunda, Z. (1990). The Case for Motivated Reasoning. Psychological Bulletin, 108(3), 480–495.
-
-  Pennycook, G. (2023). A framework for understanding reasoning errors: From fake news to climate change and beyond. Advances in Experimental Social Psychology, 67, 131–208. https://doi.org/10.1016/bs.aesp.2022.11.003
-  
-  Pennycook, G., & Rand, D. G. (2019). Lazy, not biased: Susceptibility to partisan fake news is better explained by lack of reasoning than by motivated reasoning. Cognition, 188, 39–50. https://doi.org/10.1016/j.cognition.2018.06.011
-  
-  Petty, R. E., & Cacioppo, J. T. (1986). THE ELABORATION LIKELIHOOD MODEL OF PERSUASION. Advances in Experimental Social Psychology, 19, 124–205.
-  
-  Sadura, P., Gliński, P., Matyja, B., Oleksy, T., Pruszyńska, A., & Wnuk, A. (2025). ‘Wiem, że to manipulacja, ale i tak się denerwuję’ Polacy w epoce dezinformacji. Fundacja Pole Dialogu.
+#slide(title: [Dziękuję!])[
 
 ]

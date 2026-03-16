@@ -2,6 +2,7 @@
 #import "themes/iss.typ": *
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/cetz:0.4.2"
+#import "@preview/cetz-plot:0.1.3"
 #import "@preview/itemize:0.2.0" as el
 
 // Define main colors of the theme.
@@ -356,7 +357,9 @@
   #show: align.with(center)
 
   #grid(
-    columns: (1fr, 1fr, 1fr),
+    columns: (.5fr, 1fr, 1fr),
+    column-gutter: 2cm,
+    align: (left, center, center),
     [
       #smallcaps[Badanie 1]
       #cetz.canvas({
@@ -370,21 +373,142 @@
     ],
     [
       #smallcaps[Badanie 2]\
-      set-shifting, updating and monitoring, inhibition
-      
+      #v(5%)
+
+      #show: text.with(size: 12pt)
+      #cetz.canvas({
+        import cetz.draw: *
+        circle((2.5,1), radius: (2,1), name: "updating")
+        circle((2.5,-1.5), radius: (2,1), name: "shifting")
+        circle((2.5,-4), radius: (2,1), name: "inhibition")
+        circle((9,-1.5),radius: (2,1), name: "randomness")
+        content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
+        content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
+        content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
+        content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
+        line((4.5,1),(7,-1.4), mark: (end: ">"))
+        line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
+        line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
+      })
+
     ],
     [
-      #smallcaps[Badanie 3]
-
+      #smallcaps[Badanie 3]\
+      #v(15%)
+      #show: text.with(size: 12pt)
+      #cetz.canvas({
+        import cetz.draw: *
+        import cetz-plot: *
+        set-style(axes: (stroke: .5pt, tick: (stroke: 0pt)))
+        plot.plot(size: (9,4),
+        x-label: "Złożoność algorytmiczna",
+        x-label-size: 1pt,
+        y-label: "",
+        y-max: 12,
+        x-max: 1,
+        x-tick-step: .1,
+        y-tick-step: none,
+        {
+          let mean = .4
+          while mean < .6 {
+            plot.add(
+              domain: (0,1),
+              fill: true,
+              t => (1/.1) * calc.exp(- calc.pow(t - mean,2) / (2 * calc.pow(.1, 2)))
+          )
+          mean = mean + .04 
+          }
+        }
+        )
+      })
+      
     ],
   )
 
 
 ]
 
-#slide(title: [Metodyka badań])[
-  - Badanie 1 i Badanie 2 -- schemat korelacyjny.
-  - Badanie 2
+#slide(title: [Badanie 1])[
+  #grid(
+    rows: (2cm, auto),
+    columns: (27.5cm),
+    row-gutter: 3cm,
+    [
+      #show: align.with(center)
+      #cetz.canvas({
+        import cetz.draw: *
+        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
+        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
+        content((6,0), [#smallcaps[Mask]], anchor: "center")
+        content((10,0), [#box(width: 2cm)[#coin_toss]], anchor: "center")
+        content((14,0), [#smallcaps[Mask]], anchor: "center")
+        content((19,0), [#box(width: 2cm)[#notes]], anchor: "center")
+      })
+    ],
+    [
+      - Schemat korelacyjny
+      - Badanie w warunkach laboratoryjnych
+      - Analiza:
+        - analiza czynnikowa wyników zadań generowania losowości
+        - SEM -- ile wariancji złożoności jest wyjaśniane przez klasyczne miary?
+      - Realizacja celu 1 i 2
+
+    ])
+
+]
+
+#slide(title: [Badanie 2])[
+  #grid(
+    rows: (.60fr,.40fr),
+    row-gutter: 3cm,
+    columns: (27.5cm),
+    [
+      #show: align.with(center)
+      #show: text.with(size: 12pt)
+      #cetz.canvas({
+        import cetz.draw: *
+        circle((2.5,1), radius: (2,1), name: "updating")
+        circle((2.5,-1.5), radius: (2,1), name: "shifting")
+        circle((2.5,-4), radius: (2,1), name: "inhibition")
+        circle((9,-1.5),radius: (2,1), name: "randomness")
+        rect((-3,1.1), (-1,2.1),)
+        rect((-3,-.1), (-1,.9),)
+        rect((-3, -.4), (-1,-1.4),)
+        rect((-3,-1.7), (-1,-2.7),)
+        rect((-3, -3.9), (-1,-2.9),)
+        rect((-3,-4.1), (-1,-5.1),)
+        content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
+        content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
+        content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
+        content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
+        content((11,-4.2), [#box(width: 2cm)[#coin_toss]], anchor: "center")
+        content((6.5,-4.5), [#box(width: 1cm)[#spades6]], anchor: "center")
+        content((7.5,-4.5), [#box(width: 1cm)[#heart7]], anchor: "center")
+        line((4.5,1),(7,-1.4), mark: (end: ">"))
+        line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
+        line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
+        line((7,-4),(8.9,-2.5), mark: (end: ">"))
+        line((11,-3.7),(9.1,-2.5), mark: (end: ">"))
+        line((0.5,1.1),(-1,1.6), mark: (end: ">"))
+        line((0.5,.9),(-1,.4), mark: (end: ">"))
+        line((0.5,-1.4),(-1,-.9), mark: (end: ">"))
+        line((0.5,-1.6),(-1,-2.2), mark: (end: ">"))
+        line((0.5,-4.1),(-1,-4.6), mark: (end: ">"))
+        line((0.5,-3.9),(-1,-3.4), mark: (end: ">"))
+      })
+    ],
+    [
+      - Schemat korelacyjny
+      - Badanie w warunkach laboratoryjnych
+      - SEM
+      - Realizacja celu 3
+    ]
+  )
+
+
+]
+
+#slide(title: [Badanie 3])[
 
 ]
 

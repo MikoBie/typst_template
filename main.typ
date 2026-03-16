@@ -42,6 +42,7 @@
 }
 #show footnote: it =>{}
 #set footnote(numbering: it => {})
+#show: el.default-enum-list.with(fill: (enumColor, alertColor))
 
 // Images
 #let coin_toss = image("png/coin-toss.png")
@@ -50,6 +51,7 @@
 #let spades6 = image("png/spades-6.png")
 #let spades7 = image("png/spades-7.png")
 #let notes = image("png/musical-notes.png")
+#let model = image("png/rng_model.png")
 
 // Title slide.
 #title-slide(
@@ -128,6 +130,8 @@
 ]
 
 #slide(title: [Po co?])[
+  //#set list(marker: [])
+  #show: el.default-enum-list.with(fill: (enumColor, enumColor))
   #show quote: it => {
     set par(spacing: 0.65em,justify: false)
     [
@@ -268,10 +272,18 @@
 ]
 
 #slide(title: [Luki empiryczne (1/2)])[
-
-  Badanie empiryczne oraz symulacje komputerowe pokazują, że wyższe funkcje poznawcze biorą udział w tworzeniu ciągów pseudolosowych.
-
-  - 
+  #v(5%)
+  #grid(columns: (.6fr, .4fr),
+  column-gutter: 1cm,
+  [
+    #model
+  ],
+  [
+    - oba komponenty pamięci roboczej zaangażowane w~proces tworzenia ciągów losowych (Biesaga & Nowak, 2024);
+    - generowanie ciągów losowych jest związane z~procesami monitorowania oraz hamowania (Miyake et al., 2000).
+  ]
+  
+  )
 
 ]
 
@@ -348,7 +360,7 @@
   #v(10%)
   + Próba usystematyzowania różnych paradygmatów badawczych oraz metod badawczych w ramach algorytmicznej teorii informacji.
 
-  + Dotychczasowe badania (np. Miyake, 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały miar, które nie mieżyły losowości.
+  + Dotychczasowe badania (np. Miyake et al., 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały miar, które nie mieżyły losowości.
 
   + Stabilność w czasie do tej pory była mierzona jako stabilność w czasie odchyleń od typowych dla rozkładu losowego wskaźników (Boger et al., 2025), a nie losowości produkowanych ciągów.
 ]
@@ -471,16 +483,18 @@
         circle((2.5,-1.5), radius: (2,1), name: "shifting")
         circle((2.5,-4), radius: (2,1), name: "inhibition")
         circle((9,-1.5),radius: (2,1), name: "randomness")
-        rect((-3,1.1), (-1,2.1),)
+        rect((-3,1.1), (-1,2.1), name: "nback")
         rect((-3,-.1), (-1,.9),)
         rect((-3, -.4), (-1,-1.4),)
         rect((-3,-1.7), (-1,-2.7),)
         rect((-3, -3.9), (-1,-2.9),)
-        rect((-3,-4.1), (-1,-5.1),)
+        rect((-3,-4.1), (-1,-5.1), name: "go/nogo")
         content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
         content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
         content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
         content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
+        content("nback", [#smallcaps[n-back]], anchor: "center")
+        content("go/nogo", [#smallcaps[go/nogo]], anchor: "center")
         content((11,-4.2), [#box(width: 2cm)[#coin_toss]], anchor: "center")
         content((6.5,-4.5), [#box(width: 1cm)[#spades6]], anchor: "center")
         content((7.5,-4.5), [#box(width: 1cm)[#heart7]], anchor: "center")
@@ -509,9 +523,54 @@
 ]
 
 #slide(title: [Badanie 3])[
+  #grid(
+    rows: (.60fr,.40fr),
+    row-gutter: 3cm,
+    columns: (27.5cm),
+    [
+      #show: align.with(center)
+      #cetz.canvas({
+        import cetz.draw: *
+        content((0.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
+        content((1.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
+        content((4,0), [#smallcaps[mask]], anchor: "center")
+        content((6.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
+        content((7.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
+        content((10,0), [#smallcaps[mask]], anchor: "center")
+        content((12.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
+        content((13.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
+        content((16,0), [#smallcaps[...]], anchor: "center")
+        content((18.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
+        content((19.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
+
+        content((1,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
+        content((4,-2), [#smallcaps[mask]], anchor: "center")
+        content((7,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
+        content((10,-2), [#smallcaps[mask]], anchor: "center")
+        content((13,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
+        content((16,-2), [#smallcaps[...]], anchor: "center")
+        content((19,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
+
+        content((1,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
+        content((4,-4), [#smallcaps[mask]], anchor: "center")
+        content((7,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
+        content((10,-4), [#smallcaps[mask]], anchor: "center")
+        content((13,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
+        content((16,-4), [#smallcaps[...]], anchor: "center")
+        content((19,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
+      })
+    ],
+    [
+      - Badanie podłużne w schemacie eksperymentalnym (+ symulacja)
+      - Badanie w warunkach laboratoryjnych
+      - Realizacja celu 4
+    ]
+  )
 
 ]
 
-#slide(title: [Dziękuję!])[
-
+#focus-slide(background: mainColor)[
+  #show: text.with(size: 34pt)
+  #show: align.with(center)
+  Dziękuję!
 ]

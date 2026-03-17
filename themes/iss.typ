@@ -2,6 +2,7 @@
 // https://github.com/MarkBlyth
 #import "@preview/polylux:0.4.0": *
 #import "@preview/cetz:0.4.0"
+#import "@preview/showybox:2.0.4": showybox
 
 #let iss-left-footer = state("iss-left-footer", [])
 #let iss-right-footer = state("iss-right-footer", toolbox.slide-number)
@@ -68,20 +69,39 @@
     #grid(columns: (5%, 1fr, 5%),
     [],
     {
-      block(
-        stroke: ( y: 1mm + color, x: 1mm + color ),
-        inset: 1em,
-        breakable: false,
-        fill: color,
-        radius: 8pt,
-        [
-          #text(fill: white, 1.3em)[*#title*] \
-          #{
-            if subtitle != none {
-              parbreak()
-              text(fill: white, .9em)[#subtitle]
-            }
-          }
+      showybox(
+        frame: (
+          border-color: color,
+          title-color: color,
+          body-color: color,
+        ),
+        body-style: (
+          align: center,
+          color: white,
+          weight: "thin",
+        ),
+        sep: (
+          thickness: 0pt,
+        ),
+        title-style:(
+          color: white,
+          weight: "extrabold",
+          align: center
+        ),
+        shadow: (
+          offset: (x: 2pt, y: 3pt),
+          color: color.lighten(80%)
+        ),
+        title: [
+          #show: text.with(size: 32pt)
+          #title],
+        [#if subtitle != none {
+          [ 
+            #show: text.with(size: 20pt)
+            #subtitle
+          ]
+
+        }
         ]
       )
     },

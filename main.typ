@@ -157,7 +157,7 @@
 
   Tworzenie ciągów losowych jest powszechnie wykorzystywane:
     - jako drugie zadanie mające obciążyć funkcje poznawcze (e.g., Cooper et al., 2012);
-    - jako narzędzie diagnostyczne rozwoju funkcji poznawczych (e.g., Gauvrit et al., 2017);
+    - jako narzędzie diagnostyczne rozwoju funkcji poznawczych (e.g., Peters et al., 2007);
     - w badaniach nad modelowaniem mechanizmów podejmowania decyzji (e.g., Spicer et al., 2026);
     - ... i~wielu innych miejscach, których potrzebne jest zadanie, które jest trudne do wykonania, ale "łatwe" do zrozumienia (por. Ayton et al., 1991).
 ]
@@ -165,10 +165,10 @@
 #slide(title: [Luki metodologiczne (1/2)])[
 
   1. Istnieje wiele różnych paradygmatów badawczych, które są wykorzystywane do badania tworzenia ciągów losowych, ale nie jest jasne, czy mierzą one tę samą zmienną:
-    - różna liczba elementów, które trzeba wygenerować (por. Brugger, 1997);
-    - różne instrukcje, które nawiązują do znanych (np., rzut monetą) lub abstrakcyjnych (np., "wygeneruj ciąg losowy") procesów (Biesaga et al., 2021);
-    - informacja zwrotna na temat generowane ciągu, np., gry o sumie zerowej (Rapoport & Budescu, 1992);
-    - różne modalności, np., generowanie ciągów vs generowanie losowych interwałów czasowych między naciśnięciami klawiszy (Vandierendonck, 2000).
+    - różna #highlight[liczba elementów,] które trzeba wygenerować (por. Brugger, 1997);
+    - różne #highlight[instrukcje,] które nawiązują do znanych (np., rzut monetą) lub abstrakcyjnych (np., "wygeneruj ciąg losowy") procesów (Biesaga et al., 2021);
+    - #highlight[informacja zwrotna] na temat generowane ciągu, np., gry o sumie zerowej (Rapoport & Budescu, 1992);
+    - różne #highlight[modalności,] np., generowanie ciągów vs generowanie losowych interwałów czasowych między naciśnięciami klawiszy (Vandierendonck, 2000).
 ]
 
 #slide(title: [Cele naukowe projektu])[
@@ -206,7 +206,7 @@
 ]
 
 #slide(title: [Luki metodologiczne (2/2)])[
-  2. Problem z ugruntowaną i łatwo operacjonalizowalną miarą losowości ciągów tworzony przez ludzi. Używane miary w większości opierają się na pojedynczych aspektach losowości (Angelike & Munsch, 2025):
+  2. Problem z #highlight[ugruntowaną w teorii i łatwo operacjonalizowalną] miarą losowości ciągów tworzony przez ludzi. Używane miary w większości opierają się na pojedynczych aspektach losowości (Angelike & Munsch, 2025):
 
     - miary oparte na częstości występowania elementów (np., liczba wystąpień pojednyczych, elementów, par, trójek, itp.);
 
@@ -223,9 +223,9 @@
 ]
 
 #slide(title: [Złożoność algorytmiczna])[
-  - Algorytmiczna Teoria Informacji utożsamia losowość ze złożonością algorytmiczną (Li & Vitányi, 2008).
+  - Algorytmiczna Teoria Informacji #highlight[utożsamia losowość ze złożonością algorytmiczną] (Li & Vitányi, 2008).
   
-  - W ostatnich latach udało się eksperymentalnie wyznaczyć taką miarę, która będzie się nadawała dla krótkich ciągów (Soler-Toscano et al., 2014; Gauvrit et al., 2017)
+  - W ostatnich latach udało się eksperymentalnie wyznaczyć miarę, która nadawaje się dla krótkich ciągów (Soler-Toscano et al., 2014; Gauvrit et al., 2017)
 
   - Miara złożoności algorytmicznej:
     - pozwala na wykrycie każdej nieregularności;
@@ -279,8 +279,8 @@
     #model
   ],
   [
-    - oba komponenty pamięci roboczej zaangażowane w~proces tworzenia ciągów losowych (Biesaga & Nowak, 2024);
-    - generowanie ciągów losowych jest związane z~procesami monitorowania oraz hamowania (Miyake et al., 2000).
+    - Oba komponenty pamięci roboczej zaangażowane w~proces tworzenia ciągów losowych (Biesaga & Nowak, 2024);
+    - Generowanie ciągów losowych jest związane z~procesami monitorowania oraz hamowania (Miyake et al., 2000).
   ]
   
   )
@@ -320,9 +320,12 @@
 
 #slide(title: [Luki empiryczne (2/2)])[
 
-  Badanie empiryczne oraz symulacje komputerowe pokazują, że wyższe funkcje poznawcze biorą udział w tworzeniu ciągów pseudolosowych.
+  #v(15%)
+  - Krzywa rozwojowa wyników złożoności algortymicznej jest podobna do większości zdolności poznowaczych (Gauvrit et al., 2017);
 
-  - 
+  - Badania pokazują stabilność odstępstw od typowych dla rozkładu losowego wskaźników (Boger et al., 2025);
+
+  - #highlight[Pytanie:] Na ile stabilny w czasie jest rozkład wyników złożoności algorytmicznej?
 
 ]
 
@@ -358,9 +361,9 @@
 
 #slide(title: [Znaczenie projektu])[
   #v(10%)
-  + Próba usystematyzowania różnych paradygmatów badawczych oraz metod badawczych w ramach algorytmicznej teorii informacji.
+  + Próba #highlight[usystematyzowania różnych paradygmatów badawczych] oraz metod badawczych w ramach algorytmicznej teorii informacji.
 
-  + Dotychczasowe badania (np. Miyake et al., 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały miar, które nie mieżyły losowości.
+  + Dotychczasowe badania (np. Miyake et al., 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały #highlight[miar, które nie mieżyły losowości.]
 
   + Stabilność w czasie do tej pory była mierzona jako stabilność w czasie odchyleń od typowych dla rozkładu losowego wskaźników (Boger et al., 2025), a nie losowości produkowanych ciągów.
 ]
@@ -397,7 +400,7 @@
         content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
         content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
         content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
-        content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
+        content("randomness", [#show: align.with(center); #smallcaps[Random-like\ ability]], anchor: "center")
         line((4.5,1),(7,-1.4), mark: (end: ">"))
         line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
         line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
@@ -460,6 +463,7 @@
     [
       - Schemat korelacyjny
       - Badanie w warunkach laboratoryjnych
+      - 3 x 120 elementowe ciągi (ok. 40 minut)
       - Analiza:
         - analiza czynnikowa wyników zadań generowania losowości
         - SEM -- ile wariancji złożoności jest wyjaśniane przez klasyczne miary?
@@ -483,26 +487,32 @@
         circle((2.5,-1.5), radius: (2,1), name: "shifting")
         circle((2.5,-4), radius: (2,1), name: "inhibition")
         circle((9,-1.5),radius: (2,1), name: "randomness")
-        rect((-3,1.1), (-1,2.1), name: "nback")
-        rect((-3,-.1), (-1,.9),)
-        rect((-3, -.4), (-1,-1.4),)
-        rect((-3,-1.7), (-1,-2.7),)
-        rect((-3, -3.9), (-1,-2.9),)
-        rect((-3,-4.1), (-1,-5.1), name: "go/nogo")
+        rect((-3.2,1.1), (-1,2.1), name: "nback")
+        rect((-3.2,-.1), (-1,.9), name: "updating2")
+        rect((-3.2, -.4), (-1,-1.4), name: "shifting2")
+        rect((-3.2,-1.7), (-1,-2.7), name: "number/letter")
+        rect((-3.2, -3.9), (-1,-2.9), name: "stroop")
+        rect((-3.2,-4.1), (-1,-5.1), name: "go/nogo")
         content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
         content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
         content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
         content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
         content("nback", [#smallcaps[n-back]], anchor: "center")
         content("go/nogo", [#smallcaps[go/nogo]], anchor: "center")
+        content("stroop", [#smallcaps[stroop]], anchor: "center")
+        content("number/letter", [#smallcaps[number/\ letter]], anchor: "center")
+        content("updating2", [#smallcaps[?]], anchor: "center")
+        content("shifting2", [#smallcaps[?]], anchor: "center")
         content((11,-4.2), [#box(width: 2cm)[#coin_toss]], anchor: "center")
         content((6.5,-4.5), [#box(width: 1cm)[#spades6]], anchor: "center")
         content((7.5,-4.5), [#box(width: 1cm)[#heart7]], anchor: "center")
+        content((9,-4.5), [#box(width: 1cm)[#notes]], anchor: "center")
         line((4.5,1),(7,-1.4), mark: (end: ">"))
         line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
         line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
         line((7,-4),(8.9,-2.5), mark: (end: ">"))
         line((11,-3.7),(9.1,-2.5), mark: (end: ">"))
+        line((9,-3.9),(9,-2.5), mark: (end: ">"))
         line((0.5,1.1),(-1,1.6), mark: (end: ">"))
         line((0.5,.9),(-1,.4), mark: (end: ">"))
         line((0.5,-1.4),(-1,-.9), mark: (end: ">"))
@@ -514,7 +524,7 @@
     [
       - Schemat korelacyjny
       - Badanie w warunkach laboratoryjnych
-      - SEM
+      - 3 x 120 elementowe ciągi (ok. 90 minut)
       - Realizacja celu 3
     ]
   )
@@ -562,6 +572,7 @@
     ],
     [
       - Badanie podłużne w schemacie eksperymentalnym (+ symulacja)
+      - 128 ośmio-elementowych (64 siedmio-elementowych) ciągów (dwie sesje po ok. 40 minut)
       - Badanie w warunkach laboratoryjnych
       - Realizacja celu 4
     ]

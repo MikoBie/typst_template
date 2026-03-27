@@ -23,7 +23,7 @@
 
 
 // Global settings.
-#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "pl")
+#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "eng")
 #set strong(delta: 100)
 #set par(justify: true)
 #set enum(numbering: n => block(fill: enumColor, radius: 2pt, inset: .1em)[#text(fill: white, [#n.])])
@@ -35,7 +35,11 @@
 #show figure.caption: set text(size: 12pt)
 #show figure: set figure.caption(separator: ".")
 #show figure.where(kind: table): set figure.caption(position: top)
-#show smallcaps: set text(font: "New Computer Modern")
+#show smallcaps: it =>{
+  set text(font: "New Computer Modern")
+  set align(center)
+  it
+}
 #show link: it => {
   set text(blue.darken(20%))
   underline(it)
@@ -45,543 +49,246 @@
 #show: el.default-enum-list.with(fill: (enumColor, alertColor))
 
 // Images
-#let coin_toss = image("png/coin-toss.png")
-#let heart6 = image("png/heart-6.png")
-#let heart7 = image("png/heart-7.png")
-#let spades6 = image("png/spades-6.png")
-#let spades7 = image("png/spades-7.png")
-#let notes = image("png/musical-notes.png")
-#let model = image("png/rng_model.png")
 
 // Title slide.
 #title-slide(
   authors: [Mikołaj Biesaga],
-  title: [Tworzenie ciągów pseudolosowych:],
-  subtitle: [zdolność czy kombinacja funkcji poznawczych?],
-  date: [17 marca 2025],// datetime.today().display("[day] [month repr:long] [year]"),
+  title: [],
+  subtitle: [],
+  date: datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
-
+  secondlogo: image("png/mitemi_logo.jpg")
 )
 
-#slide(title: [Zanim zaczniemy...])[
-  #grid(columns: (.5fr, .4fr),
-  column-gutter: .1fr,
-  align: (auto, center),
+#slide(title: [Outlines])[
+  #v(20%)
+  1. Narratives
+
+  2. Methods
+
+  3. Examples
+
+]
+
+#slide(title: [Narratives])[
+  - People are "storytelling animals" (Gottshall, 2012). People are not computers and they think with stories not with data (Robinson & Hawpe, 1986).
+
+  - People create subjectively consistent story in which they are the main hero (McAdams, 1986).
+
+  - Whenever they find themselves in a new situation or face a decision, people use narratives to understand the circumstances and compare potential scenarios (Beach, 2021).
+
+  - #highlight[Thus, stories are the primary tool by which people experience the world. They provide meaning to reality (Popova, 2015).]
+
+]
+
+#slide(title: [What are narratives?])[
+  #v(20%)
+  #grid(columns: (1fr, 1fr,),
+  column-gutter: 40pt,
+  align: (center, center),
   [
-    #v(25%)
-    #highlight[Zadanie 1.] Dla każdego przygotowałem małą kartkę i długopis. Proszę, żeby każdy zapisał na niej #highlight[wyniki 10 wyobrażonych rzutów monetą,] w której jest 50% szans na wypadnięcie orła i 50% szans na wypadnięcie reszki.
+    #showybox(
+      frame: (
+        border-color: blue.darken(50%),
+        title-color: blue.lighten(60%),
+        body-color: blue.lighten(80%)
+      ),
+      title-style: (
+        color: black,
+        weight: "extrabold",
+        align: center
+      ),
+      title: [Narratives tell us:],
+      [
+        - What is this?
+        - How is the situation chaning?
+        - Who are the actors?
+      ]
+    )
   ],
   [
-    #box(width: 8cm)[#coin_toss]
+    #showybox(
+      frame: (
+        border-color: yellow.darken(50%),
+        title-color: yellow.lighten(60%),
+        body-color: yellow.lighten(80%)
+      ),
+      title-style: (
+        color: black,
+        weight: "extrabold",
+        align: center
+      ),
+      title: [Narratvies perform 3 functions:],
+      [
+        - Organize our perception
+        - Guide our actions
+        - Synchronize collective actions
+      ]
+    )
   ])
+
 ]
 
-#slide(title: [Zanim zaczniemy...])[
-  #grid(rows: (1fr,2fr),
-  column-gutter: .1fr,
-  align: (auto, center),
+#slide(title:[Narrative types])[
+  #show: align.with(center)
+  #show: text.with(size:18pt)
+  #grid(columns: 5,
+  column-gutter: 30pt,
   [
-    #v(20%)
-    #highlight[Zadanie 2.] Teraz w~parach prosiłbym, żebyście zagrali w~następującą grę. Każda osoba dostanie 2 karty: jednego pika i jedno karo. Na mój znak będziecie wykładać jedną z tych kart.
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+      set-style(axes: (stroke: 2pt),
+       stroke: (thickness: 3pt),
+       )
+      plot.plot(size: (4,4),
+      y-label: "",
+      name: "plot",
+      x-label: "",
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "left",
+      {
+        plot.add(((.1,.1),(1,1)), style: (stroke: none))
+        plot.add-anchor("start", (0.2, 0.2))
+        plot.add-anchor("stop", (0.9, 0.9))
+      }
+      )
+      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
+      content("plot.south", [#smallcaps[Progress]], padding: (bottom: -1cm))
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);Historically, the world has been getting better with each decade.], anchor: "north")
+    })
   ],
   [
-    #v(15%)
-    #grid(columns: (1fr, 1fr),
-    align: (center, center),
-    [
-    #smallcaps[Starsi wygrywają]
-      #cetz.canvas({
-        import cetz.draw: *
-        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
-        content((2, 0), [#box(width: 2cm)[#heart7]], anchor: "center")
-        content((6, 0), [#box(width: 2cm)[#spades6]], anchor: "center")
-        content((8, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
-      })
-    ],
-    [
-      #smallcaps[Młodsi wygrywają]
-      #cetz.canvas({
-        import cetz.draw: *
-        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
-        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
-        content((6, 0), [#box(width: 2cm)[#spades6]], anchor: "center")
-        content((8, 0), [#box(width: 2cm)[#heart7]], anchor: "center")
-      })
-    ])
-
-  ],
-  )
-]
-#slide(title: [Plan prezentacji])[
-  #v(15%)
-
-  + Cel naukowy projektu;
-
-  + Znaczenie projektu;
-
-  + Koncepcja i plan badań;
-
-  + Metodyka badań.
-
-]
-
-#focus-slide(background: mainColor)[
-  Mówię o zdolności do #highlight[tworzenia ciągów pseudolosowych] bo nie ma przesłanek do tego by wierzyć, że jest jakiś proces prawdziwie losowy, który stoi za produkcją przez ludzi ciągów.
-]
-
-#slide(title: [Po co?])[
-  //#set list(marker: [])
-  #show: el.default-enum-list.with(fill: (enumColor, enumColor))
-  #show quote: it => {
-    set par(spacing: 0.65em,justify: false)
-    [
-      #set text(size: 16pt, style: "italic")
-      #it.body
-    ]
-    v(1pt)
-    [
-      #set text(size: 16pt)
-      #h(14cm)
-      -- #it.attribution
-    ]
-  }
-  #grid(
-    columns: (8cm, auto),
-    [],
-    [
-      #quote(block: true, attribution: [Włodi (1997)], quotes: false)[
-        "Po pierwsze nie dla sławy, po drugie nie dla pieniędzy\
-        Dobrze rapować można żyjąc nawet w nędzy"
-        ]
-    ])
-
-  Tworzenie ciągów losowych jest powszechnie wykorzystywane:
-    - jako drugie zadanie mające obciążyć funkcje poznawcze (e.g., Cooper et al., 2012);
-    - jako narzędzie diagnostyczne rozwoju funkcji poznawczych (e.g., Peters et al., 2007);
-    - w badaniach nad modelowaniem mechanizmów podejmowania decyzji (e.g., Spicer et al., 2026);
-    - ... i~wielu innych miejscach, których potrzebne jest zadanie, które jest trudne do wykonania, ale "łatwe" do zrozumienia (por. Ayton et al., 1991).
-]
-
-#slide(title: [Luki metodologiczne (1/2)])[
-
-  1. Istnieje wiele różnych paradygmatów badawczych, które są wykorzystywane do badania tworzenia ciągów losowych, ale nie jest jasne, czy mierzą one tę samą zmienną:
-    - różna #highlight[liczba elementów,] które trzeba wygenerować (por. Brugger, 1997);
-    - różne #highlight[instrukcje,] które nawiązują do znanych (np., rzut monetą) lub abstrakcyjnych (np., "wygeneruj ciąg losowy") procesów (Biesaga et al., 2021);
-    - #highlight[informacja zwrotna] na temat generowane ciągu, np., gry o sumie zerowej (Rapoport & Budescu, 1992);
-    - różne #highlight[modalności,] np., generowanie ciągów vs generowanie losowych interwałów czasowych między naciśnięciami klawiszy (Vandierendonck, 2000).
-]
-
-#slide(title: [Cele naukowe projektu])[
-  #v(5%)
-  #showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-    ),
-    shadow: (
-      offset: 2pt,
-    ),
-    [
-      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
-    ]
-    )
-
-]
-
-#slide(title: [Luki metodologiczne (2/2)])[
-  2. Problem z #highlight[ugruntowaną w teorii i łatwo operacjonalizowalną] miarą losowości ciągów tworzony przez ludzi. Używane miary w większości opierają się na pojedynczych aspektach losowości (Angelike & Munsch, 2025):
-
-    - miary oparte na częstości występowania elementów (np., liczba wystąpień pojednyczych, elementów, par, trójek, itp.);
-
-    - miary oparte na autokorelacji;
-
-    - miary oparte na entropii;
-
-    - miary oparte o Ukryte Ciągi Markova.
-]
-
-#focus-slide(background: mainColor)[
-  Większość używanych miar pozwala na pokazanie odstępstw od wyników procesu losowego. Jednak nie pozwalają na ocenę losowości tworzonego ciągu.
-
-]
-
-#slide(title: [Złożoność algorytmiczna])[
-  - Algorytmiczna Teoria Informacji #highlight[utożsamia losowość ze złożonością algorytmiczną] (Li & Vitányi, 2008).
-  
-  - W ostatnich latach udało się eksperymentalnie wyznaczyć miarę, która nadawaje się dla krótkich ciągów (Soler-Toscano et al., 2014; Gauvrit et al., 2017)
-
-  - Miara złożoności algorytmicznej:
-    - pozwala na wykrycie każdej nieregularności;
-    - jest wystarczająca czuła by wykrywać różnice indywidualne (Biesaga et al., 2021);
-    - znormalizowana przyjmuje wartości od 0 do 1 dzięki czemu pozwala na porównywanie ciągów o różnej długości.
-
-]
-
-#focus-slide(background: mainColor)[
-  Algorytmiczna Teoria Informacji definiuje #highlight[ciąg losowy] jako taki ciąg, który #highlight[nie może być stworzony przy pomocy prostej reguły.] Oznacza to, że ciągu losowego nie da się w wydajny sposób skompresować.
-]
-
-#slide(title: [Cele naukowe projektu])[
-  #v(5%)
-  #showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-    ),
-    shadow: (
-      offset: 2pt,
-    ),
-    [
-      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
-    ],
-    [
-      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
-    ]
-    )
-
-]
-
-#slide(title: [Luki empiryczne (1/2)])[
-  #v(5%)
-  #grid(columns: (.6fr, .4fr),
-  column-gutter: 1cm,
-  [
-    #model
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+      set-style(axes: (stroke: 2pt),
+       stroke: (thickness: 3pt),
+       )
+      plot.plot(size: (4,4),
+      y-label: "",
+      name: "plot",
+      x-label: "",
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "left",
+      {
+        plot.add(((.1,.1),(1,1)), style: (stroke: none))
+        plot.add-anchor("start", (0.2, 0.9))
+        plot.add-anchor("stop", (0.9, 0.2))
+      }
+      )
+      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
+      content("plot.south", [#smallcaps[Degradation]], padding: (bottom:-1cm))
+      content(("plot.south", 50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);Our world is generally worse than the one of our parents and grandparents.], anchor: "north")
+    })
   ],
   [
-    - Oba komponenty pamięci roboczej zaangażowane w~proces tworzenia ciągów losowych (Biesaga & Nowak, 2024);
-    - Generowanie ciągów losowych jest związane z~procesami monitorowania oraz hamowania (Miyake et al., 2000).
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+      set-style(axes: (stroke: 2pt),
+       stroke: (thickness: 3pt),
+       )
+      plot.plot(size: (4,4),
+      y-label: "",
+      name: "plot",
+      x-label: "",
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "left",
+      {
+        plot.add(((.1,.1),(1,1)), style: (stroke: none))
+        plot.add-anchor("start", (0.2, 0.55))
+        plot.add-anchor("stop", (0.9, 0.55))
+      }
+      )
+      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
+      content("plot.south", [#smallcaps[Balance]], padding: (bottom:-1cm))
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);The world doesn't change fundamentally. The cost of progress cancels out most benefits.], anchor: "north")
+    })
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+      set-style(axes: (stroke: 2pt),
+       stroke: (thickness: 3pt),
+       )
+      plot.plot(size: (4,4),
+      y-label: "",
+      name: "plot",
+      x-label: "",
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "left",
+      {
+        plot.add(((.1,.1),(1,1)), style: (stroke: none))
+        plot.add-anchor("start", (0.2, 0.2))
+        plot.add-anchor("middle", (0.55, 0.55))
+        plot.add-anchor("stop", (0.9, 0.2))
+      }
+      )
+      line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
+      content("plot.south", [#smallcaps[Rise and fall]], padding: (bottom:-1cm))
+      content(("plot.south",50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);The world used to get better, but now it is getting worse.], anchor: "north")
+    })
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+      set-style(axes: (stroke: 2pt),
+       stroke: (thickness: 3pt),
+       )
+      plot.plot(size: (4,4),
+      y-label: "",
+      name: "plot",
+      x-label: "",
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "left",
+      {
+        plot.add(((.1,.1),(1,1)), style: (stroke: none))
+        plot.add-anchor("start", (0.2, 0.9))
+        plot.add-anchor("middle", (0.55, 0.55))
+        plot.add-anchor("stop", (0.9, 0.9))
+      }
+      )
+      line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
+      content("plot.south", [#smallcaps[Crisis]], padding: (bottom:-1cm))
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);We are facing a major global crisis but things will get better again.], anchor: "north")
+    })
   ]
-  
   )
-
 ]
 
-#slide(title: [Cele naukowe projektu])[
-  #v(5%)
-  #showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-    ),
-    shadow: (
-      offset: 2pt,
-    ),
-    [
-      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
-    ],
-    [
-      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
-    ],
-    [
-      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
-    ],
-    [
-      #show: text.with(fill: otherColor.lighten(80%))
-      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
-    ]
-    )
-]
-
-#slide(title: [Luki empiryczne (2/2)])[
-
-  #v(15%)
-  - Krzywa rozwojowa wyników złożoności algortymicznej jest podobna do większości zdolności poznowaczych (Gauvrit et al., 2017);
-
-  - Badania pokazują stabilność odstępstw od typowych dla rozkładu losowego wskaźników (Boger et al., 2025);
-
-  - #highlight[Pytanie:] Na ile stabilny w czasie jest rozkład wyników złożoności algorytmicznej?
-
-]
-
-#slide(title: [Cele naukowe projektu])[
-  #v(5%)
-  #showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-    ),
-    shadow: (
-      offset: 2pt,
-    ),
-    [
-      1. Zbadanie na ile różne paradygmaty badawcze wykorzystywane w~zadaniach generowania ciągów losowych mierzą tę samą zmienną.
-    ],
-    [
-      2. Zbadanie ile wariancji złożoności algorytmicznej wyjaśniają powszechnie używane miary do tworzenia ciągów losowych.
-    ],
-    [
-      3. Zbadanie, które wyższe funkcje poznawcze są zaangażowane w~tworzenie ciągów losowych.
-    ],
-    [
-      4. Zbadanie stabilności w czasie wyników w zadaniach generowania ciągów losowych.
-    ]
-    )
-]
-
-#slide(title: [Znaczenie projektu])[
-  #v(10%)
-  + Próba #highlight[usystematyzowania różnych paradygmatów badawczych] oraz metod badawczych w ramach algorytmicznej teorii informacji.
-
-  + Dotychczasowe badania (np. Miyake et al., 2000; Cooper et al. 2012) starające się sprawdzić udział wyższych funkcji poznawczych na tworzenie ciągów losowych używały #highlight[miar, które nie mieżyły losowości.]
-
-  + Stabilność w czasie do tej pory była mierzona jako stabilność w czasie odchyleń od typowych dla rozkładu losowego wskaźników (Boger et al., 2025), a nie losowości produkowanych ciągów.
-]
-
-#slide(title: [Koncepcja i plan badań])[
+#slide(title: [Methodology])[
   #show: align.with(center)
+  #show: text.with(size:18pt)
 
-  #grid(
-    columns: (.5fr, 1fr, 1fr),
-    column-gutter: 2cm,
-    align: (left, center, center),
-    [
-      #smallcaps[Badanie 1]
-      #cetz.canvas({
-        import cetz.draw: *
-        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
-        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
-        content((1,-3), [#box(width: 2cm)[#coin_toss]], anchor: "center")
-        content((1,-6), [#box(width: 2cm)[#notes]], anchor: "center")
-      })
-
-    ],
-    [
-      #smallcaps[Badanie 2]\
-      #v(5%)
-
-      #show: text.with(size: 12pt)
-      #cetz.canvas({
-        import cetz.draw: *
-        circle((2.5,1), radius: (2,1), name: "updating")
-        circle((2.5,-1.5), radius: (2,1), name: "shifting")
-        circle((2.5,-4), radius: (2,1), name: "inhibition")
-        circle((9,-1.5),radius: (2,1), name: "randomness")
-        content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
-        content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
-        content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
-        content("randomness", [#show: align.with(center); #smallcaps[Random-like\ ability]], anchor: "center")
-        line((4.5,1),(7,-1.4), mark: (end: ">"))
-        line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
-        line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
-      })
-
-    ],
-    [
-      #smallcaps[Badanie 3]\
-      #v(15%)
-      #show: text.with(size: 12pt)
-      #cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-        set-style(axes: (stroke: .5pt, tick: (stroke: 0pt)))
-        plot.plot(size: (9,4),
-        x-label: "Złożoność algorytmiczna",
-        x-label-size: 1pt,
-        y-label: "",
-        y-max: 12,
-        x-max: 1,
-        x-tick-step: .1,
-        y-tick-step: none,
-        {
-          let mean = .4
-          while mean < .6 {
-            plot.add(
-              domain: (0,1),
-              fill: true,
-              t => (1/.1) * calc.exp(- calc.pow(t - mean,2) / (2 * calc.pow(.1, 2)))
-          )
-          mean = mean + .04 
-          }
-        }
-        )
-      })
-      
-    ],
-  )
-
-
-]
-
-#slide(title: [Badanie 1])[
-  #grid(
-    rows: (2cm, auto),
-    columns: (27.5cm),
-    row-gutter: 3cm,
-    [
-      #show: align.with(center)
-      #cetz.canvas({
-        import cetz.draw: *
-        content((0, 0), [#box(width: 2cm)[#heart6]], anchor: "center")
-        content((2, 0), [#box(width: 2cm)[#spades7]], anchor: "center")
-        content((6,0), [#smallcaps[Mask]], anchor: "center")
-        content((10,0), [#box(width: 2cm)[#coin_toss]], anchor: "center")
-        content((14,0), [#smallcaps[Mask]], anchor: "center")
-        content((19,0), [#box(width: 2cm)[#notes]], anchor: "center")
-      })
-    ],
-    [
-      - Schemat korelacyjny
-      - Badanie w warunkach laboratoryjnych
-      - 3 x 120 elementowe ciągi (ok. 40 minut)
-      - Analiza:
-        - analiza czynnikowa wyników zadań generowania losowości
-        - SEM -- ile wariancji złożoności jest wyjaśniane przez klasyczne miary?
-      - Realizacja celu 1 i 2
-
-    ])
-
-]
-
-#slide(title: [Badanie 2])[
-  #grid(
-    rows: (.60fr,.40fr),
-    row-gutter: 3cm,
-    columns: (27.5cm),
-    [
-      #show: align.with(center)
-      #show: text.with(size: 12pt)
-      #cetz.canvas({
-        import cetz.draw: *
-        circle((2.5,1), radius: (2,1), name: "updating")
-        circle((2.5,-1.5), radius: (2,1), name: "shifting")
-        circle((2.5,-4), radius: (2,1), name: "inhibition")
-        circle((9,-1.5),radius: (2,1), name: "randomness")
-        rect((-3.2,1.1), (-1,2.1), name: "nback")
-        rect((-3.2,-.1), (-1,.9), name: "updating2")
-        rect((-3.2, -.4), (-1,-1.4), name: "shifting2")
-        rect((-3.2,-1.7), (-1,-2.7), name: "number/letter")
-        rect((-3.2, -3.9), (-1,-2.9), name: "stroop")
-        rect((-3.2,-4.1), (-1,-5.1), name: "go/nogo")
-        content("updating", [#smallcaps[Updating &\ Monitoring]], anchor: "center")
-        content("shifting", [#smallcaps[Set-shifting]], anchor: "center")
-        content("inhibition", [#smallcaps[Inhibition]], anchor: "center")
-        content("randomness", [#smallcaps[Random-like\ series ability]], anchor: "center")
-        content("nback", [#smallcaps[n-back]], anchor: "center")
-        content("go/nogo", [#smallcaps[go/nogo]], anchor: "center")
-        content("stroop", [#smallcaps[stroop]], anchor: "center")
-        content("number/letter", [#smallcaps[number/\ letter]], anchor: "center")
-        content("updating2", [#smallcaps[?]], anchor: "center")
-        content("shifting2", [#smallcaps[?]], anchor: "center")
-        content((11,-4.2), [#box(width: 2cm)[#coin_toss]], anchor: "center")
-        content((6.5,-4.5), [#box(width: 1cm)[#spades6]], anchor: "center")
-        content((7.5,-4.5), [#box(width: 1cm)[#heart7]], anchor: "center")
-        content((9,-4.5), [#box(width: 1cm)[#notes]], anchor: "center")
-        line((4.5,1),(7,-1.4), mark: (end: ">"))
-        line((4.5,-1.5),(7,-1.5), mark: (end: ">"))
-        line((4.5,-4),(7,-1.6 ), mark: (end: ">"))
-        line((7,-4),(8.9,-2.5), mark: (end: ">"))
-        line((11,-3.7),(9.1,-2.5), mark: (end: ">"))
-        line((9,-3.9),(9,-2.5), mark: (end: ">"))
-        line((0.5,1.1),(-1,1.6), mark: (end: ">"))
-        line((0.5,.9),(-1,.4), mark: (end: ">"))
-        line((0.5,-1.4),(-1,-.9), mark: (end: ">"))
-        line((0.5,-1.6),(-1,-2.2), mark: (end: ">"))
-        line((0.5,-4.1),(-1,-4.6), mark: (end: ">"))
-        line((0.5,-3.9),(-1,-3.4), mark: (end: ">"))
-      })
-    ],
-    [
-      - Schemat korelacyjny
-      - Badanie w warunkach laboratoryjnych
-      - 3 x 120 elementowe ciągi (ok. 90 minut)
-      - Realizacja celu 3
-    ]
-  )
-
-
-]
-
-#slide(title: [Badanie 3])[
-  #grid(
-    rows: (.60fr,.40fr),
-    row-gutter: 3cm,
-    columns: (27.5cm),
-    [
-      #show: align.with(center)
-      #cetz.canvas({
-        import cetz.draw: *
-        content((0.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
-        content((1.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
-        content((4,0), [#smallcaps[mask]], anchor: "center")
-        content((6.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
-        content((7.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
-        content((10,0), [#smallcaps[mask]], anchor: "center")
-        content((12.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
-        content((13.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
-        content((16,0), [#smallcaps[...]], anchor: "center")
-        content((18.25, 0), [#box(width: 1.5cm)[#heart6]], anchor: "center")
-        content((19.75, 0), [#box(width: 1.5cm)[#spades7]], anchor: "center")
-
-        content((1,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
-        content((4,-2), [#smallcaps[mask]], anchor: "center")
-        content((7,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
-        content((10,-2), [#smallcaps[mask]], anchor: "center")
-        content((13,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
-        content((16,-2), [#smallcaps[...]], anchor: "center")
-        content((19,-2), [#box(width: 1.5cm)[#coin_toss]], anchor: "center")
-
-        content((1,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
-        content((4,-4), [#smallcaps[mask]], anchor: "center")
-        content((7,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
-        content((10,-4), [#smallcaps[mask]], anchor: "center")
-        content((13,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
-        content((16,-4), [#smallcaps[...]], anchor: "center")
-        content((19,-4), [#box(width: 1.5cm)[#notes]], anchor: "center")
-      })
-    ],
-    [
-      - Badanie podłużne w schemacie eksperymentalnym (+ symulacja)
-      - 128 ośmio-elementowych (64 siedmio-elementowych) ciągów (dwie sesje po ok. 40 minut)
-      - Badanie w warunkach laboratoryjnych
-      - Realizacja celu 4
-    ]
-  )
+  #cetz.canvas({
+    import cetz.draw: *
+    set-style(stroke: (thickness: 2pt, dash: "dashed"), mark: (transform-shape: true, fill: black, scale: 2, anchor: "center"))
+    content((2.5,3), [#smallcaps[Data\ collection]], anchor: "center")
+    content((9.5, 3), [#smallcaps[NLP]], anchor: "center")
+    content((16.5, 3), [#smallcaps[Qualitative\ analysis]], anchor: "center")
+    content((23.5,3), [#smallcaps[Quantitative\ analysis]], anchor: "center")
+    content((2.5,9), [#box(width: 3cm)[#image("png/data_collection.png")]], anchor: "center")
+    content((9.5,9), [#box(width: 3cm)[#image("png/nlp.png")]], anchor: "center")
+    content((16.5,9), [#box(width: 3cm)[#image("png/qualitative.png")]], anchor: "center")
+    content((23.5,9), [#box(width: 3cm)[#image("png/quantitative.png")]], anchor: "center")
+    line((4.1,9),(7.6,9), mark: (end: ">"))
+    line((18.1,9),(21.6,9), mark: (end: ">"))
+    bezier((9.5,7),(16.5, 7),(13,3), mark: (start: ">"))
+    bezier((9.5,11),(16.5, 11),(13,15), mark: (end: ">"))
+  })
 
 ]
 
 #focus-slide(background: mainColor)[
-  #show: text.with(size: 34pt)
+  #show: text.with(size: 44pt)
   #show: align.with(center)
-  Dziękuję!
+  Thank You!
 ]

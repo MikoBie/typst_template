@@ -17,7 +17,7 @@
 // Option of the theme.
 #show: iss-theme.with(
   left-footer: [Biesaga],
-  short-title: [Tworzenie ciągów pseudolosowych: zdolność czy kombinacja funkcji poznawczych?],
+  short-title: [Automatic Narratives Extraction],
   color: mainColor,
 )
 
@@ -49,12 +49,12 @@
 #show: el.default-enum-list.with(fill: (enumColor, alertColor))
 
 // Images
-
+#let topic_modeling = image("png/topic_modeling.png")
 // Title slide.
 #title-slide(
   authors: [Mikołaj Biesaga],
-  title: [],
-  subtitle: [],
+  title: [Automatic Narratives Extraction:],
+  subtitle: [Methods and Applications],
   date: datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
   secondlogo: image("png/mitemi_logo.jpg")
@@ -82,6 +82,7 @@
 ]
 
 #slide(title: [What are narratives?])[
+  #show: text.with(size: 19pt)
   #v(20%)
   #grid(columns: (1fr, 1fr,),
   column-gutter: 40pt,
@@ -101,7 +102,7 @@
       title: [Narratives tell us:],
       [
         - What is this?
-        - How is the situation chaning?
+        - How is the situation changing?
         - Who are the actors?
       ]
     )
@@ -120,9 +121,9 @@
       ),
       title: [Narratvies perform 3 functions:],
       [
-        - Organize our perception
-        - Guide our actions
-        - Synchronize collective actions
+        - Organize our perception;
+        - Guide our actions;
+        - Synchronize collective actions.
       ]
     )
   ])
@@ -156,7 +157,7 @@
       )
       line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
       content("plot.south", [#smallcaps[Progress]], padding: (bottom: -1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);Historically, the world has been getting better with each decade.], anchor: "north")
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);Historically, the world has been getting better with each decade.], anchor: "north")
     })
   ],
   [
@@ -181,7 +182,7 @@
       )
       line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
       content("plot.south", [#smallcaps[Degradation]], padding: (bottom:-1cm))
-      content(("plot.south", 50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);Our world is generally worse than the one of our parents and grandparents.], anchor: "north")
+      content(("plot.south", 50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);Our world is generally worse than the one of our parents and grandparents.], anchor: "north")
     })
   ],
   [
@@ -206,7 +207,7 @@
       )
       line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
       content("plot.south", [#smallcaps[Balance]], padding: (bottom:-1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);The world doesn't change fundamentally. The cost of progress cancels out most benefits.], anchor: "north")
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);The world does not change fundamentally. The cost of progress cancels out most benefits.], anchor: "north")
     })
   ],
   [
@@ -232,7 +233,7 @@
       )
       line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
       content("plot.south", [#smallcaps[Rise and fall]], padding: (bottom:-1cm))
-      content(("plot.south",50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);The world used to get better, but now it is getting worse.], anchor: "north")
+      content(("plot.south",50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);The world used to get better, but now it is getting worse.], anchor: "north")
     })
   ],
   [
@@ -258,7 +259,7 @@
       )
       line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
       content("plot.south", [#smallcaps[Crisis]], padding: (bottom:-1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:16pt);We are facing a major global crisis but things will get better again.], anchor: "north")
+      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);We are facing a~major global crisis but things will get better again.], anchor: "north")
     })
   ]
   )
@@ -286,6 +287,80 @@
   })
 
 ]
+
+#let page-box(fill_c: red, lines: true) = {
+  cetz.canvas({
+    import cetz.draw: *
+    rect((0,0),(2,2.5), fill: fill_c)
+    if lines {
+      rect((.2,1.6),(1.8,2.3), stroke: (thickness: .5pt, paint: black))
+      for y in (.2, .4, .6, .8, 1, 1.2, 1.4) {
+        line((.15,y), (1.85,y), stroke: (thickness: .5pt, paint: black))
+
+    }
+    }
+  })
+}
+
+#slide(title: [Tools])[
+  #show: align.with(center)
+  #cetz.canvas({
+    import cetz.draw: *
+    content((0,0),[#page-box(fill_c: blue.lighten(20%))])
+    content((2.5,0),[#page-box(fill_c: red.lighten(20%))])
+    content((5,0),[#page-box(fill_c: blue.lighten(20%))])
+    content((7.5,0),[#page-box(fill_c: green.lighten(20%))])
+    content((10,0),[#page-box(fill_c: red.lighten(20%))])
+    content((12.5,0),[#page-box(fill_c: blue.lighten(20%))])
+
+    content((4,-5), [#page-box(fill_c: red.lighten(20%))])
+    content((4,-5.3), [#page-box(fill_c: red.lighten(20%))])
+    content((6.5,-5), [#page-box(fill_c: green.lighten(20%))])
+    content((9,-5), [#page-box(fill_c: blue.lighten(20%))])
+    content((9,-5.3), [#page-box(fill_c: blue.lighten(20%))])
+    content((9,-5.6), [#page-box(fill_c: blue.lighten(20%))])
+
+    content((4,-10), [#page-box(fill_c: red.lighten(20%), lines: false)])
+    content((9,-10), [#page-box(fill_c: blue.lighten(20%), lines: false)])
+
+    line((0,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
+    line((5,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
+    line((12.5,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
+
+    line((2.5,-1.25), (4,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
+    line((10,-1.25), (4,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
+
+    line((7.5,-1.25), (6.5,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: green.lighten(20%)))
+
+
+    line((4,-7), (4,-8.5), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
+    line((9,-7), (9,-8.5), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
+
+    content((20,0), [#smallcaps[Corpus]])
+
+    content((20,-5), [#smallcaps[Separated Topics]])
+
+    content((20,-10), [#smallcaps[Identified Narratives]])
+  })
+
+]
+
+#slide(title: [Example])[
+  #grid(columns: (1fr, 1fr, 1fr),
+  column-gutter: 30pt,
+  [
+    #image("png/urban.png")
+  ],
+  [
+    #image("png/transgenic.png")
+  ],
+  [
+    #image("png/hicss.png")
+  ],
+  )
+  
+]
+
 
 #focus-slide(background: mainColor)[
   #show: text.with(size: 44pt)

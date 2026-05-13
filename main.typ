@@ -65,9 +65,17 @@
   #set text(fill: white)
   #it
 ]
+//#show figure.caption: it => [
+//  #if it == "Rysunek" [
+//    Rycina #it.counter.display(). #it.body
+//  ] else [
+//    #it
+//  ]
+//]
 #show figure.caption: set text(size: 12pt)
 #show figure: set figure.caption(separator: ".")
 #show figure.where(kind: table): set figure.caption(position: top)
+#show figure.where(kind: image): set figure(supplement: "Rycina")
 #show smallcaps: it =>{
   set text(font: "New Computer Modern")
   set align(center)
@@ -152,8 +160,7 @@
     ),
     title: "Data Science",
     [
-      It describes the theory and practice of extracting knowledge and
-      insight from data.
+      Opisuje teorię i praktykę pozyskiwania wartościowych informacji z danych.
     ]
     )
   },
@@ -174,8 +181,7 @@
     ),
     title: "Obliczeniowe Nauki Społeczne",
     [
-      It is a data-driven approach that uses computational methods in studying
-      social phenomena.
+      Podejście oparte na danych, które wykorzystuje metody obliczeniowe w badaniu zjawisk społecznych.
     ]
     )
   }
@@ -242,7 +248,7 @@
 
 #new-section-slide("Co sklepy wiedzą o swoich klientach i klientkach?")
 
-#slide(title: [Does Target know whether we are pregnant?])[
+#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
   #set align(center+horizon)
   #let target = image("png/targetlogo.jpeg")
   #figure(
@@ -252,7 +258,7 @@
     ])
 ]
 
-#slide(title: [Co sklepy wiedzą o swoich klientach i klientkach?])[
+#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -270,7 +276,7 @@
   #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
-#slide(title: [Co sklepy wiedzą o swoich klientach i klientkach?])[
+#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -289,7 +295,7 @@
   #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
-#slide(title: [Co sklepy wiedzą o swoich klientach i klientkach?])[
+#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -309,7 +315,7 @@
   #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
-#slide(title: [Co sklepy wiedzą o swoich klientach i klientkach?])[
+#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -533,7 +539,7 @@
   ])
 
 #slide(title: [Discussion])[
-  #v(15%)
+  #v(5%)
   + Zmiast sprawdzić czy reklamy #highlight[działały lepiej, gdy były targetowane niż gdy były nietargetowane] do ogólnej populacji, Matz et al. (2017) użyli słabszego testu (Shart, Danenberg, & Bellman, 2018).
 
   + Osoby badane #highlight[nie były przypisane losowo] do różnych typów reklam, a co więcej ta sama osoba mogła zobaczyć reklamę obu typów (Eckles, Gordon, & Johnson, 2018).
@@ -551,6 +557,58 @@
   )
 ]
 
+#slide(title: [Micro-targeting z AI])[
+  #v(15%)
+
+  + Żyjemy w 2026 roku i Chatboty oparte na dużych modelach językych potrafią być skuteczniejsze niż ludzie w przekonywaniu innych do zmiany swoich poglądów (Salvi et al., 2025).
+
+  + Rozmowa z Chatbotem jest skutczeniejsza niż pojedyncze wiadomości tekstowe (Hackenburg et al., 2025).
+
+  + Rozmowa z Chatbotem może skutcznie zmniejszyć wiarę w teorie spiskowe (Costello, Pennycook, & Rand, 2025).
+]
+
+#slide(title: [Lin et al., 2025])[
+  #let trump = image("png/trump.jpg")
+  #let harris = image("png/harris.jpg")
+  #let note = image("png/note.png")
+  #let ai = image("png/artificial-intelligence.png")
+  #set align(center+horizon)
+  #show smallcaps: it => {
+    set align(center)
+    set text(size: 19pt)
+    box(it,width: 6cm)
+  }
+  #v(20%)
+  #cetz.canvas({
+  import cetz.draw: *
+  content((-1,0), box(trump, width: 2.5cm), anchor: "center", name: "trump")
+  content((2,0), box(harris, width: 2.5cm), anchor: "center", name: "harris")
+  content((8,0), box(note, width: 3cm), anchor: "center", name: "note")
+  content((13,0), box(ai, width: 4cm), anchor: "center", name: "ai")
+  content((21.5,0), box(trump, width: 2.5cm), anchor: "center", name: "trump2")
+  content((18.5,0), box(harris, width: 2.5cm), anchor: "center", name: "harris2")
+  content((0.75,-4), [#smallcaps[Preferencje]], anchor: "center")
+  content((8,-4), [#smallcaps[Pisemne Uzasadnienie]], anchor: "center")
+  content((13,-4), [#smallcaps[Chat z AI]], anchor: "center")
+  content((20.25,-4), [#smallcaps[Preferencje]], anchor: "center")
+  line((3.5,0), (6.35,0), mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
+  line("note", "ai", mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
+  line((14.5,0), (17,0), mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
+})
+]
+
+#slide(title: [Lin et al., 2025])[
+  #let results = image("png/ai_presuasion.png")
+
+  #figure(
+    results,
+    caption: [
+      Results of the experiment by Lin et al. (2025).
+    ]
+  )
+
+]
+
 #new-section-slide("Dlaczego potrzebujemy modeli?")
 
 #slide(title: [Co to jest model?])[
@@ -563,17 +621,15 @@
   )
 ]
 
-#focus-slide(background: mainColor,[In simple terms a model is a #highlight[simplified representation] of a system (reality) that
-helps to understand how the system works/worked in the past/will work in the
-future.])
+#focus-slide(background: mainColor,[W najprostrzym ujęciu model jest to #highlight[uproszczona wersja] systemu (rzeczywistości), która pomaga lepiej zrozumieć jak dany system działa/działał/będzie działał.])
 
-#slide(title: [Why do we need models?])[
+#slide(title: [Do czego potrzebujemy symulacji?])[
   #v(15%)
-  + Formalizing a theory into a model allows the researcher to #highlight[describe their ideas in a precise,] unambiguous way (Goldstone & Janssen, 2005; Epstein, 2008).
+  + Sformalizowanie teorii jako model pozwala #highlight[precyzyjnie i w sposób jednoznaczy opisać] swoje pomysły (Goldstone & Janssen, 2005; Epstein, 2008).
 
-  + Models are conceptually precise, their #highlight[assumptions are clear]; they allow formal deduction and an easy way to verify their internal validity (Timpone & Taber, 1996).
+  + Zaletą dobrze sprecyzowanych modeli jest to, że pozwalają w #highlight[łatwy sposób weryfkować] swoją wewnętrzną spójność (Timpone & Taber, 1996).
 
-  + Last but not least, they provide an #highlight[unambiguous way to communicate] within the scientific community (Nowak, Rychwalska, & Borkowski, 2015).
+  + Precyzyjnie sformułowane modele ułatwiają komunikację z innymi badaczami i badaczkami (Nowa, Rychwalska, & Borkowski, 2015).
 ]
 
 #slide(title: [Computer Simulations])[
@@ -591,13 +647,13 @@ future.])
     content((6.5,0), box(theory, width: 4cm), anchor: "center", name: "theory")
     content((13,0), box(model, width: 4cm), anchor: "center", name: "model")
     content((19.5,0), box(simulation, width: 4cm), anchor: "center", name: "simulation")
-    content((0,-5), [#smallcaps[Observation]], anchor: "center")
-    content((6.5,-5), [#smallcaps[Theory Formulation]], anchor: "center")
-    content((13,-5), [#smallcaps[Model Creation]], anchor: "center")
-    content((19.5,-5), [#smallcaps[Computer Simulation]], anchor: "center")
+    content((0,-5), [#smallcaps[Obserwacja]], anchor: "center")
+    content((6.5,-5), [#smallcaps[Formułowanie Teorii]], anchor: "center")
+    content((13,-5), [#smallcaps[Tworzenie Modelu]], anchor: "center")
+    content((19.5,-5), [#smallcaps[Symulacje Komputerowe]], anchor: "center")
     circle("simulation", radius: 3cm)
   })
-  #footnote[All flat icons from #link("https://www.flaticon.com")[https://www.flaticon.com].]
+  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
 #slide(title: [Dynamic models of segregation])[
@@ -608,10 +664,10 @@ future.])
   #show: el.default-enum-list.with(fill: (enumColor))
   #v(15%)
 
-  - [x] In 1965, the last of #link("https://en.wikipedia.org/wiki/Jim_Crow_laws")[Jim Crow’s] racial segregation laws were overturned.
+  - [x] 6 sierpnia 1965 Prezydent USA Lydon B. Johnson podpisał tzw. #link("https://en.wikipedia.org/wiki/Voting_Rights_Act_of_1965")[Voting Rights Act], który miał za zadanie przeciwdziałać dyskryminacji ze względu na rasę.
   
-  - [/] Despite much effort and investment, #highlight[segregation still remains a major issue] in the U.S. and elsewhere to this date (Massey, 2020).
-  
+  - [/] Mimo wielu wysiłków zarówno w USA jak i w innych miejscach na świecie #highlight[dyskryminacja ze względu na kolor skóry] dalej pozostaje dużeym problemem (Massey, 2020).  
+
   - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971).
 ]
 
@@ -632,21 +688,21 @@ future.])
   #figure(
     case,
     caption: [
-      By Nicky Case from #link("https://ncase.me/polygons/")[https://ncase.me/polygons/].
+      Animacja stworzona przez Nicky Case #link("https://ncase.me/polygons/")[https://ncase.me/polygons/].
     ])
 ]
 
-#slide(title: [Why simulate?])[
+#slide(title: [Do czego potrzebne są na symulacje komputerowe?])[
   #v(25%)
 
-  + To build intuition.
+  + Żeby budować intuicje na temat działania modeli.
 
-  + To test untestable otherwise scenarios (\#thereIsNoPlanetB).
+  + Żeby testować scenariusze, które są niemożliwe do zbadania w inny sposób \#thereIsNoPlanetB.
 
-  + To make predictions & what ifs.
+  + Żeby przewidywać przyszłość.
 ]
 
-#new-section-slide("Motivational examples")
+#new-section-slide("Przykłady, przykłady, wszędzie przykłady!")
 
 #slide(title: [Natural Language Processing])[
   #let nlp = image("png/nlp.jpg")
@@ -655,15 +711,12 @@ future.])
   #figure(
     nlp,
     caption: [
-      Design by Agata Biesaga.
+      Zprojektowane przez Agatę Biesagę.
     ])
 ]
 
 #focus-slide(background: mainColor, [
-  Natural Language Processing (NLP) is an analytical approach that uses a set of
-  (usually) computer-based methods to extract meaning, topics, or sentiment from
-  natural language data (written or spoken). In other words, #highlight()[it is a
-  set of computer algorithms that tries to synthesize human language.]
+  Analiza Języka Naturalnego (Natural Language Processing -- NLP) to podejście analityczne, które wykorzystuje zestaw (zazwyczaj) metod i narzędzi komputerowych do wydobywania znaczenia, tematów lub sentymentu z danych tekstowych lub mówionych. Innymi słowy, #highlight[jest to zbiór algorytmów komputerowych, które próbują syntetyzować język ludzki.]
 ])
 
 #slide(title: [Bajkowska & Biesaga, 2023])[
@@ -672,7 +725,7 @@ future.])
   #figure(
     poster,
     caption: [
-      Design by Katarzyna Bajkowska #link("https://psych.pan.pl/pracownik/mgr-katarzyna-bajkowska/")[(Institute of Psychology Polish Academy of Sciences)].
+      Zaprojektowane przez Katarzynę Bajkowską #link("https://psych.pan.pl/pracownik/mgr-katarzyna-bajkowska/")[(Instytut Psychologii Polskiej Akademii Nauk)].
     ])
 
 ]
@@ -707,270 +760,16 @@ future.])
     )
 ]
 
-#slide(title: [Remember the name!])[
-  #let sofia = maybe-image("png/sofia.jpg", height: 90%)
-  #let grid-list = el.default-list.with(
-  body-indent: (0pt, auto),
-  enum-spacing: (auto, 15pt),
-  body-format: (
-    whole: (
-      stroke: (1pt, auto),
-      radius: (10pt, auto),
-      fill: (otherColor, auto),
-      inset: ((bottom: 5pt, top: 5pt), auto),
-    ),
-    outer: (
-      stroke: it => {
-        if it.level == 1 {
-          if it.n >= 2 {
-            (top: 1pt + gray)
-          }
-        } else {
-          auto
-        }
-      },
-      inset: ((bottom: 5pt, top: 5pt, rest: 15pt), auto),
-    ),
-    style: (
-      size: (22pt, 19pt),
-      weight: ("black", "bold")
-    ),
-  ),
-
-  label-format: ([], auto),
-  fill: enumColor
-  )
-
-  #grid(columns: (1fr, .5fr),
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-      set-style(axes: (stroke: 2pt),
-       stroke: (thickness: 3pt),
-       )
-      plot.plot(size: (4,4),
-      y-label: "",
-      name: "plot",
-      x-label: "",
-      x-tick-step: none,
-      y-tick-step: none,
-      axis-style: "left",
-      {
-        plot.add(((.1,.1),(1,1)), style: (stroke: none))
-        plot.add-anchor("start", (0.2, 0.2))
-        plot.add-anchor("stop", (0.9, 0.9))
-      }
-      )
-      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
-      content("plot.south", [#smallcaps[Progress]], padding: (bottom: -1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);Historically, the world has been getting better with each decade.], anchor: "north")
-    })
-  ],
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-      set-style(axes: (stroke: 2pt),
-       stroke: (thickness: 3pt),
-       )
-      plot.plot(size: (4,4),
-      y-label: "",
-      name: "plot",
-      x-label: "",
-      x-tick-step: none,
-      y-tick-step: none,
-      axis-style: "left",
-      {
-        plot.add(((.1,.1),(1,1)), style: (stroke: none))
-        plot.add-anchor("start", (0.2, 0.9))
-        plot.add-anchor("stop", (0.9, 0.2))
-      }
-      )
-      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
-      content("plot.south", [#smallcaps[Degradation]], padding: (bottom:-1cm))
-      content(("plot.south", 50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);Our world is generally worse than the one of our parents and grandparents.], anchor: "north")
-    })
-  ],
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-      set-style(axes: (stroke: 2pt),
-       stroke: (thickness: 3pt),
-       )
-      plot.plot(size: (4,4),
-      y-label: "",
-      name: "plot",
-      x-label: "",
-      x-tick-step: none,
-      y-tick-step: none,
-      axis-style: "left",
-      {
-        plot.add(((.1,.1),(1,1)), style: (stroke: none))
-        plot.add-anchor("start", (0.2, 0.55))
-        plot.add-anchor("stop", (0.9, 0.55))
-      }
-      )
-      line("plot.start","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
-      content("plot.south", [#smallcaps[Balance]], padding: (bottom:-1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);The world does not change fundamentally. The cost of progress cancels out most benefits.], anchor: "north")
-    })
-  ],
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-      set-style(axes: (stroke: 2pt),
-       stroke: (thickness: 3pt),
-       )
-      plot.plot(size: (4,4),
-      y-label: "",
-      name: "plot",
-      x-label: "",
-      x-tick-step: none,
-      y-tick-step: none,
-      axis-style: "left",
-      {
-        plot.add(((.1,.1),(1,1)), style: (stroke: none))
-        plot.add-anchor("start", (0.2, 0.2))
-        plot.add-anchor("middle", (0.55, 0.55))
-        plot.add-anchor("stop", (0.9, 0.2))
-      }
-      )
-      line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
-      content("plot.south", [#smallcaps[Rise and fall]], padding: (bottom:-1cm))
-      content(("plot.south",50%,(2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);The world used to get better, but now it is getting worse.], anchor: "north")
-    })
-  ],
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-      set-style(axes: (stroke: 2pt),
-       stroke: (thickness: 3pt),
-       )
-      plot.plot(size: (4,4),
-      y-label: "",
-      name: "plot",
-      x-label: "",
-      x-tick-step: none,
-      y-tick-step: none,
-      axis-style: "left",
-      {
-        plot.add(((.1,.1),(1,1)), style: (stroke: none))
-        plot.add-anchor("start", (0.2, 0.9))
-        plot.add-anchor("middle", (0.55, 0.55))
-        plot.add-anchor("stop", (0.9, 0.9))
-      }
-      )
-      line("plot.start", "plot.middle","plot.stop", name: "line", stroke: (paint:red), mark: (end: ">", fill: red))
-      content("plot.south", [#smallcaps[Crisis]], padding: (bottom:-1cm))
-      content(("plot.south", 50%, (2.5,-3.5)), box(width: 5cm)[#show: text.with(size:15pt);We are facing a~major global crisis but things will get better again.], anchor: "north")
-    })
-  ]
-  )
+#slide(title: [Przyłuska & Biesaga, 2026])[
+  #let article = image("png/iccss.png")
+  #set align(center+horizon)
+  #figure(
+    article,
+    )
 ]
-
-#slide(title: [Methodology])[
-  #show: align.with(center)
-  #show: text.with(size:18pt)
-
-  #cetz.canvas({
-    import cetz.draw: *
-    set-style(stroke: (thickness: 2pt, dash: "dashed"), mark: (transform-shape: true, fill: black, scale: 2, anchor: "center"))
-    content((2.5,3), [#smallcaps[Data\ collection]], anchor: "center")
-    content((9.5, 3), [#smallcaps[NLP]], anchor: "center")
-    content((16.5, 3), [#smallcaps[Qualitative\ analysis]], anchor: "center")
-    content((23.5,3), [#smallcaps[Quantitative\ analysis]], anchor: "center")
-    content((2.5,9), [#box(width: 3cm)[#image("png/data_collection.png")]], anchor: "center")
-    content((9.5,9), [#box(width: 3cm)[#image("png/nlp.png")]], anchor: "center")
-    content((16.5,9), [#box(width: 3cm)[#image("png/qualitative.png")]], anchor: "center")
-    content((23.5,9), [#box(width: 3cm)[#image("png/quantitative.png")]], anchor: "center")
-    line((4.1,9),(7.6,9), mark: (end: ">"))
-    line((18.1,9),(21.6,9), mark: (end: ">"))
-    bezier((9.5,7),(16.5, 7),(13,3), mark: (start: ">"))
-    bezier((9.5,11),(16.5, 11),(13,15), mark: (end: ">"))
-  })
-
-]
-
-#let page-box(fill_c: red, lines: true) = {
-  cetz.canvas({
-    import cetz.draw: *
-    rect((0,0),(2,2.5), fill: fill_c)
-    if lines {
-      rect((.2,1.6),(1.8,2.3), stroke: (thickness: .5pt, paint: black))
-      for y in (.2, .4, .6, .8, 1, 1.2, 1.4) {
-        line((.15,y), (1.85,y), stroke: (thickness: .5pt, paint: black))
-
-    }
-    }
-  })
-}
-
-#slide(title: [Tools])[
-  #show: align.with(center)
-  #cetz.canvas({
-    import cetz.draw: *
-    content((0,0),[#page-box(fill_c: blue.lighten(20%))])
-    content((2.5,0),[#page-box(fill_c: red.lighten(20%))])
-    content((5,0),[#page-box(fill_c: blue.lighten(20%))])
-    content((7.5,0),[#page-box(fill_c: green.lighten(20%))])
-    content((10,0),[#page-box(fill_c: red.lighten(20%))])
-    content((12.5,0),[#page-box(fill_c: blue.lighten(20%))])
-
-    content((4,-5), [#page-box(fill_c: red.lighten(20%))])
-    content((4,-5.3), [#page-box(fill_c: red.lighten(20%))])
-    content((6.5,-5), [#page-box(fill_c: green.lighten(20%))])
-    content((9,-5), [#page-box(fill_c: blue.lighten(20%))])
-    content((9,-5.3), [#page-box(fill_c: blue.lighten(20%))])
-    content((9,-5.6), [#page-box(fill_c: blue.lighten(20%))])
-
-    content((4,-10), [#page-box(fill_c: red.lighten(20%), lines: false)])
-    content((9,-10), [#page-box(fill_c: blue.lighten(20%), lines: false)])
-
-    line((0,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
-    line((5,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
-    line((12.5,-1.25), (9,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
-
-    line((2.5,-1.25), (4,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
-    line((10,-1.25), (4,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
-
-    line((7.5,-1.25), (6.5,-3.75), mark: (end: ">",), stroke: (thickness: 1pt, dash: "dashed", paint: green.lighten(20%)))
-
-
-    line((4,-7), (4,-8.5), stroke: (thickness: 1pt, dash: "dashed", paint: red.lighten(20%)))
-    line((9,-7), (9,-8.5), stroke: (thickness: 1pt, dash: "dashed", paint: blue.lighten(20%)))
-
-    content((20,0), [#smallcaps[Corpus]])
-
-    content((20,-5), [#smallcaps[Separated Topics]])
-
-    content((20,-10), [#smallcaps[Identified Narratives]])
-  })
-
-]
-
-#slide(title: [Example])[
-  #grid(columns: (1fr, 1fr, 1fr),
-  column-gutter: 30pt,
-  [
-    #image("png/urban.png")
-  ],
-  [
-    #image("png/transgenic.png")
-  ],
-  [
-    #image("png/hicss.png")
-  ],
-  )
-  
-]
-
 
 #focus-slide(background: mainColor)[
   #show: text.with(size: 44pt)
   #show: align.with(center)
-  Thank You!
+  Dziękuję!
 ]

@@ -94,7 +94,7 @@
 // Title slide.
 #title-slide(
   authors: [Mikołaj Biesaga],
-  title: [Nauki społeczne, komputer i inne bajery],
+  title: [Nauki społeczne, komputery i inne bajery],
   subtitle: [],
   date: [15 maja 2026],// datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
@@ -231,7 +231,7 @@
   )
   #show: el.default-enum-list
   #v(15%)
-  - [x] Zbieranie danych z cyfrowych (i.e., internetowych) źródeł danych;
+  - [x] Zbieranie danych z cyfrowych (n.p., internetowych) źródeł danych;
 
   - [/] Praca z dużymi zbiorami danych (big data);
 
@@ -353,7 +353,7 @@
     ),
     title: "Ślad cyfrowy",
     [
-      Jest to zbiór informacji pozostawianych przez użytkownika/użytkowniczkę w internecie w wyniku aktywności online.
+      Jest to zbiór informacji pozostawianych przez użytkownika/użytkowniczkę w Internecie w wyniku aktywności online.
     ],
     columns(2)[
       #showybox(
@@ -436,7 +436,7 @@
   )
   #show: el.default-enum-list
   #v(15%)
-  - [ ] W 2007 David Stillwell stworzył facebokową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
+  - [ ] W 2007 David Stillwell stworzył facebookową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
 
   - [ ] Do 2012, #highlight[6 milionów] ludzi skorzystało z tej aplikacji.
 
@@ -490,7 +490,7 @@
   )
   #show: el.default-enum-list.with(fill: (enumColor))
   #v(15%)
-  - [x] W 2007 David Stillwell stworzył facebokową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
+  - [x] W 2007 David Stillwell stworzył facebookową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
 
   - [x] Do 2012, #highlight[6 milionów] ludzi skorzystało z tej aplikacji.
 
@@ -538,7 +538,7 @@
     #smallcaps[Jednakże...]
   ])
 
-#slide(title: [Discussion])[
+#slide(title: [Komentarz])[
   #v(5%)
   + Zmiast sprawdzić czy reklamy #highlight[działały lepiej, gdy były targetowane niż gdy były nietargetowane] do ogólnej populacji, Matz et al. (2017) użyli słabszego testu (Shart, Danenberg, & Bellman, 2018).
 
@@ -560,7 +560,7 @@
 #slide(title: [Micro-targeting z AI])[
   #v(15%)
 
-  + Żyjemy w 2026 roku i Chatboty oparte na dużych modelach językych potrafią być skuteczniejsze niż ludzie w przekonywaniu innych do zmiany swoich poglądów (Salvi et al., 2025).
+  + Chatboty oparte na dużych modelach językych potrafią być skuteczniejsze niż ludzie w przekonywaniu innych do zmiany swoich poglądów (Salvi et al., 2025).
 
   + Rozmowa z Chatbotem jest skutczeniejsza niż pojedyncze wiadomości tekstowe (Hackenburg et al., 2025).
 
@@ -623,7 +623,7 @@
 
 #focus-slide(background: mainColor,[W najprostrzym ujęciu model jest to #highlight[uproszczona wersja] systemu (rzeczywistości), która pomaga lepiej zrozumieć jak dany system działa/działał/będzie działał.])
 
-#slide(title: [Do czego potrzebujemy symulacji?])[
+#slide(title: [Do czego potrzebujemy symulacji komputerowych?])[
   #v(15%)
   + Sformalizowanie teorii jako model pozwala #highlight[precyzyjnie i w sposób jednoznaczy opisać] swoje pomysły (Goldstone & Janssen, 2005; Epstein, 2008).
 
@@ -632,7 +632,7 @@
   + Precyzyjnie sformułowane modele ułatwiają komunikację z innymi badaczami i badaczkami (Nowa, Rychwalska, & Borkowski, 2015).
 ]
 
-#slide(title: [Computer Simulations])[
+#slide(title: [Symulacje komputerowe])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -656,7 +656,7 @@
   #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
-#slide(title: [Dynamic models of segregation])[
+#slide(title: [Dynamiczny model segregacji])[
   #show: el.config.checklist.with(
     baseline: "center",
     fill: enumColor,
@@ -692,7 +692,7 @@
     ])
 ]
 
-#slide(title: [Do czego potrzebne są na symulacje komputerowe?])[
+#slide(title: [Do czego potrzebujemy symulacji komputerowych?])[
   #v(25%)
 
   + Żeby budować intuicje na temat działania modeli.

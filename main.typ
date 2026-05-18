@@ -206,7 +206,7 @@
   #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
 ]
 
-#slide(title: [What is Computational Social Science?])[
+#slide(title: [Obliczeniowe nauki społeczne -- co to jest?])[
   #set align(center+horizon)
   #show smallcaps: it => {
     set align(center)
@@ -403,7 +403,7 @@
     ])
 ]
 
-#slide(title: [Data Sources])[
+#slide(title: [Źródła danych])[
   #show: el.config.checklist.with(
     baseline: "center",
     fill: enumColor,
@@ -548,9 +548,9 @@
 ]
 
 #slide(title: [Eckles, Gordon, & Johnson, 2018])[
-  #let s = image("png/eckels.jpeg", height: 100%)
+  #let eckels = image("png/eckels.png", height: 100%)
   #figure(
-    s,
+    eckels,
     caption: [
       Distribution of all reported user characteristics: age in study 1 (A), age (B), and gender (C) in study 2. 
     ]
@@ -666,7 +666,7 @@
 
   - [x] 6 sierpnia 1965 Prezydent USA Lydon B. Johnson podpisał tzw. #link("https://en.wikipedia.org/wiki/Voting_Rights_Act_of_1965")[Voting Rights Act], który miał za zadanie przeciwdziałać dyskryminacji ze względu na rasę.
   
-  - [/] Mimo wielu wysiłków zarówno w USA jak i w innych miejscach na świecie #highlight[dyskryminacja ze względu na kolor skóry] dalej pozostaje dużeym problemem (Massey, 2020).  
+  - [/] Mimo wielu wysiłków zarówno w USA jak i w innych miejscach na świecie #highlight[dyskryminacja ze względu na kolor skóry] dalej pozostaje dużym problemem (Massey, 2020).  
 
   - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971).
 ]

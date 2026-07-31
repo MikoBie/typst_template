@@ -1,8 +1,8 @@
 // Import theme from the file.
 #import "themes/iss.typ": *
 #import "@preview/showybox:2.0.4": showybox
-#import "@preview/cetz:0.4.2"
-#import "@preview/cetz-plot:0.1.3"
+#import "@preview/cetz:0.5.2"
+#import "@preview/cetz-plot:0.1.4"
 #import "@preview/itemize:0.2.0" as el
 
 // Define main colors of the theme.
@@ -13,47 +13,12 @@
 #let otherColor = rgb(194,213,238)
 #let otherColor2 = rgb(253,242,212)
 
-#let logo = image("png/efsta2.svg")
-#let logo2 = image("png/efsta.svg", width: 4cm)
-#let corruption1 = image("png/corruption_bmi.jpg", width: 100%, fit: "contain")
-#let corruption = image("png/corruption_bmi.png", width: 100%, fit: "contain")
-#let qr = image("png/qr.png")
-#let theory = image("png/theory_formulation.png", width: 100%)
-#let model = image("png/modeling.png", width: 100%)
-#let observation = image("png/observation.png")
-#let questionnaire = image("png/questionnaire.png")
-#let research = cetz.canvas({
-  import cetz.draw: *
-  content((0,0), box(observation, width: 4cm), anchor: "center", name: "observation")
-  content((6.5,0), box(theory, width: 4cm), anchor: "center", name: "theory")
-  content((13,0), box(model, width: 4cm), anchor: "center", name: "model")
-  content((19.5,0), box(questionnaire, width: 4cm), anchor: "center", name: "questionnaire")
-  content((0,-5), [#smallcaps[Obserwacja]], anchor: "center")
-  content((6.5,-5), [#smallcaps[Formułowanie Teorii]], anchor: "center")
-  content((13,-5), [#smallcaps[Tworzenie Modelu]], anchor: "center")
-  content((19.5,-5), [#smallcaps[Badania]], anchor: "center")
-})
-#let email = image("png/email.png")
-#let card = image("png/loyalty-card.png")
-#let test = image("png/pregnancy-test.png")
-#let phone = image("png/telephone.png")
-
-#let maybe-image(path, ..args) = context {
-  let path-label = label(path)
-   let first-time = query((context {}).func()).len() == 0
-   if first-time or query(path-label).len() > 0 {
-    [#image(path, ..args)#path-label]
-  } else {
-  }
-}
-
 // Option of the theme.
 #show: iss-theme.with(
   left-footer: [Mikołaj Biesaga],
-  short-title: [Nauki społeczne, komputery i inne bajery],
+  short-title: [Play again? Nowy paradygmat badający dynamikę błędu predykcji oraz zaangażowanie w działanie.],
   color: mainColor,
 )
-
 
 // Global settings.
 #set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "pl")
@@ -65,13 +30,6 @@
   #set text(fill: white)
   #it
 ]
-//#show figure.caption: it => [
-//  #if it == "Rysunek" [
-//    Rycina #it.counter.display(). #it.body
-//  ] else [
-//    #it
-//  ]
-//]
 #show figure.caption: set text(size: 12pt)
 #show figure: set figure.caption(separator: ".")
 #show figure.where(kind: table): set figure.caption(position: top)
@@ -89,687 +47,344 @@
 #set footnote(numbering: it => {})
 #show: el.default-enum-list.with(fill: (enumColor, alertColor))
 
-// Images
-#let topic_modeling = image("png/topic_modeling.png")
+// Graphics
+#let heart6 = image("png/heart-6.png")
+#let heart7 = image("png/heart-7.png")
+#let spades6 = image("png/spades-6.png")
+#let spades7 = image("png/spades-7.png")
+#let grey_robot = image("png/grey_robot.png")
+#let black_robot = image("png/black_robot.png")
+#let orange_robot = image("png/orange_robot.png")
+#let green_robot = image("png/green_robot.png")
+#let metalic_robot = image("png/metalic_robot.png")
+#let white_boy = image("png/mustache_white_boy.png")
+#let brown_boy = image("png/brown_boy.png")
+#let brown_girl = image("png/brown_girl.png")
+#let white_girl = image("png/white_girl.png")
+#let bun_white_girl = image("png/bun_white_girl.png")
+
+#let procedure = layout(ly => cetz.canvas(length: ly.width * .047,{
+    import cetz.draw: *
+    rect((-4.5,-.5),(-2,.5), name: "predictions")
+    content("predictions", [#smallcaps[Predictions]])
+
+    rect((-.75,-.5),(1.75,.5), name: "mask")
+    content("mask", [#smallcaps[$2 times 3 - 1$]])
+
+    content((3,0), [#box(width: .75cm)[#heart6]])
+    content((3.75,0), [#box(width: .75cm)[#spades7]])
+    content((3.375,-1), [#smallcaps[round 1]])
+
+    content((4.75,0), [#box(width: .75cm)[#heart6]])
+    content((5.5,0), [#box(width: .75cm)[#heart7]])
+    content((4.75 + .375,-1), [#smallcaps[round 2]])
+
+    content((6.5 + .375,-.4), [...])
+
+    content((8.25,0), [#box(width: .75cm)[#spades6]])
+    content((9,0), [#box(width: .75cm)[#spades7]])
+    content((8.25 + .375,-1), [#smallcaps[round 12]])
+
+    rect((10.25,-.5),(12.75,.5), name: "perceived")
+    content("perceived", [#box(width: 1cm)[#smallcaps[Assessment]]])
+
+    rect((14,-.5),(16.5,.5), name: "again")
+    content("again", [#box(width: 2cm)[#smallcaps[Play again?]]])
+
+    rect((14,-3.5),(16.5,-2.5), name: "end")
+    content("end", [#box(width: 1cm)[#smallcaps[End]]])
+
+    line((15.25,.5),(15.25,1.5), (-3.25,1.5), (-3.25,.5), name: "repeat", mark: (end: ">"), stroke: (dash: "dashed"))
+
+    line((15.25, -.5),(15.25,-2.5), name: "finish", mark: (end: ">"), stroke: (dash: "dashed"))
+    set-style(content: (frame: "rect", stroke: none, fill: white, padding: .2))
+    content("finish.mid", [#smallcaps[NO]])
+    content("repeat.mid", [#smallcaps[YES]])
+
+}))
+
+#let game = grid(columns: (1fr, 1fr),
+  align: (center, center),
+  column-gutter: 30pt,
+  [
+    #cetz.canvas({
+      import cetz.draw: *
+      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Player A wins]]], anchor: "south", padding: .6)
+      content((0, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
+      content((0,-1), [#text(size: 10pt)[Player A]])
+      content((1.5, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
+      content((1.5,-1), [#text(size: 10pt)[Player B]])
+      content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
+      content((4,-1), [#text(size: 10pt)[Player A]])
+      content((5.5, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
+      content((5.5,-1), [#text(size: 10pt)[Player B]])
+    })
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw: *
+      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Player B wins]]], anchor: "south", padding: .6)
+      content((0, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
+      content((0,-1), [#text(size: 10pt)[Player A]])
+      content((1.5, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
+      content((1.5,-1), [#text(size: 10pt)[Player B]])
+      content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
+      content((4,-1), [#text(size: 10pt)[Player A]])
+      content((5.5, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
+      content((5.5,-1), [#text(size: 10pt)[Player B]])
+    })
+  ])
+
+#let conditions = grid(
+    columns: (4em, auto, 3em, auto, auto, auto),
+    column-gutter: 2em,
+    align: (center + horizon, center, bottom, center, center, center),
+    rows: 4,
+    row-gutter: 1em,
+    [#smallcaps[Single human]],
+    [#box(width: 1.5cm)[#brown_girl]],
+    [#set text(size: 18pt); ...],
+    [#box(width: 1.5cm)[#brown_girl]],
+    [#box(width: 1.5cm)[#brown_girl]],
+    [#box(width: 1.5cm)[#brown_girl]],
+    [#smallcaps[Single computer]],
+    [#box(width: 1.25cm)[#orange_robot]],
+    [#set text(size: 18pt); ...],
+    [#box(width: 1.25cm)[#orange_robot]],
+    [#box(width: 1.25cm)[#orange_robot]],
+    [#box(width: 1.25cm)[#orange_robot]],
+    [#smallcaps[Different humans]],
+    [#box(width: 1.5cm)[#brown_girl]],
+    [#set text(size: 18pt); ...],
+    [#box(width: 1.5cm)[#bun_white_girl]],
+    [#box(width: 1.5cm)[#white_boy]],
+    [#box(width: 1.5cm)[#brown_boy]],
+    [#smallcaps[Different computers]],
+    [#box(width: 1.25cm)[#orange_robot]],
+    [#set text(size: 18pt); ...],
+    [#box(width: 1.25cm)[#metalic_robot]],
+    [#box(width: 1.25cm)[#grey_robot]],
+    [#box(width: 1.25cm)[#green_robot]],
+  )
+
+
 // Title slide.
 #title-slide(
   authors: [Mikołaj Biesaga],
-  title: [Nauki społeczne, komputery i inne bajery],
-  subtitle: [],
-  date: [15 maja 2026],// datetime.today().display("[day] [month repr:long] [year]"),
+  title: [Play again?],
+  subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz zaangażowanie w
+działanie],
+  date: [3 sierpnia 2026],// datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
 )
 
 // Regular slide.
 #slide(title: [Plan prezentacji])[
   #v(25%)
-  + Czy BMI wyjaśnia korupcję?
+  + Dlaczego gramy w gry, w których sukces jest niepewny?
 
-  + Co sklepy wiedzą o swoich klientach i klientkach?
+  + Jak wygrać w papier, nożyce i kamień?
 
-  + Jak rozmawiać ze swoimi rodzicami?
+  + 
 
-  + Dlaczego potrzebujemy modeli?
+  + Kwestie organizacyjne.
 
-  + Przykłady, przykłady, wszędzie przykłady!
 ]
 
-#slide(title: [Zanim zaczniemy])[
-  #figure(qr)
-]
+#slide(title: [Dlaczego gramy w gry w których sukces jest niepewny?])[
 
-#new-section-slide("Czy BMI wyjaśnia korupcję?")
+  - Powszechnie uważa się, że dopamina ("hormon szczęścia") wydziela się gdy coś się nam uda, np. wygrana na loterii.
 
-#slide(title: [Blavatskyy, 2021 -- IgNobel 2021])[
-  #figure(
-    block(height: 95%)[#corruption1],
-    caption: [
-      Scatterplot of median estimated ministers’ body-mass index against Transparency International Corruption Perceptions Index 2017 (with a linear trend), where lower values of CPI indicate greater corruption.],
-    )
-]
-
-#slide(title: [Blavatskyy, 2021 -- IgNobel 2021])[
-  #figure(
-    block(height: 100%)[#corruption],
-    caption: [
-      Median estimated ministers’ body-mass index and five conventional measures
-      of corruption for 15 post-Soviet states.
-    ],
-    kind: table
-    )
-]
-
-#slide(title: [Obliczeniowe nauki społeczne -- co to jest?])[
-  #v(25%)
-  #grid(columns: (1fr, 1fr),
-        column-gutter: 1em,
-  {
-    showybox(
-    frame: (
-      border-color: yellow.darken(50%),
-      title-color: yellow.lighten(60%),
-      body-color: otherColor2.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-      align: center
-    ),
-    shadow: (
-      offset: 3pt,
-    ),
-    title: "Data Science",
+  - Jednak, ostatnie badania sugerują, że wydziela się tylko wtedy gdy nagroda przewyższa nasze oczekiwania (Schultz, 2016).
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 1em,
     [
-      Opisuje teorię i praktykę pozyskiwania wartościowych informacji z danych.
-    ]
-    )
-  },
-  {
-    showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-      align: center
-    ),
-    shadow: (
-      offset: 3pt,
-    ),
-    title: "Obliczeniowe Nauki Społeczne",
-    [
-      Podejście oparte na danych, które wykorzystuje metody obliczeniowe w badaniu zjawisk społecznych.
-    ]
-    )
-  }
-  )
-]
-
-#slide(title: [Obliczeniowe nauki społeczne -- co to jest?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(15%)
-  #cetz.canvas({
-    import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 0pt))
-    content((0, 0), research, name: "research", anchor: "center")
-    on-layer(1, {
-      circle((9.75,1.5), radius: 3)
-    })
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Obliczeniowe nauki społeczne -- co to jest?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(15%)
-  #cetz.canvas({
-    import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 2pt))
-    content((0, 0), research, name: "research", anchor: "center")
-    on-layer(1, {
-      circle((9.75,1.5), radius: 3)
-    })
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Metody obliczeniowe])[
-  #show: el.config.checklist.with(
-    baseline: "center",
-    fill: enumColor,
-  )
-  #show: el.default-enum-list
-  #v(15%)
-  - [x] Zbieranie danych z cyfrowych (n.p., internetowych) źródeł danych;
-
-  - [/] Praca z dużymi zbiorami danych (big data);
-
-  - [/] Symulacje komputerowe;
-
-  - [x] Analiza Języka Naturalnego (Natural Language Processing -- NLP);
-  
-  - [ ] Projektowanie eksperymentów online;
-
-  - [ ] Analiza sieci społecznych;
-
-  - [ ]...
-]
-
-#new-section-slide("Co sklepy wiedzą o swoich klientach i klientkach?")
-
-#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
-  #set align(center+horizon)
-  #let target = image("png/targetlogo.jpeg")
-  #figure(
-    target,
-    caption: [
-      Za #link("https://corporate.target.com/media/collection/b-roll-and-press-materials/target-logos")[www.corporate.target.com].
-    ])
-]
-
-#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(20%)
-  #cetz.canvas({
-    import cetz.draw: *
-    content((0,0), box(email, width: 3cm), anchor: "center", name: "email")
-    content((6,0), box(width: 3cm), anchor: "center", name: "phone")
-    content((12,0), box(width: 3cm), anchor: "center", name: "card")
-    content((18,0), box(width: 4cm), anchor: "center", name: "test")
-    content((0,-4), [#smallcaps[Email]], anchor: "center")
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(20%)
-  #cetz.canvas({
-    import cetz.draw: *
-    content((0,0), box(email, width: 3cm), anchor: "center", name: "email")
-    content((6,0), box(phone, width: 3cm), anchor: "center", name: "phone")
-    content((12,0), box(width: 3cm), anchor: "center", name: "card")
-    content((18,0), box(width: 4cm), anchor: "center", name: "test")
-    content((0,-4), [#smallcaps[Email]], anchor: "center")
-    content((6,-4), [#smallcaps[Pretensje]], anchor: "center")
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(20%)
-  #cetz.canvas({
-    import cetz.draw: *
-    content((0,0), box(email, width: 3cm), anchor: "center", name: "email")
-    content((6,0), box(phone, width: 3cm), anchor: "center", name: "phone")
-    content((12,0), box(card, width: 3cm), anchor: "center", name: "card")
-    content((18,0), box(width: 4cm), anchor: "center", name: "test")
-    content((0,-4), [#smallcaps[Email]], anchor: "center")
-    content((6,-4), [#smallcaps[Pretensje]], anchor: "center")
-    content((12,-4), [#smallcaps[Karta Lojalnościowa]], anchor: "center")
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Czy Target jest w stanie przewidzieć ciąże?])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #v(20%)
-  #cetz.canvas({
-    import cetz.draw: *
-    content((0,0), box(email, width: 3cm), anchor: "center", name: "email")
-    content((6,0), box(phone, width: 3cm), anchor: "center", name: "phone")
-    content((12,0), box(card, width: 3cm), anchor: "center", name: "card")
-    content((18,0), box(test, width: 3cm), anchor: "center", name: "test")
-    content((0,-4), [#smallcaps[Email]], anchor: "center")
-    content((6,-4), [#smallcaps[Pretensje]], anchor: "center")
-    content((12,-4), [#smallcaps[Karta Lojalnościowa]], anchor: "center")
-    content((18,-4), [#smallcaps[Test ciążowy]], anchor: "center")
-  })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
-
-#slide(title: [Ślad cyfrowy])[
-  #showybox(
-    frame: (
-      border-color: blue.darken(50%),
-      title-color: blue.lighten(60%),
-      body-color: otherColor.lighten(80%)
-    ),
-    title-style: (
-      color: black,
-      weight: "bold",
-      align: left
-    ),
-    shadow: (
-      offset: 3pt,
-    ),
-    title: "Ślad cyfrowy",
-    [
-      Jest to zbiór informacji pozostawianych przez użytkownika/użytkowniczkę w Internecie w wyniku aktywności online.
-    ],
-    columns(2)[
       #showybox(
-        title-style: (
-          color: black,
-          weight: "bold",
-          align: center
-        ),
-        frame: (
-          border-color: yellow.darken(50%),
-          title-color: yellow.lighten(60%),
-          body-color: otherColor2.lighten(80%)
-        ),
-        title: "Pasywny",
-        [
-          Dotyczy danych, które #underline[nieintencjonalnie] umieszcza się online, np. adres IP, używany system operacyjny, itp.        ]
+      frame: (
+        border-color: blue.darken(50%),
+        title-color: blue.lighten(60%),
+        body-color: white//otherColor.lighten(80%)
+      ),
+      title-style: (
+        color: black,
+        weight: "bold",
+        align: center
+      ),
+      shadow: (
+        offset: 3pt,
+      ),
+      title: "Pozytywny błąd predykcji",
+      [
+        Nagroda (jej wartość oczekiwana) jest wyższa niż oczekiwana.
+      ]
       )
-      #colbreak()
-      #showybox(
-        title-style: (
-          color: black,
-          weight: "bold",
-          align: center
-        ),
+      ],
+      [
+        #showybox(
         frame: (
           border-color: red.darken(50%),
           title-color: red.lighten(60%),
-          body-color: enumColor.lighten(900%)
+          body-color: white//otherColor2.lighten(80%)
         ),
-        title: "Aktywny",
+        title-style: (
+          color: black,
+          weight: "bold",
+          align: center
+        ),
+        shadow: (
+          offset: 3pt,
+        ),
+        title: "Negatywny błąd predykcji",
         [
-          Dotyczy danych, które #underline[intencjonalnie] umieszcza się online, np. e-maile, zdjęcia, TikTok dances, itp.
-        ],
-      )
-    ]
-  )
-
-]
-
-#slide(title: [Źródła danych])[
-  #set align(center+horizon)
-  #let target = image("png/data_everywhere.png")
-  #figure(
-    target,
-    caption: [
-      Z #link("imgflip.com")[imgflip.com].
-    ])
-]
-
-#slide(title: [Źródła danych])[
-  #show: el.config.checklist.with(
-    baseline: "center",
-    fill: enumColor,
-  )
-  #show: el.default-enum-list
-  #v(15%)
-  - [ ] strony internetowe;
-  
-  - [x] media społecznościowe;
-  
-  - [ ] smartfony i inne urządzenia mobilne;
-
-  - [ ] ślady cyfrowe;
-
-  - [ ] dane sieci komórkowych;
-
-  - [ ] dane rządowe;
-
-  - [ ] ...
-]
-
-#focus-slide(background: mainColor, [To że jakieś dane są dostępne nie oznacza, że należy z nich korzystać.])
-
-#new-section-slide("Jak rozmawiać ze swoimi rodzicami?")
-
-#slide(title: [Kosinski, Stillwell, & Graepel, 2013])[
-  #show: el.config.checklist.with(
-    baseline: "center",
-    fill: enumColor,
-  )
-  #show: el.default-enum-list
-  #v(15%)
-  - [ ] W 2007 David Stillwell stworzył facebookową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
-
-  - [ ] Do 2012, #highlight[6 milionów] ludzi skorzystało z tej aplikacji.
-
-  - [ ] #highlight[40%] użytkowników i użytkowniczek dało aplikacji dostęp do swoich profili na Facebooku.
-
-  - [ ] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013).
-]
-
-#slide(title: [Kosinski, Stillwell, & Graepel, 2013])[
-  #let s1 = image("png/Kosinski_S1.jpg")
-  #let s2 = image("png/Kosinski2_S1.jpg")
-  #show figure.caption: set align(left)
-  #grid(columns: (1fr, 1fr),
-        column-gutter: 2em,
-    {
-      figure(
-        s1,
-        caption: [
-          Prediction accuracy of classification for dichotomous/dichotomized attributes expressed by the AUC.
+          Nagroda (jej wartość oczekiwana) jest niższa niż oczekiwana.
         ]
-      )
-    },
-    {
-      figure(
-        s2,
-        caption: [
-          The prediction accuracy of regression for numeric attributes and traits is expressed by the Pearson correlation coefficient between predicted and actual attribute values. 
-        ]
-      )
-    }
+        )
+      ]
   )
-]
-
-#slide(title: [Micro-targeting])[
-  #let micro = image("png/microtargeting.jpeg")
-  #set align(center+horizon)
-  #v(15%)
-  #figure(
-    micro,
-    caption: [
-      Zaprojektowane przez Agatę Biesagę
-    ])
-]
-
-#focus-slide(background: mainColor, [Micro-targeting jest to dostosowanie przekazu do wąskiej grupy odbiorców, na podstawie posiadanych o nich informacji.])
-
-#slide(title: [Matz et al., 2017])[
-  #show: el.config.checklist.with(
-    baseline: "center",
-    fill: enumColor,
-  )
-  #show: el.default-enum-list.with(fill: (enumColor))
-  #v(15%)
-  - [x] W 2007 David Stillwell stworzył facebookową aplikację #highlight[myPersonality,] która pozwalała na wypełnienie "kwestionariusza" osobowości.
-
-  - [x] Do 2012, #highlight[6 milionów] ludzi skorzystało z tej aplikacji.
-
-  - [x] #highlight[40%] użytkowników i użytkowniczek dało aplikacji dostęp do swoich profili na Facebooku.
-
-  - [x] Private traits and attributes are predictable from digital records of human behavior (Kosinski, Stillwell, & Graepel, 2013).
-
-  - [ ] Psychological targeting as an effective approach to digital mass persuasion (Matz et al., 2017).
-]
-
-#slide(title: [Matz et al., 2017])[
-  #let s = image("png/Kosinski_S2.jpg", height: 100%)
-  #figure(
-    s,
-    caption: [
-      Examples of ads aimed at audiences characterized by high and low extraversion (A) as well as high and low openness (B).
-    ]
-  )
-]
-
-#slide(title: [Matz et al., 2017])[
-  #let s = image("png/Kosinski2_S2.jpg", height: 90%)
-  #figure(
-    s,
-    caption: [
-      Interaction effects of audience and ad personality on conversion rates in study 1 (Left) and study 2 (Right).
-    ]
-  )
-]
-
-#slide(title: [Micro-targeting])[
-  #set align(center+horizon)
-  #let target = image("png/zuck.jpg")
-  #figure(
-    target,
-    caption: [
-      From #link("imgflip.com")[imgflip.com].
-    ])
-
+  - Zgodnie z Predictive Processing Framework (Deterding et al., 2022) ludzie dążą do minimalizacji niepewności, a co za tym idzie do maksymalizacji dokładności przewidywań.
 ]
 
 #focus-slide(background: mainColor,
- [
-    #set align(center)
-    #smallcaps[Jednakże...]
-  ])
+  [
+    Motywacja by grać dalej wynika z #highlight[minimalizacji błędu predykcji,] a nie z pozytywnego błędu predykcji.
+  ]
+)
 
-#slide(title: [Komentarz])[
-  #v(5%)
-  + Zmiast sprawdzić czy reklamy #highlight[działały lepiej, gdy były targetowane niż gdy były nietargetowane] do ogólnej populacji, Matz et al. (2017) użyli słabszego testu (Shart, Danenberg, & Bellman, 2018).
-
-  + Osoby badane #highlight[nie były przypisane losowo] do różnych typów reklam, a co więcej ta sama osoba mogła zobaczyć reklamę obu typów (Eckles, Gordon, & Johnson, 2018).
-
-  + Algorytm Facebooka wyświetla reklamy użytkonikom i użytkoniczkom, które są bardziej skłonne do spełnienia celu kampanii, co może prowadzić do #highlight[niezamierzonego wzmocnienia efektu targetowania] (Eckles, Gordon, & Johnson, 2018).
-]
-
-#slide(title: [Eckles, Gordon, & Johnson, 2018])[
-  #let eckels = image("png/eckels.png", height: 100%)
-  #figure(
-    eckels,
-    caption: [
-      Distribution of all reported user characteristics: age in study 1 (A), age (B), and gender (C) in study 2. 
-    ]
-  )
-]
-
-#slide(title: [Micro-targeting z AI])[
-  #v(15%)
-
-  + Chatboty oparte na dużych modelach językych potrafią być skuteczniejsze niż ludzie w przekonywaniu innych do zmiany swoich poglądów (Salvi et al., 2025).
-
-  + Rozmowa z Chatbotem jest skutczeniejsza niż pojedyncze wiadomości tekstowe (Hackenburg et al., 2025).
-
-  + Rozmowa z Chatbotem może skutcznie zmniejszyć wiarę w teorie spiskowe (Costello, Pennycook, & Rand, 2025).
-]
-
-#slide(title: [Lin et al., 2025])[
-  #let trump = image("png/trump.jpg")
-  #let harris = image("png/harris.jpg")
-  #let note = image("png/note.png")
-  #let ai = image("png/artificial-intelligence.png")
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    set text(size: 19pt)
-    box(it,width: 6cm)
-  }
-  #v(20%)
-  #cetz.canvas({
+#slide(title: [Dlaczego kontynuujemy grę mimo że sukces jest niepewny?])[
+#show: text.with(size: 12pt)
+#show: align.with(center)
+#v(15%)
+#cetz.canvas({
   import cetz.draw: *
-  content((-1,0), box(trump, width: 2.5cm), anchor: "center", name: "trump")
-  content((2,0), box(harris, width: 2.5cm), anchor: "center", name: "harris")
-  content((8,0), box(note, width: 3cm), anchor: "center", name: "note")
-  content((13,0), box(ai, width: 4cm), anchor: "center", name: "ai")
-  content((21.5,0), box(trump, width: 2.5cm), anchor: "center", name: "trump2")
-  content((18.5,0), box(harris, width: 2.5cm), anchor: "center", name: "harris2")
-  content((0.75,-4), [#smallcaps[Preferencje]], anchor: "center")
-  content((8,-4), [#smallcaps[Pisemne Uzasadnienie]], anchor: "center")
-  content((13,-4), [#smallcaps[Chat z AI]], anchor: "center")
-  content((20.25,-4), [#smallcaps[Preferencje]], anchor: "center")
-  line((3.5,0), (6.35,0), mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
-  line("note", "ai", mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
-  line((14.5,0), (17,0), mark: (end: ">"), stroke:( thickness: 2pt), paint: enumColor)
+  import cetz-plot: *
+  import calc.pow
+  import calc.cos
+  import calc: *
+
+  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
+
+  plot.plot(
+  size: (12, 8),
+  axis-style: "school-book",
+  x-tick-step: none,
+  y-tick-step: none,
+  y-label: none,
+  x-label: [Czas],
+  stroke: 10pt,
+  name: "plot",
+  legend: auto,
+  {
+    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
+    for domain in domains {
+      if domain == (0,.5) {
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+      }
+      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
+      
+    }
+    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
+    for domain in domains {
+      if domain == (0.5,1.5) {
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") > 0$)
+      }
+      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
+      
+    }
+  })
 })
 ]
 
-#slide(title: [Lin et al., 2025])[
-  #let results = image("png/ai_presuasion.png")
 
-  #figure(
-    results,
-    caption: [
-      Results of the experiment by Lin et al. (2025).
-    ]
-  )
+#slide(title: [Dlaczego kontynuujemy grę mimo że sukces jest niepewny?])[
+#show: text.with(size: 12pt)
+#show: align.with(center)
+#v(10%)
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 1em,
+[
+#cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+  import calc.pow
+  import calc.cos
+  import calc: *
 
-]
+  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
 
-#new-section-slide("Dlaczego potrzebujemy modeli?")
-
-#slide(title: [Co to jest model?])[
-  #let vogue = image("png/vogue.jpg")
-  #figure(
-    vogue,
-    caption: [
-      Z #link("https://archive.vogue.com/issue/18921224")[Vogue] (24 grudnia 1892).
-    ]
-  )
-]
-
-#focus-slide(background: mainColor,[W najprostrzym ujęciu model jest to #highlight[uproszczona wersja] systemu (rzeczywistości), która pomaga lepiej zrozumieć jak dany system działa/działał/będzie działał.])
-
-#slide(title: [Do czego potrzebujemy symulacji komputerowych?])[
-  #v(15%)
-  + Sformalizowanie teorii jako model pozwala #highlight[precyzyjnie i w sposób jednoznaczy opisać] swoje pomysły (Goldstone & Janssen, 2005; Epstein, 2008).
-
-  + Zaletą dobrze sprecyzowanych modeli jest to, że pozwalają w #highlight[łatwy sposób weryfkować] swoją wewnętrzną spójność (Timpone & Taber, 1996).
-
-  + Precyzyjnie sformułowane modele ułatwiają komunikację z innymi badaczami i badaczkami (Nowa, Rychwalska, & Borkowski, 2015).
-]
-
-#slide(title: [Symulacje komputerowe])[
-  #set align(center+horizon)
-  #show smallcaps: it => {
-    set align(center)
-    box(it,width: 6cm)
-  }
-  #let simulation = image("png/simulation.png")
-  #v(10%)
-  #cetz.canvas({
-    import cetz.draw: *
-    set-style(stroke: (dash: "dashed", paint: enumColor, thickness : 2pt))
-    content((0,0), box(observation, width: 4cm), anchor: "center", name: "observation")
-    content((6.5,0), box(theory, width: 4cm), anchor: "center", name: "theory")
-    content((13,0), box(model, width: 4cm), anchor: "center", name: "model")
-    content((19.5,0), box(simulation, width: 4cm), anchor: "center", name: "simulation")
-    content((0,-5), [#smallcaps[Obserwacja]], anchor: "center")
-    content((6.5,-5), [#smallcaps[Formułowanie Teorii]], anchor: "center")
-    content((13,-5), [#smallcaps[Tworzenie Modelu]], anchor: "center")
-    content((19.5,-5), [#smallcaps[Symulacje Komputerowe]], anchor: "center")
-    circle("simulation", radius: 3cm)
+  plot.plot(
+  size: (8, 6),
+  axis-style: "school-book",
+  x-tick-step: none,
+  y-tick-step: none,
+  y-label: none,
+  x-label: [Czas],
+  stroke: 10pt,
+  name: "plot",
+  legend: none,
+  {
+    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
+    for domain in domains {
+      if domain == (0,.5) {
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+      }
+      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
+      
+    }
+    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
+    for domain in domains {
+      if domain == (0.5,1.5) {
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+      }
+      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
+      
+    }
   })
-  #footnote[Wszystkie ikony pochodzą z #link("https://www.flaticon.com")[https://www.flaticon.com].]
-]
+})
+],
+[
+#cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+  import calc.pow
+  import calc.cos
+  import calc: *
 
-#slide(title: [Dynamiczny model segregacji])[
-  #show: el.config.checklist.with(
-    baseline: "center",
-    fill: enumColor,
-  )
-  #show: el.default-enum-list.with(fill: (enumColor))
-  #v(15%)
+  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
 
-  - [x] 6 sierpnia 1965 Prezydent USA Lydon B. Johnson podpisał tzw. #link("https://en.wikipedia.org/wiki/Voting_Rights_Act_of_1965")[Voting Rights Act], który miał za zadanie przeciwdziałać dyskryminacji ze względu na rasę.
-  
-  - [/] Mimo wielu wysiłków zarówno w USA jak i w innych miejscach na świecie #highlight[dyskryminacja ze względu na kolor skóry] dalej pozostaje dużym problemem (Massey, 2020).  
-
-  - [ ] "If an individual is surrounded by more individuals of different types than the number of individuals of their own type, then the individual moves from the current location to a random empty location." (Schelling, 1971).
-]
-
-#slide(title: [Schelling, 1971])[
-  #let schelling = image("png/schelling1.png", height: 25.5%)
-  #let schelling2 = image("png/schelling2.png", height: 50%)
-
-  #figure(
-    [#schelling #schelling2],
-    caption: [
-      Circles and pluses represent two distinct groups of people. Dots show who is unhappy with their surrounding.
-    ])
-]
-
-#slide(title: [Schelling, 1971])[
-  #let case = image("png/polygons.png")
-
-  #figure(
-    case,
-    caption: [
-      Animacja stworzona przez Nicky Case #link("https://ncase.me/polygons/")[https://ncase.me/polygons/].
-    ])
-]
-
-#slide(title: [Do czego potrzebujemy symulacji komputerowych?])[
-  #v(25%)
-
-  + Żeby budować intuicje na temat działania modeli.
-
-  + Żeby testować scenariusze, które są niemożliwe do zbadania w inny sposób \#thereIsNoPlanetB.
-
-  + Żeby przewidywać przyszłość.
-]
-
-#new-section-slide("Przykłady, przykłady, wszędzie przykłady!")
-
-#slide(title: [Natural Language Processing])[
-  #let nlp = image("png/nlp.jpg")
-  #set align(center+horizon)
-  #v(15%)
-  #figure(
-    nlp,
-    caption: [
-      Zprojektowane przez Agatę Biesagę.
-    ])
-]
-
-#focus-slide(background: mainColor, [
-  Analiza Języka Naturalnego (Natural Language Processing -- NLP) to podejście analityczne, które wykorzystuje zestaw (zazwyczaj) metod i narzędzi komputerowych do wydobywania znaczenia, tematów lub sentymentu z danych tekstowych lub mówionych. Innymi słowy, #highlight[jest to zbiór algorytmów komputerowych, które próbują syntetyzować język ludzki.]
+  plot.plot(
+  size: (8, 6),
+  axis-style: "school-book",
+  x-tick-step: none,
+  y-tick-step: none,
+  y-label: none,
+  x-label: [Czas],
+  stroke: 10pt,
+  name: "plot",
+  legend: none,
+  {
+    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
+    for domain in domains {
+      if domain == (0,.5) {
+        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+      }
+      plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
+      
+    }
+    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
+    for domain in domains {
+      if domain == (0.5,1.5) {
+        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+      }
+      plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
+      
+    }
+  })
+})
 ])
-
-#slide(title: [Bajkowska & Biesaga, 2023])[
-  #let poster = image("png/poster.png")
-  #set align(center+horizon)
-  #figure(
-    poster,
-    caption: [
-      Zaprojektowane przez Katarzynę Bajkowską #link("https://psych.pan.pl/pracownik/mgr-katarzyna-bajkowska/")[(Instytut Psychologii Polskiej Akademii Nauk)].
-    ])
-
 ]
 
-#slide(title: [Roszczyńska-Kurasińska, Biesaga, & de Oliveira, 2025])[
-  #let article = image("png/hicss.png")
-  #set align(center+horizon)
-  #figure(
-    article,
-    )
-]
-
-#slide(title: [Roszczyńska-Kurasińska, Biesaga, & de Oliveira, 2025])[
-  #let model = image("png/piechart-1.png")
-  #set align(center+horizon)
-  #figure(
-    model,
-    caption: [
-      Behavioral Change Model -- COM-B (Michie, Atkins, & West, 2014).
-    ]
-  )
-]
-
-#slide(title: [Roszczyńska-Kurasińska, Biesaga, & de Oliveira, 2025])[
-  #let s = image("png/barplot.png")
-  #set align(center+horizon)
-  #figure(
-    s,
-    caption: [
-      Distribution of the components of the COM-B Model by country.
-    ]
-    )
-]
-
-#slide(title: [Przyłuska & Biesaga, 2026])[
-  #let article = image("png/iccss.png")
-  #set align(center+horizon)
-  #figure(
-    article,
-    )
-]
-
-#focus-slide(background: mainColor)[
-  #show: text.with(size: 44pt)
-  #show: align.with(center)
-  Dziękuję!
+#slide(title: [Jak wygrać w papier, nożyce i kamień?])[
+  
 ]

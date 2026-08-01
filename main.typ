@@ -66,100 +66,100 @@
 #let procedure = layout(ly => cetz.canvas(length: ly.width * .047,{
     import cetz.draw: *
     rect((-4.5,-.5),(-2,.5), name: "predictions")
-    content("predictions", [#smallcaps[Predictions]])
+    content("predictions", [#smallcaps[Oczekiwania]])
 
     rect((-.75,-.5),(1.75,.5), name: "mask")
     content("mask", [#smallcaps[$2 times 3 - 1$]])
 
     content((3,0), [#box(width: .75cm)[#heart6]])
     content((3.75,0), [#box(width: .75cm)[#spades7]])
-    content((3.375,-1), [#smallcaps[round 1]])
+    content((3.375,-1), [#smallcaps[runda 1]])
 
     content((4.75,0), [#box(width: .75cm)[#heart6]])
     content((5.5,0), [#box(width: .75cm)[#heart7]])
-    content((4.75 + .375,-1), [#smallcaps[round 2]])
+    content((4.75 + .375,-1), [#smallcaps[runda 2]])
 
     content((6.5 + .375,-.4), [...])
 
     content((8.25,0), [#box(width: .75cm)[#spades6]])
     content((9,0), [#box(width: .75cm)[#spades7]])
-    content((8.25 + .375,-1), [#smallcaps[round 12]])
+    content((8.25 + .375,-1), [#smallcaps[runda 12]])
 
     rect((10.25,-.5),(12.75,.5), name: "perceived")
-    content("perceived", [#box(width: 1cm)[#smallcaps[Assessment]]])
+    content("perceived", [#box(width: 2cm)[#smallcaps[Zadowolenie z gry]]])
 
     rect((14,-.5),(16.5,.5), name: "again")
-    content("again", [#box(width: 2cm)[#smallcaps[Play again?]]])
+    content("again", [#box(width: 1cm)[#smallcaps[Grasz ponownie?]]])
 
     rect((14,-3.5),(16.5,-2.5), name: "end")
-    content("end", [#box(width: 1cm)[#smallcaps[End]]])
+    content("end", [#box(width: 1cm)[#smallcaps[Koniec]]])
 
     line((15.25,.5),(15.25,1.5), (-3.25,1.5), (-3.25,.5), name: "repeat", mark: (end: ">"), stroke: (dash: "dashed"))
 
     line((15.25, -.5),(15.25,-2.5), name: "finish", mark: (end: ">"), stroke: (dash: "dashed"))
     set-style(content: (frame: "rect", stroke: none, fill: white, padding: .2))
-    content("finish.mid", [#smallcaps[NO]])
-    content("repeat.mid", [#smallcaps[YES]])
+    content("finish.mid", [#smallcaps[Nie]])
+    content("repeat.mid", [#smallcaps[Tak]])
 
 }))
 
-#let game = grid(columns: (1fr, 1fr),
+#let game = grid(rows: (1fr, 1fr),
   align: (center, center),
-  column-gutter: 30pt,
+  row-gutter: -5em,
   [
     #cetz.canvas({
       import cetz.draw: *
-      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Player A wins]]], anchor: "south", padding: .6)
-      content((0, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
-      content((0,-1), [#text(size: 10pt)[Player A]])
+      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Wygrywa osoba A]]], anchor: "south", padding: .6)
+      content((-.25, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
+      content((-.25,-1), [#text(size: 10pt)[Osoba A]])
       content((1.5, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
-      content((1.5,-1), [#text(size: 10pt)[Player B]])
+      content((1.5,-1), [#text(size: 10pt)[Osoba B]])
       content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
-      content((4,-1), [#text(size: 10pt)[Player A]])
-      content((5.5, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
-      content((5.5,-1), [#text(size: 10pt)[Player B]])
+      content((4,-1), [#text(size: 10pt)[Osoba A]])
+      content((5.75, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
+      content((5.75,-1), [#text(size: 10pt)[Osoba B]])
     })
   ],
   [
     #cetz.canvas({
       import cetz.draw: *
-      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Player B wins]]], anchor: "south", padding: .6)
-      content((0, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
-      content((0,-1), [#text(size: 10pt)[Player A]])
+      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Wygrywa osoba B]]], anchor: "south", padding: .6)
+      content((-.25, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
+      content((-.25,-1), [#text(size: 10pt)[Osoba A]])
       content((1.5, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
-      content((1.5,-1), [#text(size: 10pt)[Player B]])
+      content((1.5,-1), [#text(size: 10pt)[Osoba B]])
       content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
-      content((4,-1), [#text(size: 10pt)[Player A]])
-      content((5.5, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
-      content((5.5,-1), [#text(size: 10pt)[Player B]])
+      content((4,-1), [#text(size: 10pt)[Osoba A]])
+      content((5.75, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
+      content((5.75,-1), [#text(size: 10pt)[Osoba B]])
     })
   ])
 
 #let conditions = grid(
-    columns: (4em, auto, 3em, auto, auto, auto),
+    columns: (5em, auto, 3em, auto, auto, auto),
     column-gutter: 2em,
     align: (center + horizon, center, bottom, center, center, center),
     rows: 4,
     row-gutter: 1em,
-    [#smallcaps[Single human]],
+    [#smallcaps[Człowiek]],
     [#box(width: 1.5cm)[#brown_girl]],
     [#set text(size: 18pt); ...],
     [#box(width: 1.5cm)[#brown_girl]],
     [#box(width: 1.5cm)[#brown_girl]],
     [#box(width: 1.5cm)[#brown_girl]],
-    [#smallcaps[Single computer]],
+    [#smallcaps[Komputer]],
     [#box(width: 1.25cm)[#orange_robot]],
     [#set text(size: 18pt); ...],
     [#box(width: 1.25cm)[#orange_robot]],
     [#box(width: 1.25cm)[#orange_robot]],
     [#box(width: 1.25cm)[#orange_robot]],
-    [#smallcaps[Different humans]],
+    [#smallcaps[Różni ludzie]],
     [#box(width: 1.5cm)[#brown_girl]],
     [#set text(size: 18pt); ...],
     [#box(width: 1.5cm)[#bun_white_girl]],
     [#box(width: 1.5cm)[#white_boy]],
     [#box(width: 1.5cm)[#brown_boy]],
-    [#smallcaps[Different computers]],
+    [#box(width: 1cm)[#smallcaps[Różne komputery]]],
     [#box(width: 1.25cm)[#orange_robot]],
     [#set text(size: 18pt); ...],
     [#box(width: 1.25cm)[#metalic_robot]],
@@ -172,7 +172,7 @@
 #title-slide(
   authors: [Mikołaj Biesaga],
   title: [Play again?],
-  subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz zaangażowanie w
+  subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz\ zaangażowanie w
 działanie],
   date: [3 sierpnia 2026],// datetime.today().display("[day] [month repr:long] [year]"),
   funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
@@ -181,17 +181,17 @@ działanie],
 // Regular slide.
 #slide(title: [Plan prezentacji])[
   #v(25%)
-  + Dlaczego gramy w gry, w których sukces jest niepewny?
+  + Dlaczego gramy w gry?
 
-  + Jak wygrać w papier, nożyce i kamień?
+  + Procedura badawcza.
 
-  + 
+  + Dlaczego Living Lab?
 
   + Kwestie organizacyjne.
 
 ]
 
-#slide(title: [Dlaczego gramy w gry w których sukces jest niepewny?])[
+#slide(title: [Dlaczego gramy w gry?])[
 
   - Powszechnie uważa się, że dopamina ("hormon szczęścia") wydziela się gdy coś się nam uda, np. wygrana na loterii.
 
@@ -295,96 +295,198 @@ działanie],
 })
 ]
 
+#slide(title: [Gra])[
+      #grid(
+        columns: (1fr, 1fr),
+        column-gutter: 1em,
+        align: (center+horizon, center + horizon),
+        [
+          #showybox(
+          frame: (
+            border-color: yellow.darken(50%),
+            title-color: yellow.lighten(60%),
+            body-color: white//otherColor.lighten(80%)
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          shadow: (
+            offset: 3pt,
+          ),
+          title: "Matching Pennies",
+          [
+            Każda z osób ma do wyboru dwie karty: czerwoną i czarną. Wykładają je jednocześnie.
+          ]
+          )
+        ],
+        [
+         #game 
+        ])
 
-#slide(title: [Dlaczego kontynuujemy grę mimo że sukces jest niepewny?])[
-#show: text.with(size: 12pt)
-#show: align.with(center)
-#v(10%)
-#grid(
-  columns: (1fr, 1fr),
-  column-gutter: 1em,
-[
-#cetz.canvas({
-  import cetz.draw: *
-  import cetz-plot: *
-  import calc.pow
-  import calc.cos
-  import calc: *
-
-  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
-
-  plot.plot(
-  size: (8, 6),
-  axis-style: "school-book",
-  x-tick-step: none,
-  y-tick-step: none,
-  y-label: none,
-  x-label: [Czas],
-  stroke: 10pt,
-  name: "plot",
-  legend: none,
-  {
-    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
-    for domain in domains {
-      if domain == (0,.5) {
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-      }
-      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
-      
-    }
-    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
-    for domain in domains {
-      if domain == (0.5,1.5) {
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-      }
-      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
-      
-    }
-  })
-})
-],
-[
-#cetz.canvas({
-  import cetz.draw: *
-  import cetz-plot: *
-  import calc.pow
-  import calc.cos
-  import calc: *
-
-  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
-
-  plot.plot(
-  size: (8, 6),
-  axis-style: "school-book",
-  x-tick-step: none,
-  y-tick-step: none,
-  y-label: none,
-  x-label: [Czas],
-  stroke: 10pt,
-  name: "plot",
-  legend: none,
-  {
-    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
-    for domain in domains {
-      if domain == (0,.5) {
-        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-      }
-      plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
-      
-    }
-    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
-    for domain in domains {
-      if domain == (0.5,1.5) {
-        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-      }
-      plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
-      
-    }
-  })
-})
-])
 ]
 
-#slide(title: [Jak wygrać w papier, nożyce i kamień?])[
-  
+#slide(title: [Procedura badawcza])[
+  #show: set text(size: 12pt)
+  #v(15%)
+  #procedure
+]
+
+#slide(title: [Warunki eksperymentalne])[
+  #show: set text(size: 12pt)
+  #show: align.with(center)
+  #v(15%)
+  #conditions
+]
+
+#slide(title: [Warunki eksperymentalne - Dlaczego?])[
+
+  - Spodziewamy się różnic w strategiach w zależności od przeciwnika (np. Ayton & Fisher, 2004; Boynton, 2003; Gronchi and Sloman, 2008).
+
+  - W przypadku różnych przeciwników, a co za tym idzie różnych strategii, spodziewamy się mniejszego zaangażowania w grę (krótszej gry).
+  #v(5%)
+
+  #show: text.with(size: 12pt)
+  #show: align.with(center)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 1em,
+  [
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+    import calc.pow
+    import calc.cos
+    import calc: *
+
+    set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
+
+    plot.plot(
+    size: (8, 6),
+    axis-style: "school-book",
+    x-tick-step: none,
+    y-tick-step: none,
+    y-label: none,
+    x-label: [Czas],
+    stroke: 10pt,
+    name: "plot",
+    legend: none,
+    {
+      let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
+      for domain in domains {
+        if domain == (0,.5) {
+          plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+        }
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
+      
+      }
+      let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
+      for domain in domains {
+        if domain == (0.5,1.5) {
+          plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+        }
+        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
+      
+      }
+    })
+  })
+  ],
+  [
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+    import calc.pow
+    import calc.cos
+    import calc: *
+
+    set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
+
+    plot.plot(
+    size: (8, 6),
+    axis-style: "school-book",
+    x-tick-step: none,
+    y-tick-step: none,
+    y-label: none,
+    x-label: [Czas],
+    stroke: 10pt,
+    name: "plot",
+    legend: none,
+    {
+      let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
+      for domain in domains {
+        if domain == (0,.5) {
+          plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+        }
+        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
+      
+      }
+      let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
+      for domain in domains {
+        if domain == (0.5,1.5) {
+          plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
+        }
+        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
+      
+      }
+    })
+  })
+  ])
+]
+
+#new-section-slide()[
+  Dlaczego Living Lab?
+]
+
+#focus-slide(background: mainColor,
+  [
+    Badanie w #highlight[Living Lab] pozwoli na zbadanie #highlight[motywacji w warunkach naturalnych] minimalizując efekt warunków laboratoryjnych.
+  ]
+)
+
+#slide(title: [Kwestie organizacyjne])[
+  #v(10%)
+
+  + Na ile przeprowadzenie takiego badania jest możliwe? Co jest niemożliwe?
+
+  + Jaki jest koszt przeprowadzenia takiego badania?
+
+  + Jakie są możliwe terminy przeprowadzenia badania?
+
+  + Jak wygąda praca nad przygotowaniem procedury?
+
+  + Współautorstwo publikacji naukowej.
+
+  + Umowy, faktury, KSeFy, itp.
+]
+
+#new-section-slide()[
+  Dziękuję!
+]
+
+#slide(title: [Bibliografia])[
+  #show: set text(size: 12pt)
+  #v(15%)
+  + Ayton, P., & Fischer, I. (2004). The hot hand fallacy and the gambler’s fallacy: Two faces of subjective randomness? _Memory & Cognition_, _32_(8), 1369–1378. https://doi.org/10.3758/BF03206327
+
+  + Boynton, D. M. (2003). Superstitious responding and frequency matching in the positive bias and gambler’s fallacy eﬀects. _Organizational Behavior and Human Decision Processes_, _91_(2), 119–127. https://doi.org/10.1016/S0749-5978(03)00064-5
+
+  + Gronchi, G., & Sloman, S. A. (2008). Do causal beliefs influence the hot-hand and the gambler’s fallacy? In _Proceedings of the 30th annual conference of the cognitive science society_, 1164–1168. Cognitive Science Society Austin, TX.
+
+  + Schultz, W. (2016). Dopamine reward prediction error coding. _Dialogues in Clinical Neuroscience_, _18_(1), 23–32. https://doi.org/10.31887/DCNS.2016.18.1/wschultz
+
+  + Deterding, S., Andersen, M. M., Kiverstein, J., & Miller, M. (2022). Mastering uncertainty: A predictive processing account of enjoying uncertain success in video game play. _Frontiers in Psychology_, _13_, 924953. https://doi.org/10.3389/fpsyg.2022.924953
+]
+
+#slide(title: [Plan działań])[
+  #v(20%)
+
+  + Finalizacja koncepcji badania i procedury badawczej.
+
+  + Przygotowanie materiałów do badania (instrukcje, pytania, itp.).
+
+  + Wniosek do komisji etycznej ISS UW.
+
+  + Prerejestracja badania (IPA).
+
 ]

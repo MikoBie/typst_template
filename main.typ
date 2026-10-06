@@ -15,7 +15,7 @@
 
 // Option of the theme.
 #show: iss-theme.with(
-  left-footer: [Mikołaj Biesaga],
+  left-footer: [Biesaga et al.],
   short-title: [Play again? Nowy paradygmat badający dynamikę błędu predykcji oraz zaangażowanie w działanie.],
   color: mainColor,
 )
@@ -170,7 +170,7 @@
 
 // Title slide.
 #title-slide(
-  authors: [Mikołaj Biesaga],
+  authors: [Mikołaj Biesaga, Ognjen Zakic, & Anna Kuźmińska],
   title: [Play again?],
   subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz\ zaangażowanie w
 działanie],

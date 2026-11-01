@@ -12,16 +12,21 @@
 #let enumColor = rgb(230,135,67)
 #let otherColor = rgb(194,213,238)
 #let otherColor2 = rgb(253,242,212)
+#let ukrainianBlue = rgb(0, 87, 183)
+#let ukrainianYellow = rgb(255, 215, 0)
+#let alertColor = rgb(255, 215, 0)
+#let belarusianRed = rgb(210, 39, 48)
+#let belarusianGreen = rgb(0,151,57)
 
 // Option of the theme.
 #show: iss-theme.with(
-  left-footer: [Biesaga et al.],
-  short-title: [Play again? Nowy paradygmat badający dynamikę błędu predykcji oraz zaangażowanie w działanie.],
+  left-footer: [Kozachenko & Biesaga],
+  short-title: [What Drives Diasporic Online Mobilisation? Exploring Frames and Emotions on Telegram],
   color: mainColor,
 )
 
 // Global settings.
-#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "pl")
+#set text(font: "New Computer Modern", weight: "semibold", size: 20pt, hyphenate: false, lang: "eng")
 #set strong(delta: 100)
 #set par(justify: true)
 #set enum(numbering: n => block(fill: enumColor, radius: 2pt, inset: .1em)[#text(fill: white, [#n.])])
@@ -31,9 +36,9 @@
   #it
 ]
 #show figure.caption: set text(size: 12pt)
-#show figure: set figure.caption(separator: ".")
+#show figure: set figure.caption(separator: ". ")
 #show figure.where(kind: table): set figure.caption(position: top)
-#show figure.where(kind: image): set figure(supplement: "Rycina")
+#show figure.where(kind: image): set figure(supplement: "Figure")
 #show smallcaps: it =>{
   set text(font: "New Computer Modern")
   set align(center)
@@ -48,445 +53,499 @@
 #show: el.default-enum-list.with(fill: (enumColor, alertColor))
 
 // Graphics
-#let heart6 = image("png/heart-6.png")
-#let heart7 = image("png/heart-7.png")
-#let spades6 = image("png/spades-6.png")
-#let spades7 = image("png/spades-7.png")
-#let grey_robot = image("png/grey_robot.png")
-#let black_robot = image("png/black_robot.png")
-#let orange_robot = image("png/orange_robot.png")
-#let green_robot = image("png/green_robot.png")
-#let metalic_robot = image("png/metalic_robot.png")
-#let white_boy = image("png/mustache_white_boy.png")
-#let brown_boy = image("png/brown_boy.png")
-#let brown_girl = image("png/brown_girl.png")
-#let white_girl = image("png/white_girl.png")
-#let bun_white_girl = image("png/bun_white_girl.png")
-
-#let procedure = layout(ly => cetz.canvas(length: ly.width * .047,{
-    import cetz.draw: *
-    rect((-4.5,-.5),(-2,.5), name: "predictions")
-    content("predictions", [#smallcaps[Oczekiwania]])
-
-    rect((-.75,-.5),(1.75,.5), name: "mask")
-    content("mask", [#smallcaps[$2 times 3 - 1$]])
-
-    content((3,0), [#box(width: .75cm)[#heart6]])
-    content((3.75,0), [#box(width: .75cm)[#spades7]])
-    content((3.375,-1), [#smallcaps[runda 1]])
-
-    content((4.75,0), [#box(width: .75cm)[#heart6]])
-    content((5.5,0), [#box(width: .75cm)[#heart7]])
-    content((4.75 + .375,-1), [#smallcaps[runda 2]])
-
-    content((6.5 + .375,-.4), [...])
-
-    content((8.25,0), [#box(width: .75cm)[#spades6]])
-    content((9,0), [#box(width: .75cm)[#spades7]])
-    content((8.25 + .375,-1), [#smallcaps[runda 12]])
-
-    rect((10.25,-.5),(12.75,.5), name: "perceived")
-    content("perceived", [#box(width: 2cm)[#smallcaps[Zadowolenie z gry]]])
-
-    rect((14,-.5),(16.5,.5), name: "again")
-    content("again", [#box(width: 1cm)[#smallcaps[Grasz ponownie?]]])
-
-    rect((14,-3.5),(16.5,-2.5), name: "end")
-    content("end", [#box(width: 1cm)[#smallcaps[Koniec]]])
-
-    line((15.25,.5),(15.25,1.5), (-3.25,1.5), (-3.25,.5), name: "repeat", mark: (end: ">"), stroke: (dash: "dashed"))
-
-    line((15.25, -.5),(15.25,-2.5), name: "finish", mark: (end: ">"), stroke: (dash: "dashed"))
-    set-style(content: (frame: "rect", stroke: none, fill: white, padding: .2))
-    content("finish.mid", [#smallcaps[Nie]])
-    content("repeat.mid", [#smallcaps[Tak]])
-
-}))
-
-#let game = grid(rows: (1fr, 1fr),
-  align: (center, center),
-  row-gutter: -5em,
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Wygrywa osoba A]]], anchor: "south", padding: .6)
-      content((-.25, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
-      content((-.25,-1), [#text(size: 10pt)[Osoba A]])
-      content((1.5, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
-      content((1.5,-1), [#text(size: 10pt)[Osoba B]])
-      content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
-      content((4,-1), [#text(size: 10pt)[Osoba A]])
-      content((5.75, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
-      content((5.75,-1), [#text(size: 10pt)[Osoba B]])
-    })
-  ],
-  [
-    #cetz.canvas({
-      import cetz.draw: *
-      content((2.75,.25), [#text(weight: "black", size: 11pt)[#smallcaps[Wygrywa osoba B]]], anchor: "south", padding: .6)
-      content((-.25, 0), [#box(width: 1cm)[#heart6]], anchor: "center")
-      content((-.25,-1), [#text(size: 10pt)[Osoba A]])
-      content((1.5, 0), [#box(width: 1cm)[#spades7]], anchor: "center")
-      content((1.5,-1), [#text(size: 10pt)[Osoba B]])
-      content((4, 0), [#box(width: 1cm)[#spades6]], anchor: "center")
-      content((4,-1), [#text(size: 10pt)[Osoba A]])
-      content((5.75, 0), [#box(width: 1cm)[#heart7]], anchor: "center")
-      content((5.75,-1), [#text(size: 10pt)[Osoba B]])
-    })
-  ])
-
-#let conditions = grid(
-    columns: (5em, auto, 3em, auto, auto, auto),
-    column-gutter: 2em,
-    align: (center + horizon, center, bottom, center, center, center),
-    rows: 4,
-    row-gutter: 1em,
-    [#smallcaps[Człowiek]],
-    [#box(width: 1.5cm)[#brown_girl]],
-    [#set text(size: 18pt); ...],
-    [#box(width: 1.5cm)[#brown_girl]],
-    [#box(width: 1.5cm)[#brown_girl]],
-    [#box(width: 1.5cm)[#brown_girl]],
-    [#smallcaps[Komputer]],
-    [#box(width: 1.25cm)[#orange_robot]],
-    [#set text(size: 18pt); ...],
-    [#box(width: 1.25cm)[#orange_robot]],
-    [#box(width: 1.25cm)[#orange_robot]],
-    [#box(width: 1.25cm)[#orange_robot]],
-    [#smallcaps[Różni ludzie]],
-    [#box(width: 1.5cm)[#brown_girl]],
-    [#set text(size: 18pt); ...],
-    [#box(width: 1.5cm)[#bun_white_girl]],
-    [#box(width: 1.5cm)[#white_boy]],
-    [#box(width: 1.5cm)[#brown_boy]],
-    [#box(width: 1cm)[#smallcaps[Różne komputery]]],
-    [#box(width: 1.25cm)[#orange_robot]],
-    [#set text(size: 18pt); ...],
-    [#box(width: 1.25cm)[#metalic_robot]],
-    [#box(width: 1.25cm)[#grey_robot]],
-    [#box(width: 1.25cm)[#green_robot]],
-  )
-
 
 // Title slide.
 #title-slide(
-  authors: [Mikołaj Biesaga, Ognjen Zakic, & Anna Kuźmińska],
+  authors: [Ivan Kozachenko and Mikołaj Biesaga],
   title: [Play again?],
   subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz\ zaangażowanie w
 działanie],
-  date: [3 sierpnia 2026],// datetime.today().display("[day] [month repr:long] [year]"),
-  funding: [#link("mailto:m.biesaga@uw.edu.pl")[m.biesaga\@uw.edu.pl]],
+  date: [3 November 2026],// datetime.today().display("[day] [month repr:long] [year]"),
+  funding: [The project is supported by the Polish National Science Centre (NCN Opus 27, DIAMOND,  nr: UMO-2024/53/B/HS5/01665)],
 )
 
 // Regular slide.
-#slide(title: [Plan prezentacji])[
-  #v(25%)
-  + Dlaczego gramy w gry?
+#slide(title: [Outlines])[
+  #v(15%)
 
-  + Procedura badawcza.
+  + Theoretical background
 
-  + Dlaczego Living Lab?
+  + Research Question
 
-  + Kwestie organizacyjne.
+  + Lexicon-based Analysis
+
+  + Embeddings-based Analysis
+
+  + Next Steps
 
 ]
 
-#slide(title: [Dlaczego gramy w gry?])[
+#slide(title: [Theoretical background])[
 
-  - Powszechnie uważa się, że dopamina ("hormon szczęścia") wydziela się gdy coś się nam uda, np. wygrana na loterii.
-
-  - Jednak, ostatnie badania sugerują, że wydziela się tylko wtedy gdy nagroda przewyższa nasze oczekiwania (Schultz, 2016).
   #grid(
-    columns: (1fr, 1fr),
-    column-gutter: 1em,
+    columns: (1fr, 1fr, 1fr, 1fr),
+    column-gutter: .25em,
     [
       #showybox(
-      frame: (
-        border-color: blue.darken(50%),
-        title-color: blue.lighten(60%),
-        body-color: white//otherColor.lighten(80%)
-      ),
-      title-style: (
-        color: black,
-        weight: "bold",
-        align: center
-      ),
-      shadow: (
-        offset: 3pt,
-      ),
-      title: "Pozytywny błąd predykcji",
-      [
-        Nagroda (jej wartość oczekiwana) jest wyższa niż oczekiwana.
-      ]
-      )
-      ],
-      [
-        #showybox(
         frame: (
-          border-color: red.darken(50%),
-          title-color: red.lighten(60%),
-          body-color: white//otherColor2.lighten(80%)
+          border-color: white,
+          title-color: ukrainianBlue.lighten(50%),
+          body-color: white,
+          body-inset: .5em,
+          title-inset: .6em,
         ),
         title-style: (
           color: black,
           weight: "bold",
           align: center
         ),
-        shadow: (
-          offset: 3pt,
+        body-style: (
+          color: black,
+          align: left,
         ),
-        title: "Negatywny błąd predykcji",
+        title: [#set text(size: 18pt);#set par(justify: false); Diaspora as a stance],
         [
-          Nagroda (jej wartość oczekiwana) jest niższa niż oczekiwana.
+          #set text(size: 14pt, spacing: 75%)
+          #set par(justify: false)
+          Diaspora as a "category of practice, project, claim and stance, rather than as a bounded group" (Brubaker, 2005).
         ]
-        )
-      ]
-  )
-  - Zgodnie z Predictive Processing Framework (Deterding et al., 2022) ludzie dążą do minimalizacji niepewności, a co za tym idzie do maksymalizacji dokładności przewidywań.
-]
+      )
 
-#focus-slide(background: mainColor,
-  [
-    Motywacja by grać dalej wynika z #highlight[minimalizacji błędu predykcji,] a nie z pozytywnego błędu predykcji.
-  ]
-)
-
-#slide(title: [Dlaczego kontynuujemy grę mimo że sukces jest niepewny?])[
-#show: text.with(size: 12pt)
-#show: align.with(center)
-#v(15%)
-#cetz.canvas({
-  import cetz.draw: *
-  import cetz-plot: *
-  import calc.pow
-  import calc.cos
-  import calc: *
-
-  set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
-
-  plot.plot(
-  size: (12, 8),
-  axis-style: "school-book",
-  x-tick-step: none,
-  y-tick-step: none,
-  y-label: none,
-  x-label: [Czas],
-  stroke: 10pt,
-  name: "plot",
-  legend: auto,
-  {
-    let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
-    for domain in domains {
-      if domain == (0,.5) {
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-      }
-      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
-      
-    }
-    let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
-    for domain in domains {
-      if domain == (0.5,1.5) {
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") > 0$)
-      }
-      plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
-      
-    }
-  })
-})
-]
-
-#slide(title: [Gra])[
-      #grid(
-        columns: (1fr, 1fr),
-        column-gutter: 1em,
-        align: (center+horizon, center + horizon),
+    ],
+    [
+      #showybox(
+        frame: (
+          border-color: white,
+          title-color: ukrainianYellow.lighten(50%),
+          body-color: white,
+          body-inset: .5em,
+          title-inset: .6em,
+        ),
+        title-style: (
+          color: black,
+          weight: "bold",
+          align: center
+        ),
+        body-style: (
+          color: black,
+          align: left,
+        ),
+        title: [#set text(size: 18pt);#set par(justify: false); Digital\ diasporas],
         [
-          #showybox(
+          #set text(size: 14pt, spacing: 75%)
+          #set par(justify: false)
+          As online networks diasporic people use to reconstruct identities, exchange opportunities, influence policies (...), and discuss shared concerns through digital technologies (Alonso and Oiarzabal, 2010).
+        ]
+      )
+    ],
+    [
+      #showybox(
+        frame: (
+          border-color: white,
+          title-color: belarusianRed.lighten(50%),
+          body-color: white,
+          body-inset: .5em,
+          title-inset: .6em,
+        ),
+        title-style: (
+          color: black,
+          weight: "bold",
+          align: center
+        ),
+        body-style: (
+          color: black,
+          align: left,
+        ),
+        title: [#set text(size: 18pt); #set par(justify: false); Diaspora as a social movement],
+        [
+          #set text(size: 14pt, spacing: 75%)
+          #set par(justify: false)
+          Sökefeld (2006), proposes introducing elements of social movement studies into research on diasporas: opportunity structures, framing, mobilising structures, and organisations.
+        ]
+      )
+    ],
+    [
+      #showybox(
+        frame: (
+          border-color: white,
+          title-color: belarusianGreen.lighten(50%),
+          body-color: white,
+          body-inset: .5em,
+          title-inset: .6em,
+        ),
+        title-style: (
+          color: black,
+          weight: "bold",
+          align: center
+        ),
+        body-style: (
+          color: black,
+          align: left,
+        ),
+        title: [#set text(size: 18pt, spacing: 75%); #set par(justify: false); "Network of outrage and hope"],
+        [
+          #set text(size: 14pt, spacing: 75%)
+          #set par(justify: false)
+          Digital communication networks enable people to share grievances, overcome fear, and transform outrage into collective action sustained by hope (Castells, 2012).
+        ]
+      )
+    ]
+
+  )
+
+]
+
+#focus-slide(background: mainColor)[
+    How do #highlight[emotional reactions] in Ukrainian and Belarusian diaspora Telegram channels in Poland relate to #highlight[mobilisation,] and how do the two communities differ?
+
+]
+
+#slide(title: [Analytical Approach])[
+  #set text(size: 16pt)
+  #let logo = image("png/telegram.png")
+  #let webscraping = image("png/webscraping.png")
+  #let lexicon = image("png/lexicon-based.png")
+  #let embeddings = image("png/embeddings.png")
+
+  #box(height: 10cm)[#cetz.canvas( length: 1cm,{
+      import cetz.draw: *
+      import cetz-plot: *
+
+      content((0,0), [#box(width: 2cm)[#logo]])
+      content((0, -2), [#smallcaps[Channels\ Selection]])
+
+      content((6,0), [#box(width: 2cm)[#webscraping]])
+      content((6, -2), [#smallcaps[Web-scraping]])
+
+      content((12,3), [#box(width: 2cm)[#lexicon]])
+      content((12, 5), [#smallcaps[Lexicon-based\ Analysis]])
+
+      content((21,3), [#box(width: 10cm)[- Sentiment analysis (time-series)]])
+
+      content((12,-4), [#box(width: 2cm)[#embeddings]])
+      content((12, -6), [#smallcaps[Embeddings-based\ Analysis]])
+
+      content((21,-4), [#box(width: 10cm)[
+        - Semantic spread
+        - Similarity to definitions
+        - Categorization of comments
+      ]])
+
+      line((1.25,0), (4.75,0), stroke: (paint: black, thickness: 2pt, dash: "dashed"), dash: true, mark: (end: ">"))
+      line((7.25,0), (10.75,3), stroke: (paint: black, thickness: 2pt, dash: "dashed"), dash: true, mark: (end: ">"))
+      line((7.25,0), (10.75,-4), stroke: (paint: black, thickness: 2pt, dash: "dashed"), dash: true, mark: (end: ">"))
+  })]
+  #footnote[All the flat icons by Eucalyp from #link("www.flaticon.com")]
+]
+
+#slide(title: [Collected data])[
+  #import calc
+  #show table.cell.where(y: 0): it => {
+    set text(white, weight: "black")
+    it
+  }
+
+  #v(5%)
+  #table(
+    columns: (2fr, 1fr, 1fr, 1fr, 1fr),
+    align: (x,y) =>
+      if y == 0 {center + horizon}
+      else if x == 0 {left + horizon}
+      else {center + horizon}, 
+    inset: (x: .4em, y: .5em),
+    fill: (x, y) => 
+      if y > 0 and calc.rem-euclid(y, 2) == 0 {ukrainianBlue.lighten(50%)}
+      else if y == 0 {mainColor}
+      else {white},
+    column-gutter: (.1em, 0em, 0em, 0em),
+    row-gutter: (.1em, 0em, 0em, 0em),
+    table.header([Channel],[Subscribers], [Messages], [Comments], [Reactions]),
+    [Ukrainian in Poland],[36777],[3255],[25423],[172538],
+    [UAinKrakow.pl],[13874],[6344],[2732],[265644],
+    [Ukrainian House],[4352],[983],[461],[3252],
+    [Belarusian protests in Warsaw],[873],[757],[1583],[10499],
+    [Belarusians in Poland],[18226],[782],[10421],[29734],
+    [Partyzanka],[9720],[561],[7178],[31827],
+  )
+]
+
+#slide(title: [Lexicon-based Analysis])[
+  #figure(
+    image("png/fig-sentiment-analysis.png"),
+    caption: [Sentiment analysis over time.]
+  )
+]
+
+#slide(title: [Embeddings-based Analysis])[
+  #grid(
+    columns: (1fr, 1.2fr),
+    column-gutter: 1em,
+    [
+      Embeddings were computed using a multilingual transformer model (Reimers and Gurevych, 2019) mapping text to 768-dimensional vector representations.
+
+      #showybox(
+        frame: (
+          border-color: ukrainianYellow.lighten(50%),
+          title-color: ukrainianYellow.lighten(50%),
+          body-color: ukrainianYellow.lighten(80%),
+          body-inset: .5em,
+          title-inset: .6em,
+        ),
+        title-style: (
+          color: black,
+          weight: "bold",
+          align: center
+        ),
+        body-style: (
+          color: black,
+          align: left,
+        ),
+
+        title: [Semantic Spread],
+        [The euclidean distance between embedding and the centroid (mean embedding) of its group, computed per channel and per country.]
+      )
+
+    ],
+    [
+      #grid(
+        rows: (1fr, 1fr),
+        row-gutter: 2em,
+        [
+          #figure(
+            image("png/semantic_spread_messages_euclidean.png"),
+            caption: [Semantic spread for messages.]
+          )
+        ],
+        [
+          #figure(
+            image("png/semantic_spread_comments_euclidean.png"),
+            caption: [Semantic spread for comments.]
+          )
+        ]
+      )
+    ]
+
+  )
+]
+
+#slide(title: [Definitions])[
+  #set par(justify: false)
+  #grid(
+    rows: (1fr, 1fr),
+    row-gutter: 2em,
+    [
+      #grid(columns: (1fr, 1fr, 1fr, 1fr),
+      column-gutter: 1em,
+      [
+        #showybox(
           frame: (
-            border-color: yellow.darken(50%),
-            title-color: yellow.lighten(60%),
-            body-color: white//otherColor.lighten(80%)
+            border-color: ukrainianYellow,
+            title-color: ukrainianYellow.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
           ),
           title-style: (
             color: black,
             weight: "bold",
             align: center
           ),
-          shadow: (
-            offset: 3pt,
+          body-style: (
+            color: black,
+            align: left,
           ),
-          title: "Matching Pennies",
+          title: [National solidarity],
           [
-            Każda z osób ma do wyboru dwie karty: czerwoną i czarną. Wykładają je jednocześnie.
+            Solidarity and pride of the nation.
           ]
-          )
-        ],
-        [
-         #game 
-        ])
+        )
+      ],
+      [
+        #showybox(
+          frame: (
+            border-color: belarusianRed,
+            title-color: belarusianRed.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Anger or outrage],
+          [
+            Expression of anger or outrage.
+          ]
+        )
+      ],
+      [
+        #showybox(
+          frame: (
+            border-color: belarusianRed,
+            title-color: belarusianRed.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Fear or concern],
+          [
+            Expression of fear or\ concern.
+          ]
+        )
+      ],
+      [
+        #showybox(
+          frame: (
+            border-color: ukrainianYellow,
+            title-color: ukrainianYellow.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Mobilisation for action],
+          [
+            Calls for mobilisation and action.
+          ]
+        )
+      ],
+      )
+    ],
+    [
+      #grid(columns: (1fr, 1fr, 1fr),
+      column-gutter: 1em,
+      [
+        #showybox(
+          frame: (
+            border-color: belarusianGreen,
+            title-color: belarusianGreen.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Hope],
+          [
+            Expression of hope for positive\ outcomes.
+          ]
+        )
+      ],
+      [
+        #showybox(
+          frame: (
+            border-color: ukrainianYellow,
+            title-color: ukrainianYellow.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Appreciation],
+          [
+            Expression of appreciation or gratitude.
+          ]
+        )
+      ],
+      [
+        #showybox(
+          frame: (
+            border-color: ukrainianBlue,
+            title-color: ukrainianBlue.lighten(50%),
+            body-color: white,
+            body-inset: .5em,
+            title-inset: .6em,
+          ),
+          title-style: (
+            color: black,
+            weight: "bold",
+            align: center
+          ),
+          body-style: (
+            color: black,
+            align: left,
+          ),
+          title: [Neutral],
+          [
+            Neutral statements without strong emotional content.
+          ]
+        )
+      ],
+      )
 
+    ]
+  )
 ]
 
-#slide(title: [Procedura badawcza])[
-  #show: set text(size: 12pt)
+#slide(title: [Similarity to definitions])[
+  #figure(
+    image("png/comments_boxplot_country_cosine.png"),
+    caption: [Cosine similarity between comments and definitions.]
+  )
+]
+
+#slide(title: [Categorization])[
+  #figure(
+    image("png/comments_barplot_country_cosine.png"),
+    caption: [Categorization of comments.]
+  )
+]
+
+#slide(title: [Summary])[
   #v(15%)
-  #procedure
+  + The analysis revealed that the embeddings of categories are still similar even after centering.
+  + Topic modeling can provide further insights into the semantic spread of messages.
+  + A significant portion of messages in Ukraine and Belarus lack comments, indicating varying levels of engagement.
+  + Understanding the relationship between message popularity and comment profiles can help in better categorization and analysis.
 ]
 
-#slide(title: [Warunki eksperymentalne])[
-  #show: set text(size: 12pt)
-  #show: align.with(center)
+
+#slide(title: [Next Steps])[
   #v(15%)
-  #conditions
-]
 
-#slide(title: [Warunki eksperymentalne - Dlaczego?])[
+  + Improve the definition of categories since even after centering their embeddings are still similar.
 
-  - Spodziewamy się różnic w strategiach w zależności od przeciwnika (np. Ayton & Fisher, 2004; Boynton, 2003; Gronchi and Sloman, 2008).
+  + Perform topic modeling of messages to better understand the differences in semantic spread.
 
-  - W przypadku różnych przeciwników, a co za tym idzie różnych strategii, spodziewamy się mniejszego zaangażowania w grę (krótszej gry).
-  #v(5%)
+  + In Ukraine almost 50% of messages do not have any comment while in Belarus almost 30% of messages lack comments.
 
-  #show: text.with(size: 12pt)
-  #show: align.with(center)
-  #grid(
-    columns: (1fr, 1fr),
-    column-gutter: 1em,
-  [
-  #cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-    import calc.pow
-    import calc.cos
-    import calc: *
-
-    set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
-
-    plot.plot(
-    size: (8, 6),
-    axis-style: "school-book",
-    x-tick-step: none,
-    y-tick-step: none,
-    y-label: none,
-    x-label: [Czas],
-    stroke: 10pt,
-    name: "plot",
-    legend: none,
-    {
-      let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
-      for domain in domains {
-        if domain == (0,.5) {
-          plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-        }
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
-      
-      }
-      let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
-      for domain in domains {
-        if domain == (0.5,1.5) {
-          plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-        }
-        plot.add(t => pow(.8,t) * cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
-      
-      }
-    })
-  })
-  ],
-  [
-  #cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-    import calc.pow
-    import calc.cos
-    import calc: *
-
-    set-style(axes: (stroke: 1.5pt, tick: (stroke: 0pt), label: (offset:10pt)))
-
-    plot.plot(
-    size: (8, 6),
-    axis-style: "school-book",
-    x-tick-step: none,
-    y-tick-step: none,
-    y-label: none,
-    x-label: [Czas],
-    stroke: 10pt,
-    name: "plot",
-    legend: none,
-    {
-      let domains = ((0,.5), (1.5,2.5), (3.5, 4.5), (5.5,6.5), (7.5, 8.5), (9.5,10.5))
-      for domain in domains {
-        if domain == (0,.5) {
-          plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-        }
-        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: blue))
-      
-      }
-      let domains = ((0.5,1.5), (2.5,3.5), (4.5, 5.5), (6.5,7.5), (8.5, 9.5))
-      for domain in domains {
-        if domain == (0.5,1.5) {
-          plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red), label: $text("Oczekiwania") - text("Nagroda") < 0$)
-        }
-        plot.add(t => cos(t * calc.pi), domain: domain,  style: (fill: white, stroke: red))
-      
-      }
-    })
-  })
-  ])
-]
-
-#new-section-slide()[
-  Dlaczego Living Lab?
-]
-
-#focus-slide(background: mainColor,
-  [
-    Badanie w #highlight[Living Lab] pozwoli na zbadanie #highlight[motywacji w warunkach naturalnych] minimalizując efekt warunków laboratoryjnych.
-  ]
-)
-
-#slide(title: [Kwestie organizacyjne])[
-  #v(10%)
-
-  + Na ile przeprowadzenie takiego badania jest możliwe? Co jest niemożliwe?
-
-  + Jaki jest koszt przeprowadzenia takiego badania?
-
-  + Jakie są możliwe terminy przeprowadzenia badania?
-
-  + Jak wygąda praca nad przygotowaniem procedury?
-
-  + Współautorstwo publikacji naukowej.
-
-  + Umowy, faktury, KSeFy, itp.
-]
-
-#new-section-slide()[
-  Dziękuję!
-]
-
-#slide(title: [Bibliografia])[
-  #show: set text(size: 12pt)
-  #v(15%)
-  + Ayton, P., & Fischer, I. (2004). The hot hand fallacy and the gambler’s fallacy: Two faces of subjective randomness? _Memory & Cognition_, _32_(8), 1369–1378. https://doi.org/10.3758/BF03206327
-
-  + Boynton, D. M. (2003). Superstitious responding and frequency matching in the positive bias and gambler’s fallacy eﬀects. _Organizational Behavior and Human Decision Processes_, _91_(2), 119–127. https://doi.org/10.1016/S0749-5978(03)00064-5
-
-  + Gronchi, G., & Sloman, S. A. (2008). Do causal beliefs influence the hot-hand and the gambler’s fallacy? In _Proceedings of the 30th annual conference of the cognitive science society_, 1164–1168. Cognitive Science Society Austin, TX.
-
-  + Schultz, W. (2016). Dopamine reward prediction error coding. _Dialogues in Clinical Neuroscience_, _18_(1), 23–32. https://doi.org/10.31887/DCNS.2016.18.1/wschultz
-
-  + Deterding, S., Andersen, M. M., Kiverstein, J., & Miller, M. (2022). Mastering uncertainty: A predictive processing account of enjoying uncertain success in video game play. _Frontiers in Psychology_, _13_, 924953. https://doi.org/10.3389/fpsyg.2022.924953
-]
-
-#slide(title: [Plan działań])[
-  #v(20%)
-
-  + Finalizacja koncepcji badania i procedury badawczej.
-
-  + Przygotowanie materiałów do badania (instrukcje, pytania, itp.).
-
-  + Wniosek do komisji etycznej ISS UW.
-
-  + Prerejestracja badania (IPA).
-
+  + Explore the relationship between message popularity and profile of comments.
 ]

@@ -21,7 +21,7 @@
 // Option of the theme.
 #show: iss-theme.with(
   left-footer: [Kozachenko & Biesaga],
-  short-title: [What Drives Diasporic Online Mobilisation? Exploring Frames and Emotions on Telegram],
+  short-title: [What Drives Diasporic Online Mobilisation?],
   color: mainColor,
 )
 
@@ -57,11 +57,11 @@
 // Title slide.
 #title-slide(
   authors: [Ivan Kozachenko and Mikołaj Biesaga],
-  title: [Play again?],
-  subtitle: [Nowy paradygmat badający dynamikę błędu predykcji oraz\ zaangażowanie w
-działanie],
+  title: [What Drives Diasporic Online Mobilisation?],
+  subtitle: [Exploring Frames and Emotions on Telegram],
   date: [3 November 2026],// datetime.today().display("[day] [month repr:long] [year]"),
   funding: [The project is supported by the Polish National Science Centre (NCN Opus 27, DIAMOND,  nr: UMO-2024/53/B/HS5/01665)],
+  secondlogo: [#image("png/logo_obm.png")]
 )
 
 // Regular slide.
@@ -516,36 +516,77 @@ działanie],
 ]
 
 #slide(title: [Similarity to definitions])[
-  #figure(
-    image("png/comments_boxplot_country_cosine.png"),
-    caption: [Cosine similarity between comments and definitions.]
+  #grid(
+    rows: (1fr, 1fr),
+    row-gutter: 2em,
+    [
+      #figure(
+        image("png/comments_boxplot_country_Ukraine_kmeans_clusters.png"),
+        caption: [Profiles of comments in Ukraine (based on kmeans clustering of cosine similarity to definitions).]
+      )
+    ],
+    [
+      #figure(
+        image("png/comments_boxplot_country_Belarus_kmeans_clusters.png"),
+        caption: [Profiles of comments in Belarus (based on kmeans clustering of cosine similarity to definitions).]
+      )
+    ]
   )
 ]
 
-#slide(title: [Categorization])[
-  #figure(
-    image("png/comments_barplot_country_cosine.png"),
-    caption: [Categorization of comments.]
+#slide(title: [Similarity to definitions])[
+  #grid(
+    rows: (1fr, 1fr),
+    row-gutter: 2em,
+    [
+      #figure(
+        image("png/comments_barplot_country_Ukraine_kmeans_clusters.png"),
+        caption: [Profiles of comments in Ukraine as the most probable categories.]
+      )
+    ],
+    [
+      #figure(
+        image("png/comments_barplot_country_Belarus_kmeans_clusters.png"),
+        caption: [Profiles of comments in Belarus as the most probable categories.]
+      )
+    ]
   )
 ]
 
 #slide(title: [Summary])[
   #v(15%)
-  + The analysis revealed that the embeddings of categories are still similar even after centering.
-  + Topic modeling can provide further insights into the semantic spread of messages.
-  + A significant portion of messages in Ukraine and Belarus lack comments, indicating varying levels of engagement.
-  + Understanding the relationship between message popularity and comment profiles can help in better categorization and analysis.
+  + The hope expressed in Ukrainian comments seem to fade away the longer the russian invasion continues.
+
+  + We observe distinct profiles of comments in Ukraine and Belarus, with varying distributions across the defined categories:
+    - Ukrainian comments express appreciation more frequently;
+
+    - Belarusian comments fall into either fear or concern category or national solidarity category.
+  
 ]
 
 
 #slide(title: [Next Steps])[
   #v(15%)
 
-  + Improve the definition of categories since even after centering their embeddings are still similar.
+  + Improve the definition of categories.
 
   + Perform topic modeling of messages to better understand the differences in semantic spread.
 
-  + In Ukraine almost 50% of messages do not have any comment while in Belarus almost 30% of messages lack comments.
-
   + Explore the relationship between message popularity and profile of comments.
+]
+
+#slide(title: [Thank You!])[
+
+  #set text(18pt)
+  #set par(hanging-indent: 2em)
+
+  Alonso, A., & Oiarzabal, P. (Eds.). (2010). _Diasporas in the new media age: Identity, politics, and community._ University of Nevada Press.
+
+  Brubaker, R. (2005). The "diaspora" diaspora. _Ethnic and racial studies_, _28_(1), 1-19.
+
+  Castells, M. (2013). _Networks of outrage and hope: Social movements in the Internet age_. John Wiley & Sons.
+
+  Sökefeld, M. (2006). Mobilizing in transnational space: a social movement approach to the formation of diaspora. _Global networks_, _6_(3), 265-284.
+
+  Reimers, N., & Gurevych, I. (2019, November). Sentence-bert: Sentence embeddings using siamese bert-networks. In _Proceedings of the 2019 conference on empirical methods in natural language processing and the 9th international joint conference on natural language processing (EMNLP-IJCNLP)_, 3982-3992.
 ]

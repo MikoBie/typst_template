@@ -182,7 +182,7 @@
           color: black,
           align: left,
         ),
-        title: [#set text(size: 18pt, spacing: 75%); #set par(justify: false); "Network of outrage and hope"],
+        title: [#set text(size: 18pt, spacing: 75%); #set par(justify: false); "Networks of outrage and hope"],
         [
           #set text(size: 14pt, spacing: 75%)
           #set par(justify: false)

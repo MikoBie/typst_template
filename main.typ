@@ -239,7 +239,6 @@
 ]
 
 #slide(title: [Collected data])[
-  #import calc
   #show table.cell.where(y: 0): it => {
     set text(white, weight: "black")
     it

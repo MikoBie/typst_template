@@ -521,13 +521,13 @@
     [
       #figure(
         image("png/comments_boxplot_country_Ukraine_kmeans_clusters.png"),
-        caption: [Profiles of comments in Ukraine (based on kmeans clustering of cosine similarity to definitions).]
+        caption: [Profiles of comments in Ukrainian channels (based on kmeans clustering of cosine similarity to definitions).]
       )
     ],
     [
       #figure(
         image("png/comments_boxplot_country_Belarus_kmeans_clusters.png"),
-        caption: [Profiles of comments in Belarus (based on kmeans clustering of cosine similarity to definitions).]
+        caption: [Profiles of comments in Belarusian channels (based on kmeans clustering of cosine similarity to definitions).]
       )
     ]
   )
@@ -540,13 +540,13 @@
     [
       #figure(
         image("png/comments_barplot_country_Ukraine_kmeans_clusters.png"),
-        caption: [Profiles of comments in Ukraine as the most probable categories.]
+        caption: [Profiles of comments in Ukrainian channels as the most probable categories.]
       )
     ],
     [
       #figure(
         image("png/comments_barplot_country_Belarus_kmeans_clusters.png"),
-        caption: [Profiles of comments in Belarus as the most probable categories.]
+        caption: [Profiles of comments in Belarusian channels as the most probable categories.]
       )
     ]
   )
@@ -556,7 +556,7 @@
   #v(15%)
   + The hope expressed in Ukrainian comments seem to fade away the longer the russian invasion continues.
 
-  + We observe distinct profiles of comments in Ukraine and Belarus, with varying distributions across the defined categories:
+  + We observe distinct profiles of comments in Ukrainian and Belarusian channels, with varying distributions across the defined categories:
     - Ukrainian comments express appreciation more frequently;
 
     - Belarusian comments fall into either fear or concern category or national solidarity category.

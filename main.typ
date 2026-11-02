@@ -515,6 +515,38 @@
 ]
 
 #slide(title: [Similarity to definitions])[
+  #show smallcaps: set text(size:18pt)
+  #set text(size: 13pt)
+  #set align(center)
+  #v(5%)
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    content((10,5), [\<0.048, 0.050, ..., -0.024\>]) 
+    content((10,-1), [#smallcaps[Comment\ embedding]])
+
+    content((-5,2), [Neutral = \<0.046, -0.005, ..., -0.006>], anchor: "west") 
+    content((-5,3), [Appreciation = \<-0.008, -0.005, ..., -0.006>], anchor: "west") 
+    content((-5,4), [Hope = \<0.005, -0.005, ..., -0.007>], anchor: "west") 
+    content((-5,5), [Mobilisation = \<0.013, -0.0003, ..., -0.006>], anchor: "west") 
+    content((-5,6), [Fear = \<-0.033, 0.025, ..., -0.007,>], anchor: "west") 
+    content((-5,7), [Anger = \<0.027, -0.037, ..., -0.007>], anchor: "west") 
+    content((-5,8), [Solidarity = \< -0.02, -0.012, ..., -0.006>], anchor: "west") 
+    content((0,-1), [#smallcaps[Definitions\ embeddings]])
+
+    content((20,2), [0.02]) 
+    content((20,3), [0.08]) 
+    content((20,4), [-0.08]) 
+    content((20,5), [0.18]) 
+    content((20,6), [-0.1]) 
+    content((20,7), [-0.07]) 
+    content((20,8), [-0.02]) 
+    content((20,-1), [#smallcaps[Cosine\ similarity]])
+  })
+]
+
+#slide(title: [Similarity to definitions])[
   #grid(
     rows: (1fr, 1fr),
     row-gutter: 2em,
@@ -553,7 +585,10 @@
 ]
 
 #slide(title: [Summary])[
-  #v(15%)
+  #v(10%)
+
+  + Ukrainian channels use more diverse language than the Belarusian.
+  
   + The hope expressed in Ukrainian comments seem to fade away the longer the russian invasion continues.
 
   + We observe distinct profiles of comments in Ukrainian and Belarusian channels, with varying distributions across the defined categories:

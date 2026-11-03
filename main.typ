@@ -553,13 +553,13 @@
     [
       #figure(
         image("png/comments_boxplot_country_Ukraine_kmeans_clusters.png"),
-        caption: [Profiles of comments in Ukrainian channels (based on kmeans clustering of cosine similarity to definitions).]
+        caption: [Profiles of comments in Ukrainian channels (based on k-means clustering of cosine similarity to definitions).]
       )
     ],
     [
       #figure(
         image("png/comments_boxplot_country_Belarus_kmeans_clusters.png"),
-        caption: [Profiles of comments in Belarusian channels (based on kmeans clustering of cosine similarity to definitions).]
+        caption: [Profiles of comments in Belarusian channels (based on k-means clustering of cosine similarity to definitions).]
       )
     ]
   )
@@ -587,14 +587,14 @@
 #slide(title: [Summary])[
   #v(10%)
 
-  + Ukrainian channels use more diverse language than the Belarusian.
+  + Ukrainian channels use more diverse language than Belarusian.
   
-  + The hope expressed in Ukrainian comments seem to fade away the longer the russian invasion continues.
+  + The hope expressed in Ukrainian comments seems to fade away the longer the russian invasion continues.
 
   + We observe distinct profiles of comments in Ukrainian and Belarusian channels, with varying distributions across the defined categories:
     - Ukrainian comments express appreciation more frequently;
 
-    - Belarusian comments fall into either fear or concern category or national solidarity category.
+    - Belarusian comments fall into either the fear or concern category or the national solidarity category.
   
 ]
 
@@ -606,7 +606,7 @@
 
   + Perform topic modeling of messages to better understand the differences in semantic spread.
 
-  + Explore the relationship between message popularity and profile of comments.
+  + Explore the relationship between message popularity and the profile of comments.
 ]
 
 #slide(title: [Thank You!])[
